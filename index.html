@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axons - Intelligent Code Analysis Platform</title>
+    <meta name="description"
+        content="AI-powered code analysis tool for developers. Understand code architecture, detect issues, and improve code quality.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
+</head>
+
+<body>
+    <!-- 背景粒子效果 -->
+    <div id="particles-container"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                <span class="logo-text">Axons</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" data-i18n="nav.home">Home</a></li>
+                <li><a href="#features" data-i18n="nav.features">Features</a></li>
+                <li><a href="#download" data-i18n="nav.download">Download</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">🚀</span>
+                <span data-i18n="hero.badge">Next-Gen Intelligent Code Analysis Platform</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">Axons</span>
+                <br>
+                <span class="subtitle" data-i18n="hero.subtitle">Making Code Analysis Simple and Powerful</span>
+            </h1>
+            <p class="hero-description" data-i18n="hero.description">
+                AI-powered code analysis tool that helps developers quickly understand code architecture,
+                detect potential issues, and improve code quality. Cross-platform support, ready to use.
+            </p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    <span data-i18n="hero.download">Download Now</span>
+                </a>
+                <a href="#demo" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    <span data-i18n="hero.demo">Watch Demo</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10000">0</span>+
+                    <span class="stat-label" data-i18n="stats.users">Active Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="500">0</span>+
+                    <span class="stat-label" data-i18n="stats.companies">Enterprise Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="98">0</span>%
+                    <span class="stat-label" data-i18n="stats.satisfaction">Satisfaction</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <i class="fas fa-code"></i>
+                <span data-i18n="floating.analysis">Code Analysis</span>
+            </div>
+            <div class="floating-card card-2">
+                <i class="fas fa-project-diagram"></i>
+                <span data-i18n="floating.architecture">Architecture</span>
+            </div>
+            <div class="floating-card card-3">
+                <i class="fas fa-bug"></i>
+                <span data-i18n="floating.detection">Issue Detection</span>
+            </div>
+            <div class="floating-card card-4">
+                <i class="fas fa-rocket"></i>
+                <span data-i18n="floating.optimization">Performance</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="features.title">Core Features</h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">Why Choose Axons?</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-i18n="features.ai.title">AI-Powered Analysis</h3>
+                    <p data-i18n="features.ai.desc">Advanced AI algorithms to intelligently identify code patterns and
+                        potential issues, providing deep insights</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 data-i18n="features.visual.title">Visual Reports</h3>
+                    <p data-i18n="features.visual.desc">Generate intuitive charts and reports, making complex code
+                        relationships clear at a glance</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 data-i18n="features.fast.title">Lightning Fast</h3>
+                    <p data-i18n="features.fast.desc">Optimized analysis engine that scans large projects in seconds</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 data-i18n="features.privacy.title">Privacy Protected</h3>
+                    <p data-i18n="features.privacy.desc">Runs locally, code never uploaded to cloud, fully protecting
+                        your code privacy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <h3 data-i18n="features.plugin.title">Plugin Ecosystem</h3>
+                    <p data-i18n="features.plugin.desc">Rich plugin system supporting custom analysis rules and extended
+                        functionality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3 data-i18n="features.update.title">Continuous Updates</h3>
+                    <p data-i18n="features.update.desc">Regular new features and optimizations, keeping up with
+                        technology trends</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="demo.title">Product Demo</h2>
+                <p class="section-subtitle" data-i18n="demo.subtitle">See How Axons Boosts Your Development Efficiency
+                </p>
+            </div>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="demo-video" controls poster="video-poster.png">
+                        <source src="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-demo.mp4"
+                            type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <div class="video-overlay">
+                        <button class="play-button" id="play-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="download.title">Download Now</h2>
+                <p class="section-subtitle" data-i18n="download.subtitle">Choose the version for your platform</p>
+            </div>
+            <div class="download-cards">
+                <!-- macOS -->
+                <div class="download-card" data-platform="mac">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>macOS</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.intel">Intel & Apple Silicon
+                                Support</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.native">Native macOS
+                                Experience</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.update">Auto-update
+                                Support</span></li>
+                    </ul>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos.dmg"
+                        class="download-btn" id="download-mac">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.dmg">Download .dmg</span>
+                    </a>
+                    <p class="file-size">~45 MB</p>
+                </div>
+
+                <!-- Windows -->
+                <div class="download-card featured" data-platform="windows">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.support">Windows 10/11
+                                Support</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.bit">64-bit
+                                Application</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.portable">Portable, No
+                                Install</span></li>
+                    </ul>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-windows.zip"
+                        class="download-btn" id="download-windows">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.zip">Download .zip</span>
+                    </a>
+                    <p class="file-size">~40 MB</p>
+                </div>
+
+                <!-- Web -->
+                <div class="download-card" data-platform="web">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.browser">Browser-Based</span>
+                        </li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.server">Local Server</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.portable">Portable Version</span>
+                        </li>
+                    </ul>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web.zip"
+                        class="download-btn" id="download-web">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.zip">Download .zip</span>
+                    </a>
+                    <p class="file-size">~35 MB</p>
+                </div>
+            </div>
+
+            <div class="system-requirements">
+                <h4><i class="fas fa-info-circle"></i> <span data-i18n="requirements.title">System Requirements</span>
+                </h4>
+                <div class="requirements-grid">
+                    <div class="requirement-item">
+                        <strong>macOS:</strong> <span data-i18n="requirements.mac">macOS 10.15 (Catalina) or
+                            later</span>
+                    </div>
+                    <div class="requirement-item">
+                        <strong>Windows:</strong> <span data-i18n="requirements.windows">Windows 10 or later
+                            (64-bit)</span>
+                    </div>
+                    <div class="requirement-item">
+                        <strong>Web:</strong> <span data-i18n="requirements.web">Modern Browser (Chrome, Firefox,
+                            Safari, Edge)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle">Join the Community, Grow Together</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-i18n="contact.tech.title">Tech Community</h3>
+                    <p data-i18n="contact.tech.desc">Exchange technical insights with developers</p>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/mengshi02/axons"
+                            alt="Tech Community QR">
+                    </div>
+                    <a href="#" class="contact-link" data-i18n="contact.tech.join">Join Group</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-i18n="contact.business.title">Business Partnership</h3>
+                    <p data-i18n="contact.business.desc">Enterprise customization and technical support</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@axons.dev</p>
+                        <p><i class="fas fa-phone"></i> +86 138-0000-0000</p>
+                    </div>
+                    <a href="mailto:contact@axons.dev" class="contact-link" data-i18n="contact.business.reach">Contact
+                        Us</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 data-i18n="contact.opensource.title">Open Source</h3>
+                    <p data-i18n="contact.opensource.desc">Participate in project development</p>
+                    <div class="social-links">
+                        <a href="https://github.com/mengshi02/axons" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://gitee.com/mengshi02/axons" target="_blank" title="Gitee">
+                            <i class="fas fa-code-branch"></i>
+                        </a>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons" target="_blank" class="contact-link"
+                        data-i18n="contact.opensource.repo">Visit Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="../public/favicon.svg" alt="Axons Logo" class="logo-img">
+                        <span class="logo-text">Axons</span>
+                    </div>
+                    <p data-i18n="footer.tagline">Making Code Analysis Simple and Powerful</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.product">Product</h4>
+                        <a href="#features" data-i18n="footer.features">Features</a>
+                        <a href="#download" data-i18n="footer.download">Download</a>
+                        <a href="#" data-i18n="footer.changelog">Changelog</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.resources">Resources</h4>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md"
+                            data-i18n="footer.docs">Documentation</a>
+                        <a href="https://github.com/mengshi02/axons">GitHub</a>
+                        <a href="#" data-i18n="footer.api">API Reference</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.community">Community</h4>
+                        <a href="https://github.com/mengshi02/axons/issues" data-i18n="footer.issues">Issue Tracker</a>
+                        <a href="https://github.com/mengshi02/axons/discussions"
+                            data-i18n="footer.discussions">Discussions</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CONTRIBUTING.md"
+                            data-i18n="footer.contributing">Contributing</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Axons. All rights reserved.</p>
+                <p>Made with ❤️ by the Axons Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
