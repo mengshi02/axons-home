@@ -53,9 +53,9 @@ const translations = {
         'download.zip': 'Download .zip',
         'download.visit': 'Visit Online',
         'download.noDownload': 'No download needed',
-        'download.mac.intel': 'Intel & Apple Silicon Support',
-        'download.mac.native': 'Native macOS Experience',
-        'download.mac.update': 'Auto-update Support',
+        'download.mac.silicon': 'Apple Silicon (M1/M2/M3)',
+        'download.mac.intel': 'Intel Chip',
+        'download.mac.native': 'Native Experience',
         'download.windows.support': 'Windows 10/11 Support',
         'download.windows.bit': '64-bit Application',
         'download.windows.portable': 'Portable, No Install',
@@ -67,7 +67,7 @@ const translations = {
         'requirements.title': 'System Requirements',
         'requirements.mac': 'macOS 10.15 (Catalina) or later',
         'requirements.windows': 'Windows 10 or later (64-bit)',
-        'requirements.web': 'Modern Browser (Chrome, Firefox, Safari, Edge)',
+        'requirements.linux': 'Modern Linux distribution (glibc 2.31+)',
 
         // 联系
         'contact.title': 'Contact Us',
@@ -149,9 +149,9 @@ const translations = {
         'download.zip': '下载 .zip',
         'download.visit': '在线访问',
         'download.noDownload': '无需下载',
-        'download.mac.intel': '支持 Intel 和 Apple Silicon',
-        'download.mac.native': '原生 macOS 体验',
-        'download.mac.update': '自动更新支持',
+        'download.mac.silicon': 'Apple Silicon (M1/M2/M3)',
+        'download.mac.intel': 'Intel 芯片',
+        'download.mac.native': '原生体验',
         'download.windows.support': '支持 Windows 10/11',
         'download.windows.bit': '64位应用程序',
         'download.windows.portable': '免安装绿色版',
@@ -163,7 +163,7 @@ const translations = {
         'requirements.title': '系统要求',
         'requirements.mac': 'macOS 10.15 (Catalina) 或更高版本',
         'requirements.windows': 'Windows 10 或更高版本 (64位)',
-        'requirements.web': 'Modern Browser (Chrome, Firefox, Safari, Edge)',
+        'requirements.linux': '现代 Linux 发行版 (glibc 2.31+)',
 
         // 联系
         'contact.title': '联系我们',
@@ -446,12 +446,73 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// ==================== 架构选择器 ====================
+function handleArchSelector() {
+    // macOS 架构切换
+    const macCard = document.querySelector('[data-platform="mac"]');
+    if (macCard) {
+        const archBtns = macCard.querySelectorAll('.arch-btn');
+        const downloadBtn = macCard.querySelector('.download-btn');
+
+        const macUrls = {
+            arm64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-arm64.dmg',
+            amd64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-amd64.dmg'
+        };
+
+        archBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // 阻止事件冒泡
+                archBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const arch = btn.getAttribute('data-arch');
+                downloadBtn.href = macUrls[arch];
+            });
+        });
+    }
+
+    // Web 平台选择器
+    const webCard = document.querySelector('[data-platform="web"]');
+    if (webCard) {
+        const archSelect = webCard.querySelector('.arch-select');
+        const downloadBtn = webCard.querySelector('.download-btn');
+
+        const webUrls = {
+            'linux-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.zip',
+            'linux-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-arm64.zip',
+            'darwin-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-amd64.zip',
+            'darwin-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-arm64.zip',
+            'windows-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-amd64.zip',
+            'windows-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-arm64.zip'
+        };
+
+        archSelect.addEventListener('change', (e) => {
+            e.stopPropagation(); // 阻止事件冒泡
+            const arch = archSelect.value;
+            downloadBtn.href = webUrls[arch];
+        });
+
+        // 阻止 select 上的点击事件冒泡
+        archSelect.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+}
+
 // ==================== 卡片悬停效果 ====================
 function handleCardHover() {
     const cards = document.querySelectorAll('.feature-card, .download-card, .contact-card');
 
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
+            // 如果目标是交互元素，不触发悬停效果
+            if (e.target.tagName === 'SELECT' ||
+                e.target.tagName === 'BUTTON' ||
+                e.target.tagName === 'A' ||
+                e.target.tagName === 'INPUT') {
+                return;
+            }
+
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -604,6 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 下载功能
     trackDownloads();
     detectOS();
+    handleArchSelector();
 
     // 其他功能
     lazyLoadImages();

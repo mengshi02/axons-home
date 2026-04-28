@@ -712,6 +712,7 @@ body {
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
+    white-space: nowrap;
 }
 
 .version-info {
@@ -765,6 +766,76 @@ body {
     color: var(--text-muted);
 }
 
+/* Architecture Selector */
+.arch-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.arch-btn {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-base);
+    position: relative;
+    z-index: 10;
+}
+
+.arch-btn:hover {
+    border-color: var(--primary-light);
+    color: var(--text-primary);
+}
+
+.arch-btn.active {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    color: white;
+    font-weight: 500;
+}
+
+.arch-selector.web-selector {
+    display: block;
+}
+
+.arch-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition-base);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23718096' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.arch-select:hover {
+    border-color: var(--primary-light);
+}
+
+.arch-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
 .system-requirements {
     background: var(--bg-card);
     border: 1px solid var(--border-color);

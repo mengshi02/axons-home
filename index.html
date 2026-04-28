@@ -230,14 +230,15 @@
                     <h3>macOS</h3>
                     <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
                     <ul class="features-list">
-                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.intel">Intel & Apple Silicon
-                                Support</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.native">Native macOS
-                                Experience</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.update">Auto-update
-                                Support</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.silicon">Apple Silicon (M1/M2/M3)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.intel">Intel Chip</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.native">Native Experience</span></li>
                     </ul>
-                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos.dmg"
+                    <div class="arch-selector">
+                        <button class="arch-btn active" data-arch="arm64">Apple Silicon</button>
+                        <button class="arch-btn" data-arch="amd64">Intel</button>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-arm64.dmg"
                         class="download-btn" id="download-mac">
                         <i class="fas fa-download"></i>
                         <span data-i18n="download.dmg">Download .dmg</span>
@@ -261,7 +262,7 @@
                         <li><i class="fas fa-check"></i> <span data-i18n="download.windows.portable">Portable, No
                                 Install</span></li>
                     </ul>
-                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-windows.zip"
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-windows-amd64.zip"
                         class="download-btn" id="download-windows">
                         <i class="fas fa-download"></i>
                         <span data-i18n="download.zip">Download .zip</span>
@@ -275,7 +276,7 @@
                     <div class="download-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3>Web</h3>
+                    <h3>Web (Cross-Platform)</h3>
                     <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
                     <ul class="features-list">
                         <li><i class="fas fa-check"></i> <span data-i18n="download.web.browser">Browser-Based</span>
@@ -284,7 +285,17 @@
                         <li><i class="fas fa-check"></i> <span data-i18n="download.web.portable">Portable Version</span>
                         </li>
                     </ul>
-                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web.zip"
+                    <div class="arch-selector web-selector">
+                        <select class="arch-select" id="web-arch-select">
+                            <option value="linux-amd64">Linux (x86_64)</option>
+                            <option value="linux-arm64">Linux (ARM64)</option>
+                            <option value="darwin-amd64">macOS (Intel)</option>
+                            <option value="darwin-arm64">macOS (Apple Silicon)</option>
+                            <option value="windows-amd64">Windows (x86_64)</option>
+                            <option value="windows-arm64">Windows (ARM64)</option>
+                        </select>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.zip"
                         class="download-btn" id="download-web">
                         <i class="fas fa-download"></i>
                         <span data-i18n="download.zip">Download .zip</span>
@@ -306,8 +317,8 @@
                             (64-bit)</span>
                     </div>
                     <div class="requirement-item">
-                        <strong>Web:</strong> <span data-i18n="requirements.web">Modern Browser (Chrome, Firefox,
-                            Safari, Edge)</span>
+                        <strong>Linux:</strong> <span data-i18n="requirements.linux">Modern Linux distribution
+                            (glibc 2.31+)</span>
                     </div>
                 </div>
             </div>
