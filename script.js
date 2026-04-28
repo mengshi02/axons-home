@@ -14,10 +14,8 @@ const translations = {
         'hero.download': 'Download Now',
         'hero.demo': 'Watch Demo',
 
-        // 统计数据
-        'stats.users': 'Active Users',
-        'stats.companies': 'Enterprise Clients',
-        'stats.satisfaction': 'Satisfaction',
+        // 语言支持
+        'languages.title': 'Supported Languages',
 
         // 浮动卡片
         'floating.analysis': 'Code Analysis',
@@ -112,10 +110,8 @@ const translations = {
         'hero.download': '立即下载',
         'hero.demo': '观看演示',
 
-        // 统计数据
-        'stats.users': '活跃用户',
-        'stats.companies': '企业客户',
-        'stats.satisfaction': '满意度',
+        // 语言支持
+        'languages.title': '支持的编程语言',
 
         // 浮动卡片
         'floating.analysis': '代码分析',
@@ -321,46 +317,6 @@ function handleSmoothScroll() {
             }
         });
     });
-}
-
-// ==================== 数字动画 ====================
-function animateNumbers() {
-    const numbers = document.querySelectorAll('.stat-number');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
-                animateNumber(entry.target, target);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    numbers.forEach(num => observer.observe(num));
-}
-
-function animateNumber(element, target) {
-    const duration = 2000;
-    const start = 0;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // 缓动函数
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(easeOutQuart * target);
-
-        element.textContent = current.toLocaleString();
-
-        if (progress < 1) {
-            requestAnimationFrame(update);
-        }
-    }
-
-    requestAnimationFrame(update);
 }
 
 // ==================== 视频播放控制 ====================
@@ -639,7 +595,6 @@ document.addEventListener('DOMContentLoaded', () => {
     handleSmoothScroll();
 
     // 动画效果
-    animateNumbers();
     handleScrollAnimation();
     handleCardHover();
 

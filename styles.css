@@ -363,31 +363,54 @@ body {
     transform: translateY(-3px);
 }
 
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    flex-wrap: wrap;
-}
-
-.stat-item {
+/* Language Support Section */
+.language-support {
+    margin-top: 2rem;
     text-align: center;
 }
 
-.stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.support-title {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
 }
 
-.stat-label {
-    display: block;
-    color: var(--text-muted);
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.language-item {
+    display: flex;
+    flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--bg-glass);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        transition: var(--transition-base);
+}
+
+.language-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-light);
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.2);
+}
+
+.language-item i {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.language-item span {
     font-size: 0.875rem;
-    margin-top: 0.25rem;
+    color: var(--text-secondary);
+        font-weight: 500;
 }
 
 /* Floating Cards */
@@ -1008,8 +1031,8 @@ body {
         font-size: 2.5rem;
     }
 
-    .hero-stats {
-        gap: 2rem;
+        .language-grid {
+            grid-template-columns: repeat(2, 1fr);
     }
 
     .features-grid,
