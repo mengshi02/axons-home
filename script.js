@@ -8,40 +8,45 @@ const translations = {
         'nav.contact': 'Contact',
 
         // Hero区域
-        'hero.badge': 'Next-Gen Intelligent Code Analysis Platform',
-        'hero.subtitle': 'Making Code Analysis Simple and Powerful',
-        'hero.description': 'AI-powered code analysis tool that helps developers quickly understand code architecture, detect potential issues, and improve code quality. Cross-platform support, ready to use.',
+        'hero.badge': 'Secure Native Code Analysis & Generation Agent',
+        'hero.description': 'Fusing four core capabilities — Graph Visualization, Intelligent Analysis, Security Detection, and AI Reasoning — to build an intelligent defense line for code security. Cross-platform, ready to use.',
         'hero.download': 'Download Now',
         'hero.demo': 'Watch Demo',
+
+        // 四大要素
+        'pillar.graph': 'Graph',
+        'pillar.analysis': 'Analysis',
+        'pillar.security': 'Security',
+        'pillar.intelligence': 'Intelligence',
 
         // 语言支持
         'languages.title': 'Supported Languages',
 
         // 浮动卡片
-        'floating.analysis': 'Code Analysis',
-        'floating.architecture': 'Architecture',
-        'floating.detection': 'Issue Detection',
-        'floating.optimization': 'Performance',
+        'floating.graph': 'Code Graph',
+        'floating.analysis': 'Deep Analysis',
+        'floating.security': 'Security Shield',
+        'floating.intelligence': 'AI Reasoning',
 
         // 特性
-        'features.title': 'Core Features',
-        'features.subtitle': 'Why Choose Axons?',
-        'features.ai.title': 'AI-Powered Analysis',
-        'features.ai.desc': 'Advanced AI algorithms to intelligently identify code patterns and potential issues, providing deep insights',
+        'features.title': 'Four Core Capabilities',
+        'features.subtitle': 'Graph · Analysis · Security · Intelligence',
+        'features.graph.title': 'Code Graph',
+        'features.graph.desc': 'Build code dependency graphs and call chain visualization, precisely mapping module relationships. Support multi-level graph drill-down and interactive exploration.',
+        'features.analysis.title': 'Deep Analysis',
+        'features.analysis.desc': 'Combining static analysis with dynamic tracing to accurately identify code defects, performance bottlenecks, and architecture smells. Multi-language, multi-dimensional scanning.',
+        'features.security.title': 'Security Shield',
+        'features.security.desc': 'Native security detection engine covering OWASP Top 10, sensitive data leaks, and supply chain risks. Runs locally, zero cloud upload.',
+        'features.intelligence.title': 'AI Reasoning',
+        'features.intelligence.desc': 'AI-powered code understanding and reasoning engine, auto-generating fix suggestions, security patches, and refactoring plans. Continuous learning, ever more precise.',
         'features.visual.title': 'Visual Reports',
-        'features.visual.desc': 'Generate intuitive charts and reports, making complex code relationships clear at a glance',
-        'features.fast.title': 'Lightning Fast',
-        'features.fast.desc': 'Optimized analysis engine that scans large projects in seconds',
-        'features.privacy.title': 'Privacy Protected',
-        'features.privacy.desc': 'Runs locally, code never uploaded to cloud, fully protecting your code privacy',
-        'features.plugin.title': 'Plugin Ecosystem',
-        'features.plugin.desc': 'Rich plugin system supporting custom analysis rules and extended functionality',
-        'features.update.title': 'Continuous Updates',
-        'features.update.desc': 'Regular new features and optimizations, keeping up with technology trends',
+        'features.visual.desc': 'Generate intuitive graph reports and security scores, making code risks, dependencies, and improvement directions clear at a glance.',
+        'features.fast.title': 'Lightning Engine',
+        'features.fast.desc': 'Optimized analysis engine with second-level scanning for large projects. Incremental analysis focuses only on changes, guarding continuously without slowing development.',
 
         // 演示
         'demo.title': 'Product Demo',
-        'demo.subtitle': 'See How Axons Boosts Your Development Efficiency',
+        'demo.subtitle': 'See How Axons Guards Your Code Security',
 
         // 下载
         'download.title': 'Download Now',
@@ -83,9 +88,9 @@ const translations = {
         'contact.opensource.repo': 'Visit Repository',
 
         // Footer
-        'footer.tagline': 'Making Code Analysis Simple and Powerful',
+        'footer.tagline': 'Graph-Driven · Intelligent Analysis · Security-Native',
         'footer.product': 'Product',
-        'footer.features': 'Features',
+        'footer.features': 'Capabilities',
         'footer.download': 'Download',
         'footer.changelog': 'Changelog',
         'footer.resources': 'Resources',
@@ -104,40 +109,45 @@ const translations = {
         'nav.contact': '联系',
 
         // Hero区域
-        'hero.badge': '新一代智能代码分析平台',
-        'hero.subtitle': '让代码分析变得简单而强大',
-        'hero.description': '基于AI驱动的代码分析工具，帮助开发者快速理解代码架构、发现潜在问题、提升代码质量。支持多平台，开箱即用。',
+        'hero.badge': '安全原生代码分析与生成智能体',
+        'hero.description': '融合图谱可视化、智能分析引擎、安全检测与AI推理四大核心能力，构建代码安全的智能防线。跨平台支持，开箱即用。',
         'hero.download': '立即下载',
         'hero.demo': '观看演示',
+
+        // 四大要素
+        'pillar.graph': '图谱',
+        'pillar.analysis': '分析',
+        'pillar.security': '安全',
+        'pillar.intelligence': '智能',
 
         // 语言支持
         'languages.title': '支持的编程语言',
 
         // 浮动卡片
-        'floating.analysis': '代码分析',
-        'floating.architecture': '架构图',
-        'floating.detection': '问题检测',
-        'floating.optimization': '性能优化',
+        'floating.graph': '代码图谱',
+        'floating.analysis': '深度分析',
+        'floating.security': '安全防护',
+        'floating.intelligence': '智能推理',
 
         // 特性
-        'features.title': '核心特性',
-        'features.subtitle': '为什么选择 Axons？',
-        'features.ai.title': 'AI 驱动分析',
-        'features.ai.desc': '基于先进的AI算法，智能识别代码模式和潜在问题，提供深度洞察',
+        'features.title': '四大核心能力',
+        'features.subtitle': '图谱 · 分析 · 安全 · 智能',
+        'features.graph.title': '代码图谱',
+        'features.graph.desc': '构建代码依赖图谱与调用链可视化，精准映射模块关系，让代码架构一目了然。支持多层级图谱钻取与交互式探索。',
+        'features.analysis.title': '深度分析',
+        'features.analysis.desc': '静态分析与动态追踪相结合，精准识别代码缺陷、性能瓶颈和架构异味。支持多语言、多维度全面扫描。',
+        'features.security.title': '安全防护',
+        'features.security.desc': '原生安全检测引擎，覆盖OWASP Top 10漏洞模式、敏感数据泄露、供应链风险。本地运行，代码零上云。',
+        'features.intelligence.title': '智能推理',
+        'features.intelligence.desc': 'AI驱动的代码理解与推理引擎，自动生成修复建议、安全补丁和重构方案。持续学习，越用越精准。',
         'features.visual.title': '可视化报告',
-        'features.visual.desc': '生成直观的图表和报告，让复杂的代码关系一目了然',
-        'features.fast.title': '极速分析',
-        'features.fast.desc': '优化的分析引擎，大型项目也能在秒级完成扫描',
-        'features.privacy.title': '隐私保护',
-        'features.privacy.desc': '本地运行，代码不上传云端，完全保护您的代码隐私',
-        'features.plugin.title': '插件生态',
-        'features.plugin.desc': '丰富的插件系统，支持自定义分析规则和扩展功能',
-        'features.update.title': '持续更新',
-        'features.update.desc': '定期发布新功能和优化，紧跟技术发展趋势',
+        'features.visual.desc': '生成直观的图谱报告和安全评分，让代码风险、依赖关系和改进方向一目了然。',
+        'features.fast.title': '极速引擎',
+        'features.fast.desc': '优化分析引擎，大型项目秒级扫描。增量分析只关注变更，持续守护不影响开发节奏。',
 
         // 演示
         'demo.title': '产品演示',
-        'demo.subtitle': '看看 Axons 如何提升您的开发效率',
+        'demo.subtitle': '看看 Axons 如何守护代码安全',
 
         // 下载
         'download.title': '立即下载',
@@ -179,9 +189,9 @@ const translations = {
         'contact.opensource.repo': '访问仓库',
 
         // Footer
-        'footer.tagline': '让代码分析变得简单而强大',
+        'footer.tagline': '图谱驱动 · 智能分析 · 安全原生',
         'footer.product': '产品',
-        'footer.features': '特性',
+        'footer.features': '核心能力',
         'footer.download': '下载',
         'footer.changelog': '更新日志',
         'footer.resources': '资源',
@@ -205,9 +215,9 @@ function initLanguageSwitch() {
     const savedLang = localStorage.getItem('axons-lang');
     if (savedLang && translations[savedLang]) {
         currentLang = savedLang;
-        updateLanguage(currentLang);
-        updateActiveButton(currentLang);
     }
+    updateLanguage(currentLang);
+    updateActiveButton(currentLang);
 
     langBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -247,6 +257,9 @@ function updateActiveButton(lang) {
         btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 }
+
+
+
 
 // ==================== 粒子背景效果 ====================
 function createParticles() {
@@ -471,11 +484,15 @@ function handleArchSelector() {
         });
     }
 
-    // Web 平台选择器
+    // Web 平台自定义下拉选择器
     const webCard = document.querySelector('[data-platform="web"]');
     if (webCard) {
-        const archSelect = webCard.querySelector('.arch-select');
+        const trigger = webCard.querySelector('.custom-select-trigger');
+        const options = webCard.querySelector('.custom-options');
+        const optionItems = webCard.querySelectorAll('.custom-option');
+        const hiddenSelect = webCard.querySelector('.arch-select-hidden');
         const downloadBtn = webCard.querySelector('.download-btn');
+        const selectText = trigger.querySelector('.select-text');
 
         const webUrls = {
             'linux-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.zip',
@@ -486,15 +503,68 @@ function handleArchSelector() {
             'windows-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-arm64.zip'
         };
 
-        archSelect.addEventListener('change', (e) => {
-            e.stopPropagation(); // 阻止事件冒泡
-            const arch = archSelect.value;
-            downloadBtn.href = webUrls[arch];
+        // 点击触发器切换下拉菜单
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            trigger.classList.toggle('active');
+            options.classList.toggle('active');
         });
 
-        // 阻止 select 上的点击事件冒泡
-        archSelect.addEventListener('click', (e) => {
+        // 允许在下拉菜单内滚动
+        options.addEventListener('wheel', (e) => {
             e.stopPropagation();
+        });
+
+        options.addEventListener('scroll', (e) => {
+            e.stopPropagation();
+        });
+
+        // 点击选项
+        optionItems.forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // 移除所有选中状态
+                optionItems.forEach(opt => opt.classList.remove('selected'));
+
+                // 添加当前选中状态
+                option.classList.add('selected');
+
+                // 更新显示文本
+                const text = option.querySelector('span').textContent;
+                selectText.textContent = text;
+
+                // 更新隐藏的 select 值
+                const value = option.getAttribute('data-value');
+                hiddenSelect.value = value;
+
+                // 更新下载链接
+                downloadBtn.href = webUrls[value];
+
+                // 关闭下拉菜单
+                trigger.classList.remove('active');
+                options.classList.remove('active');
+            });
+        });
+
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', (e) => {
+            if (!webCard.contains(e.target)) {
+                trigger.classList.remove('active');
+                options.classList.remove('active');
+            }
+        });
+
+        // 键盘导航支持
+        trigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                trigger.classList.toggle('active');
+                options.classList.toggle('active');
+            } else if (e.key === 'Escape') {
+                trigger.classList.remove('active');
+                options.classList.remove('active');
+            }
         });
     }
 }
@@ -647,6 +717,8 @@ function throttle(func, limit) {
 
 // ==================== 初始化 ====================
 document.addEventListener('DOMContentLoaded', () => {
+
+
     // 创建粒子背景
     createParticles();
 
