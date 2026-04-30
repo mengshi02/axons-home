@@ -3,46 +3,76 @@ const translations = {
     en: {
         // 导航
         'nav.home': 'Home',
-        'nav.features': 'Features',
+        'nav.features': 'Product',
         'nav.download': 'Download',
         'nav.contact': 'Contact',
 
         // Hero区域
-        'hero.badge': 'Secure Native Code Analysis & Generation Agent',
-        'hero.description': 'Fusing four core capabilities — Graph Visualization, Intelligent Analysis, Security Detection, and AI Reasoning — to build an intelligent defense line for code security. Cross-platform, ready to use.',
+        'hero.badge': 'AI-Native Code Analysis & Generation Agent',
+        'hero.description': 'Three engines driving, multi-agent collaboration, AI-native architecture. From code understanding to intelligent repair, full-chain protection for code security and quality.',
         'hero.download': 'Download Now',
         'hero.demo': 'Watch Demo',
 
         // 四大要素
         'pillar.graph': 'Graph',
         'pillar.analysis': 'Analysis',
-        'pillar.security': 'Security',
+        'pillar.context': 'Context',
         'pillar.intelligence': 'Intelligence',
 
         // 语言支持
         'languages.title': 'Supported Languages',
 
         // 浮动卡片
-        'floating.graph': 'Code Graph',
-        'floating.analysis': 'Deep Analysis',
-        'floating.security': 'Security Shield',
-        'floating.intelligence': 'AI Reasoning',
+        'floating.graph': 'Graph Engine',
+        'floating.analysis': 'Multi-Agent',
+        'floating.security': 'Native Terminal',
+        'floating.intelligence': 'AI-Native',
 
         // 特性
-        'features.title': 'Four Core Capabilities',
-        'features.subtitle': 'Graph · Analysis · Security · Intelligence',
-        'features.graph.title': 'Code Graph',
-        'features.graph.desc': 'Build code dependency graphs and call chain visualization, precisely mapping module relationships. Support multi-level graph drill-down and interactive exploration.',
-        'features.analysis.title': 'Deep Analysis',
-        'features.analysis.desc': 'Combining static analysis with dynamic tracing to accurately identify code defects, performance bottlenecks, and architecture smells. Multi-language, multi-dimensional scanning.',
-        'features.security.title': 'Security Shield',
-        'features.security.desc': 'Native security detection engine covering OWASP Top 10, sensitive data leaks, and supply chain risks. Runs locally, zero cloud upload.',
-        'features.intelligence.title': 'AI Reasoning',
-        'features.intelligence.desc': 'AI-powered code understanding and reasoning engine, auto-generating fix suggestions, security patches, and refactoring plans. Continuous learning, ever more precise.',
-        'features.visual.title': 'Visual Reports',
-        'features.visual.desc': 'Generate intuitive graph reports and security scores, making code risks, dependencies, and improvement directions clear at a glance.',
-        'features.fast.title': 'Lightning Engine',
-        'features.fast.desc': 'Optimized analysis engine with second-level scanning for large projects. Incremental analysis focuses only on changes, guarding continuously without slowing development.',
+        'features.title': 'Product Power',
+        'features.subtitle': 'Engine-Driven · Agent Collaboration · AI-Native Architecture',
+
+        // 分类
+        'features.category.engine': 'Core Engines',
+        'features.category.engine.title': 'Three engines, the cornerstone of code understanding',
+        'features.category.agent': 'Agent',
+        'features.category.agent.title': 'Multi-agent collaboration, continuous evolution',
+        'features.category.tool': 'Tools',
+        'features.category.tool.title': 'Native toolchain, seamless integration',
+        'features.category.native': 'AI-Native',
+        'features.category.native.title': 'AI-native architecture, open capability boundaries',
+
+        // 核心引擎
+        'features.graph.title': 'Graph Engine',
+        'features.graph.desc': 'Build code dependency graphs and call chain visualization, precisely mapping module relationships. Multi-level drill-down and interactive exploration for clear architecture insights.',
+        'features.analysis.title': 'Analysis Engine',
+        'features.analysis.desc': 'Deep fusion of static analysis and dynamic tracing, accurately identifying code defects, performance bottlenecks, and architecture smells. Multi-language, multi-dimensional scanning.',
+        'features.context.title': 'Context Engine',
+        'features.context.desc': 'Intelligently aggregate code context semantics, building cross-file, cross-module deep understanding, providing a precise semantic foundation for analysis and reasoning.',
+
+        // 智能体
+        'features.multiagent.title': 'Multi-Agent Collaboration',
+        'features.multiagent.desc': 'Multiple specialized agents work in concert — graph construction, security auditing, code repair — each performing its role to collaboratively complete complex analysis tasks.',
+        'features.dialogue.title': 'Multi-Turn Dialogue',
+        'features.dialogue.desc': 'Context-aware multi-turn dialogue, progressively diving into code issues, precisely locating root causes and delivering targeted recommendations.',
+        'features.memory.title': 'Memory Persistence',
+        'features.memory.desc': 'Conversation history and analysis results are persistently stored, maintaining context continuity across sessions for seamless deep analysis without repetition.',
+        'features.vector.title': 'Dual-Modal Vectorization',
+        'features.vector.desc': 'Code text and graph structure dual-modal vector representation for more precise semantic retrieval and more efficient similar code discovery.',
+
+        // 工具
+        'features.terminal.title': 'Native Terminal',
+        'features.terminal.desc': 'Built-in native terminal environment, agents can directly execute commands, run tests, and operate the file system for a closed loop from analysis to repair.',
+        'features.editor.title': 'AI Autonomous Editor',
+        'features.editor.desc': 'AI-driven autonomous code editing, agents can independently read, understand, and modify code files for truly automated code repair and refactoring.',
+
+        // AI原生
+        'features.cli.title': 'CLI & MCP',
+        'features.cli.desc': 'CLI command-line and MCP protocol support for external capabilities, easily integrating into CI/CD pipelines and existing development toolchains.',
+        'features.container.title': 'Scratch Containerization',
+        'features.container.desc': 'Minimalist containerized deployment based on Scratch images, compact size, second-level startup, secure isolation, cloud-native out of the box.',
+        'features.crossplatform.title': 'Cross-Platform',
+        'features.crossplatform.desc': 'macOS / Windows / Linux desktop and Web full coverage. Build once, run everywhere, guarding code security anytime, anywhere.',
 
         // 演示
         'demo.title': 'Product Demo',
@@ -64,6 +94,10 @@ const translations = {
         'download.windows.support': 'Windows 10/11 Support',
         'download.windows.bit': '64-bit Application',
         'download.windows.portable': 'Portable, No Install',
+        'download.linux.desktop': 'Desktop Application',
+        'download.linux.deb': 'DEB / RPM Packages',
+        'download.linux.appimage': 'AppImage Portable',
+        'download.appimage': 'Download AppImage',
         'download.web.browser': 'Browser-Based',
         'download.web.server': 'Local Server',
         'download.web.portable': 'Portable Version',
@@ -88,7 +122,7 @@ const translations = {
         'contact.opensource.repo': 'Visit Repository',
 
         // Footer
-        'footer.tagline': 'Graph-Driven · Intelligent Analysis · Security-Native',
+        'footer.tagline': 'Engine-Driven · Agent Collaboration · AI-Native',
         'footer.product': 'Product',
         'footer.features': 'Capabilities',
         'footer.download': 'Download',
@@ -104,46 +138,76 @@ const translations = {
     zh: {
         // 导航
         'nav.home': '首页',
-        'nav.features': '特性',
+        'nav.features': '产品力',
         'nav.download': '下载',
         'nav.contact': '联系',
 
         // Hero区域
-        'hero.badge': '安全原生代码分析与生成智能体',
-        'hero.description': '融合图谱可视化、智能分析引擎、安全检测与AI推理四大核心能力，构建代码安全的智能防线。跨平台支持，开箱即用。',
+        'hero.badge': 'AI原生代码分析与生成智能体',
+        'hero.description': '三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。',
         'hero.download': '立即下载',
         'hero.demo': '观看演示',
 
         // 四大要素
         'pillar.graph': '图谱',
         'pillar.analysis': '分析',
-        'pillar.security': '安全',
+        'pillar.context': '上下文',
         'pillar.intelligence': '智能',
 
         // 语言支持
         'languages.title': '支持的编程语言',
 
         // 浮动卡片
-        'floating.graph': '代码图谱',
-        'floating.analysis': '深度分析',
-        'floating.security': '安全防护',
-        'floating.intelligence': '智能推理',
+        'floating.graph': '图谱引擎',
+        'floating.analysis': '多智能体协同',
+        'floating.security': '原生终端',
+        'floating.intelligence': 'AI原生',
 
         // 特性
-        'features.title': '四大核心能力',
-        'features.subtitle': '图谱 · 分析 · 安全 · 智能',
-        'features.graph.title': '代码图谱',
-        'features.graph.desc': '构建代码依赖图谱与调用链可视化，精准映射模块关系，让代码架构一目了然。支持多层级图谱钻取与交互式探索。',
-        'features.analysis.title': '深度分析',
-        'features.analysis.desc': '静态分析与动态追踪相结合，精准识别代码缺陷、性能瓶颈和架构异味。支持多语言、多维度全面扫描。',
-        'features.security.title': '安全防护',
-        'features.security.desc': '原生安全检测引擎，覆盖OWASP Top 10漏洞模式、敏感数据泄露、供应链风险。本地运行，代码零上云。',
-        'features.intelligence.title': '智能推理',
-        'features.intelligence.desc': 'AI驱动的代码理解与推理引擎，自动生成修复建议、安全补丁和重构方案。持续学习，越用越精准。',
-        'features.visual.title': '可视化报告',
-        'features.visual.desc': '生成直观的图谱报告和安全评分，让代码风险、依赖关系和改进方向一目了然。',
-        'features.fast.title': '极速引擎',
-        'features.fast.desc': '优化分析引擎，大型项目秒级扫描。增量分析只关注变更，持续守护不影响开发节奏。',
+        'features.title': '产品力',
+        'features.subtitle': '引擎驱动 · 智能体协同 · AI原生架构',
+
+        // 分类
+        'features.category.engine': '核心引擎',
+        'features.category.engine.title': '三大引擎，构筑代码理解基石',
+        'features.category.agent': '智能体',
+        'features.category.agent.title': '多智能体协同，持续进化',
+        'features.category.tool': '工具',
+        'features.category.tool.title': '原生工具链，无缝集成',
+        'features.category.native': 'AI原生',
+        'features.category.native.title': 'AI原生架构，开放能力边界',
+
+        // 核心引擎
+        'features.graph.title': '图谱引擎',
+        'features.graph.desc': '构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。',
+        'features.analysis.title': '分析引擎',
+        'features.analysis.desc': '静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。',
+        'features.context.title': '上下文引擎',
+        'features.context.desc': '智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。',
+
+        // 智能体
+        'features.multiagent.title': '多智能体协同',
+        'features.multiagent.desc': '多个专业智能体分工协作，图谱构建、安全审计、代码修复各司其职，协同完成复杂分析任务。',
+        'features.dialogue.title': '多轮对话',
+        'features.dialogue.desc': '支持上下文连续的多轮对话交互，逐步深入代码问题，精准定位根因并给出针对性建议。',
+        'features.memory.title': '记忆持久化',
+        'features.memory.desc': '对话历史与分析结果持久化存储，跨会话保持上下文连续性，无需重复描述即可延续深度分析。',
+        'features.vector.title': '双模态向量化',
+        'features.vector.desc': '代码文本与图谱结构双模态向量化表示，语义检索更精准，相似代码发现更高效。',
+
+        // 工具
+        'features.terminal.title': '原生终端',
+        'features.terminal.desc': '内置原生终端环境，智能体可直接执行命令、运行测试、操作文件系统，实现从分析到修复的全闭环。',
+        'features.editor.title': 'AI自主编辑器',
+        'features.editor.desc': 'AI驱动的自主代码编辑能力，智能体可自主读取、理解、修改代码文件，实现真正的自动化代码修复与重构。',
+
+        // AI原生
+        'features.cli.title': 'CLI & MCP',
+        'features.cli.desc': '支持CLI命令行与MCP协议对外提供能力，轻松集成到CI/CD流水线与现有开发工具链中。',
+        'features.container.title': 'Scratch级容器化',
+        'features.container.desc': '基于Scratch镜像的极简容器化部署，体积小巧、启动秒级、安全隔离，云原生环境开箱即用。',
+        'features.crossplatform.title': '全平台发行',
+        'features.crossplatform.desc': 'macOS / Windows / Linux 桌面端与Web端全覆盖，一次构建多端运行，随时随地守护代码安全。',
 
         // 演示
         'demo.title': '产品演示',
@@ -165,6 +229,10 @@ const translations = {
         'download.windows.support': '支持 Windows 10/11',
         'download.windows.bit': '64位应用程序',
         'download.windows.portable': '免安装绿色版',
+        'download.linux.desktop': '桌面端应用',
+        'download.linux.deb': 'DEB / RPM 安装包',
+        'download.linux.appimage': 'AppImage 便携版',
+        'download.appimage': '下载 AppImage',
         'download.web.browser': '基于浏览器',
         'download.web.server': '本地服务器',
         'download.web.portable': '便携版本',
@@ -189,7 +257,7 @@ const translations = {
         'contact.opensource.repo': '访问仓库',
 
         // Footer
-        'footer.tagline': '图谱驱动 · 智能分析 · 安全原生',
+        'footer.tagline': '引擎驱动 · 智能体协同 · AI原生',
         'footer.product': '产品',
         'footer.features': '核心能力',
         'footer.download': '下载',
@@ -637,6 +705,8 @@ function detectOS() {
         detectedOS = 'mac';
     } else if (platform.toLowerCase().includes('win')) {
         detectedOS = 'windows';
+    } else if (platform.toLowerCase().includes('linux')) {
+        detectedOS = 'linux';
     }
 
     // 高亮对应的下载卡片

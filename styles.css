@@ -125,7 +125,55 @@ body {
     color: var(--text-primary);
 }
 
-/* 四大要素特色卡片渐变 */
+/* ==================== 产品力分类区域 ==================== */
+.feature-category {
+    margin-bottom: 4rem;
+}
+
+.feature-category:last-child {
+    margin-bottom: 0;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    color: white;
+}
+
+.badge-engine {
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+}
+
+.badge-agent {
+    background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+}
+
+.badge-tool {
+    background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+}
+
+.badge-native {
+    background: linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+}
+
+.category-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* 特色卡片渐变 - 核心引擎 */
 .feature-graph .feature-icon {
     background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
 }
@@ -134,20 +182,66 @@ body {
     background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
 }
 
-.feature-security .feature-icon {
-    background: linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+.feature-context .feature-icon {
+    background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
 }
 
-.feature-intelligence .feature-icon {
-    background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+/* 特色卡片渐变 - 智能体 */
+.feature-multi-agent .feature-icon {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
 }
 
-.feature-visual .feature-icon {
+.feature-dialogue .feature-icon {
+    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+}
+
+.feature-memory .feature-icon {
+    background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
+}
+
+.feature-vector .feature-icon {
+    background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%);
+}
+
+/* 特色卡片渐变 - 工具 */
+.feature-terminal .feature-icon {
     background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
 }
 
-.feature-fast .feature-icon {
-    background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);
+.feature-editor .feature-icon {
+    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+}
+
+/* 特色卡片渐变 - AI原生 */
+.feature-cli .feature-icon {
+    background: linear-gradient(135deg, #EF4444 0%, #F97316 100%);
+}
+
+.feature-container .feature-icon {
+    background: linear-gradient(135deg, #DC2626 0%, #EF4444 100%);
+}
+
+.feature-crossplatform .feature-icon {
+    background: linear-gradient(135deg, #F97316 0%, #F59E0B 100%);
+}
+
+/* 特性网格布局变体 */
+.features-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.features-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.features-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 分类区域分隔线 */
+.feature-category+.feature-category {
+    padding-top: 3rem;
+    border-top: 1px solid rgba(249, 115, 22, 0.1);
 }
 /* ==================== 粒子背景 ==================== */
 #particles-container {
@@ -1114,6 +1208,17 @@ body {
         display: none;
     }
 
+        .features-grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+    
+        .features-grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+    
+        .features-grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
     .download-cards {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
@@ -1306,12 +1411,22 @@ body {
     }
 
     .features-grid,
+                .features-grid-3,
+                .features-grid-4,
+                .features-grid-2,
     .download-cards,
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
+                .category-title {
+                    font-size: 1.1rem;
+                }
+        
+                .feature-category {
+                    margin-bottom: 3rem;
+                }
     .feature-card {
         padding: 2rem;
     }
