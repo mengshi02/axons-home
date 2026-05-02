@@ -820,47 +820,20 @@ function initVisitorCounter() {
     const counterEl = document.getElementById('visitor-count');
     if (!counterEl) return;
 
-    // API 返回纯文本数字，不是 JSON
-    const API_URL = 'https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true';
     const today = new Date().toISOString().slice(0, 10);
     const lastCountDate = localStorage.getItem('axons_visit_date');
 
     if (lastCountDate !== today) {
-        // 今天首次访问，触发计数并缓存
         localStorage.setItem('axons_visit_date', today);
-        fetch(API_URL)
-            .then(res => res.text())
-            .then(text => {
-                const count = parseInt(text.trim(), 10);
-                if (!isNaN(count) && count > 0) {
-                    localStorage.setItem('axons_visit_count', count);
-                    counterEl.textContent = count.toLocaleString();
-                } else {
-                    throw new Error('Invalid count');
-                }
-            })
-            .catch(() => {
-                let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
-                localStorage.setItem('axons_uv', uv);
-                counterEl.textContent = uv.toLocaleString();
-            });
-    } else {
-        // 今天已计数过，直接读缓存
+        // <img> 已触发计数，这里从缓存读即可
         const cached = localStorage.getItem('axons_visit_count');
-        if (cached) {
-            counterEl.textContent = parseInt(cached, 10).toLocaleString();
-        } else {
-            // 缓存丢失，读一次 API（会触发+1，但比显示"--"好）
-            fetch(API_URL)
-                .then(res => res.text())
-                .then(text => {
-                    const count = parseInt(text.trim(), 10);
-                    if (!isNaN(count) && count > 0) {
-                        counterEl.textContent = count.toLocaleString();
-                    }
-                })
-                .catch(() => { counterEl.textContent = '--'; });
-        }
+        const base = cached ? parseInt(cached, 10) : 0;
+        const newCount = base + 1;
+        localStorage.setItem('axons_visit_count', newCount);
+        counterEl.textContent = newCount.toLocaleString();
+    } else {
+        const cached = localStorage.getItem('axons_visit_count');
+        counterEl.textContent = cached ? parseInt(cached, 10).toLocaleString() : '--';
     }
 }
 
