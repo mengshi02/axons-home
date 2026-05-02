@@ -1222,6 +1222,17 @@ body {
     backdrop-filter: blur(10px);
 }
 
+.visitor-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.device-counter i {
+    color: var(--primary-color);
+}
 .visitor-counter i {
     color: var(--primary-light);
     font-size: 0.75rem;

@@ -134,6 +134,9 @@ const translations = {
         // Footer
         'footer.tagline': 'Engine-Driven · Agent Collaboration · AI-Native',
         'footer.visitors': 'Visitors',
+        'footer.visitors.pv': 'Page Views',
+        'footer.visitors.uv': 'Unique Visitors',
+        'footer.visitors.device': 'Your Device',
         'footer.product': 'Product',
         'footer.features': 'Capabilities',
         'footer.download': 'Download',
@@ -280,6 +283,9 @@ const translations = {
         // Footer
         'footer.tagline': '引擎驱动 · 智能体协同 · AI原生',
         'footer.visitors': '访客数',
+        'footer.visitors.pv': '总访问',
+        'footer.visitors.uv': '独立访客',
+        'footer.visitors.device': '当前设备',
         'footer.product': '产品',
         'footer.features': '核心能力',
         'footer.download': '下载',
@@ -347,6 +353,11 @@ function updateLanguage(lang) {
     if (qrZh && qrEn) {
         qrZh.style.display = lang === 'zh' ? 'block' : 'none';
         qrEn.style.display = lang === 'en' ? 'block' : 'none';
+    }
+
+    // 同步设备名称的语言
+    if (typeof renderDeviceLabel === 'function') {
+        renderDeviceLabel();
     }
 }
 
@@ -815,26 +826,74 @@ function throttle(func, limit) {
     };
 }
 
-// ==================== 访客计数 ====================
-function initVisitorCounter() {
-    const counterEl = document.getElementById('visitor-count');
-    if (!counterEl) return;
+// ==================== 访客计数 + 设备识别 ====================
+// PV/UV 由不蒜子（busuanzi.pure.mini.js）跨设备统计，写入 #busuanzi_value_site_pv / _uv。
+// 这里只负责：1) 解析当前访客的设备类型并展示  2) 在不蒜子失败时给出占位
+function detectDevice() {
+    const ua = (navigator.userAgent || '').toLowerCase();
+    const uaData = navigator.userAgentData;
 
-    const today = new Date().toISOString().slice(0, 10);
-    const lastCountDate = localStorage.getItem('axons_visit_date');
-
-    if (lastCountDate !== today) {
-        localStorage.setItem('axons_visit_date', today);
-        // <img> 已触发计数，这里从缓存读即可
-        const cached = localStorage.getItem('axons_visit_count');
-        const base = cached ? parseInt(cached, 10) : 0;
-        const newCount = base + 1;
-        localStorage.setItem('axons_visit_count', newCount);
-        counterEl.textContent = newCount.toLocaleString();
-    } else {
-        const cached = localStorage.getItem('axons_visit_count');
-        counterEl.textContent = cached ? parseInt(cached, 10).toLocaleString() : '--';
+    // 优先使用现代 UA-CH
+    if (uaData && uaData.platform) {
+        const p = uaData.platform.toLowerCase();
+        if (uaData.mobile) {
+            if (p.includes('android')) return { key: 'android', icon: 'fa-android', brand: 'fab' };
+            if (p.includes('ios') || p.includes('iphone') || p.includes('ipad')) return { key: 'ios', icon: 'fa-apple', brand: 'fab' };
+            return { key: 'mobile', icon: 'fa-mobile-alt', brand: 'fas' };
+        }
+        if (p.includes('mac')) return { key: 'mac', icon: 'fa-apple', brand: 'fab' };
+        if (p.includes('windows')) return { key: 'windows', icon: 'fa-windows', brand: 'fab' };
+        if (p.includes('linux') || p.includes('chrome os')) return { key: 'linux', icon: 'fa-linux', brand: 'fab' };
     }
+
+    // 回退到 UA 字符串
+    if (/iphone|ipad|ipod/.test(ua)) return { key: 'ios', icon: 'fa-apple', brand: 'fab' };
+    if (/android/.test(ua)) return { key: 'android', icon: 'fa-android', brand: 'fab' };
+    if (/mac os x|macintosh/.test(ua)) return { key: 'mac', icon: 'fa-apple', brand: 'fab' };
+    if (/windows nt|win64|win32/.test(ua)) return { key: 'windows', icon: 'fa-windows', brand: 'fab' };
+    if (/linux|x11|cros/.test(ua)) return { key: 'linux', icon: 'fa-linux', brand: 'fab' };
+    if (/mobile|tablet/.test(ua)) return { key: 'mobile', icon: 'fa-mobile-alt', brand: 'fas' };
+    return { key: 'unknown', icon: 'fa-question-circle', brand: 'fas' };
+}
+
+const DEVICE_LABEL = {
+    en: { mac: 'macOS', windows: 'Windows', linux: 'Linux', ios: 'iOS', android: 'Android', mobile: 'Mobile', unknown: 'Unknown' },
+    zh: { mac: 'macOS', windows: 'Windows', linux: 'Linux', ios: 'iOS', android: 'Android', mobile: '移动端', unknown: '未知' }
+};
+
+let currentDevice = null;
+
+function renderDeviceLabel() {
+    if (!currentDevice) return;
+    const nameEl = document.getElementById('device-name');
+    if (nameEl) {
+        const labels = DEVICE_LABEL[currentLang] || DEVICE_LABEL.en;
+        nameEl.textContent = labels[currentDevice.key] || labels.unknown;
+    }
+}
+
+function initVisitorCounter() {
+    // 渲染当前访客的设备类型
+    currentDevice = detectDevice();
+    const iconEl = document.getElementById('device-icon');
+    if (iconEl) {
+        // FontAwesome: fab=品牌, fas=实心
+        iconEl.classList.remove('fas', 'fab');
+        iconEl.classList.add(currentDevice.brand);
+        iconEl.classList.add(currentDevice.icon);
+    }
+    renderDeviceLabel();
+
+    // 不蒜子加载失败兜底：3 秒后若仍是 "--" 则显示提示
+    setTimeout(() => {
+        ['busuanzi_value_site_pv', 'busuanzi_value_site_uv'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el && (!el.textContent || el.textContent.trim() === '--')) {
+                el.textContent = '—';
+                el.title = currentLang === 'zh' ? '统计服务暂不可用' : 'Counter service unavailable';
+            }
+        });
+    }, 3500);
 }
 
 // ==================== 初始化 ====================
