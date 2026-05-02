@@ -821,39 +821,35 @@ function initVisitorCounter() {
     if (!counterEl) return;
 
     const API_URL = 'https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true';
-
-    // 本地防刷：同一天只上报一次
     const today = new Date().toISOString().slice(0, 10);
     const lastCountDate = localStorage.getItem('axons_visit_date');
-    const shouldCount = lastCountDate !== today;
 
-    if (shouldCount) {
-    // 今天首次访问，上报并记录日期
+    if (lastCountDate !== today) {
+    // 今天首次访问，上报一次并缓存结果
         localStorage.setItem('axons_visit_date', today);
         fetch(API_URL)
             .then(res => res.json())
             .then(data => {
-                counterEl.textContent = (data.value || data.count || 0).toLocaleString();
+                const count = data.value || data.count || 0;
+                localStorage.setItem('axons_visit_count', count);
+                counterEl.textContent = count.toLocaleString();
             })
-            .catch(() => fallbackLocalCount());
+            .catch(() => {
+                let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
+                localStorage.setItem('axons_uv', uv);
+                counterEl.textContent = uv.toLocaleString();
+            });
     } else {
-        // 今天已上报过，只读取不重复计数
-        // 加 nocache 参数避免浏览器缓存返回旧数据
-        fetch(API_URL + '&t=' + Date.now())
-            .then(res => res.json())
-            .then(data => {
-                counterEl.textContent = (data.value || data.count || 0).toLocaleString();
-            })
-            .catch(() => fallbackLocalCount());
+        // 今天已上报过，直接读缓存，不再调 API（避免重复计数）
+        const cached = localStorage.getItem('axons_visit_count');
+        if (cached) {
+            counterEl.textContent = parseInt(cached, 10).toLocaleString();
+        } else {
+            // 缓存丢失时降级显示
+            const uv = localStorage.getItem('axons_uv') || '--';
+            counterEl.textContent = uv;
+        }
     }
-}
-
-function fallbackLocalCount() {
-    const counterEl = document.getElementById('visitor-count');
-    if (!counterEl) return;
-    const uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
-    localStorage.setItem('axons_uv', uv);
-    counterEl.textContent = uv.toLocaleString();
 }
 
 // ==================== 初始化 ====================
