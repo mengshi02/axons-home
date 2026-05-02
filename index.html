@@ -52,11 +52,6 @@
                 <span class="badge-icon">🧠</span>
                 <span data-i18n="hero.badge">AI原生代码分析与生成智能体</span>
                 </div>
-                <!--
-                <div class="human-graph-container">
-                    <img src="public/head-graph.svg" alt="Head Graph" id="head-graph-svg">
-                </div>
--->
             <p class="hero-description" data-i18n="hero.description">
                 三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。
             </p>
@@ -74,7 +69,7 @@
                 <h3 class="support-title" data-i18n="languages.title">支持的编程语言</h3>
                 <div class="language-grid">
                     <div class="language-item">
-                        <i class="devicon-go-plain colored"></i>
+                        <i class="devicon-go-original-wordmark colored"></i>
                         <span>Go</span>
                     </div>
                     <div class="language-item">
@@ -135,10 +130,10 @@
                 <h2 class="section-title" data-i18n="features.title">产品力</h2>
                 <p class="section-subtitle" data-i18n="features.subtitle">引擎驱动 · 智能体协同 · AI原生架构</p>
             </div>
-<!-- 核心引擎 -->
+<!-- 核心计算底座 -->
 <div class="feature-category">
     <div class="category-header">
-        <span class="category-badge badge-engine" data-i18n="features.category.engine">核心引擎</span>
+        <span class="category-badge badge-engine" data-i18n="features.category.engine">核心计算底座</span>
         <h3 class="category-title" data-i18n="features.category.engine.title">三大引擎，构筑代码理解基石</h3>
     </div>
     <div class="features-grid features-grid-3">
@@ -146,21 +141,21 @@
             <div class="feature-icon">
                 <i class="fas fa-project-diagram"></i>
             </div>
-                        <h3 data-i18n="features.graph.title">图谱引擎</h3>
+                        <h3 data-i18n="features.graph.title">图谱计算引擎（GCE）</h3>
                         <p data-i18n="features.graph.desc">构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。</p>
                         </div>
                         <div class="feature-card feature-analysis">
                             <div class="feature-icon">
                                 <i class="fas fa-search-plus"></i>
                             </div>
-                        <h3 data-i18n="features.analysis.title">分析引擎</h3>
+                        <h3 data-i18n="features.analysis.title">分析引擎（ACE）</h3>
                         <p data-i18n="features.analysis.desc">静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。</p>
                         </div>
                         <div class="feature-card feature-context">
                             <div class="feature-icon">
                                 <i class="fas fa-layer-group"></i>
                             </div>
-                            <h3 data-i18n="features.context.title">上下文引擎</h3>
+                            <h3 data-i18n="features.context.title">会话上下文引擎（CCE）</h3>
                             <p data-i18n="features.context.desc">智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。</p>
                         </div>
                         </div>
@@ -206,7 +201,7 @@
                         <!-- 工具 -->
                         <div class="feature-category">
                             <div class="category-header">
-                                <span class="category-badge badge-tool" data-i18n="features.category.tool">工具</span>
+                                <span class="category-badge badge-tool" data-i18n="features.category.tool">原生能力</span>
                                 <h3 class="category-title" data-i18n="features.category.tool.title">原生工具链，无缝集成</h3>
                             </div>
                             <div class="features-grid features-grid-2">
@@ -225,6 +220,36 @@
                                             <p data-i18n="features.editor.desc">AI驱动的自主代码编辑能力，智能体可自主读取、理解、修改代码文件，实现真正的自动化代码修复与重构。</p>
                                             </div>
                                     </div>
+                                    </div>
+                                    <!-- AI编程安全机制 -->
+                                    <div class="feature-category">
+                                        <div class="category-header">
+                                            <span class="category-badge badge-security" data-i18n="features.category.security">AI编程安全机制</span>
+                                            <h3 class="category-title" data-i18n="features.category.security.title">核心保障，让AI改代码安全可控</h3>
+                                        </div>
+                                        <div class="features-grid features-grid-3">
+                                            <div class="feature-card feature-scope">
+                                                <div class="feature-icon">
+                                                    <i class="fas fa-crosshairs"></i>
+                                                </div>
+                                                <h3 data-i18n="features.scope.title">精准定界修改</h3>
+                                                <p data-i18n="features.scope.desc">拒绝大范围暴力重写，基于图谱依赖锁定最小修改范围，防止AI"幻觉"破坏无关代码。</p>
+                                            </div>
+                                            <div class="feature-card feature-integrity">
+                                                <div class="feature-icon">
+                                                    <i class="fas fa-shield-alt"></i>
+                                                </div>
+                                                <h3 data-i18n="features.integrity.title">结构完整性校验</h3>
+                                                <p data-i18n="features.integrity.desc">在AI每次写入后，即时进行语法与依赖结构校验，确保代码始终处于可编译、可运行的安全状态。</p>
+                                            </div>
+                                            <div class="feature-card feature-rollback">
+                                                <div class="feature-icon">
+                                                    <i class="fas fa-undo-alt"></i>
+                                                </div>
+                                                <h3 data-i18n="features.rollback.title">操作可回滚</h3>
+                                                <p data-i18n="features.rollback.desc">AI的每一次编辑均被原子化记录，支持精准到单行级别的操作回滚，让AI改代码如同本地版本控制般安全可控。</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- AI原生 -->
                                     <div class="feature-category">
@@ -466,9 +491,15 @@
                     </div>
                     <h3 data-i18n="contact.tech.title">Tech Community</h3>
                     <p data-i18n="contact.tech.desc">Exchange technical insights with developers</p>
-                    <div class="qr-code">
+                    <div class="qr-code" id="tech-qr-zh">
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/mengshi02/axons"
-                            alt="Tech Community QR">
+                            alt="微信群二维码">
+                    </div>
+                    <div class="qr-code" id="tech-qr-en" style="display:none;">
+                        <a href="https://github.com/mengshi02/axons/discussions" target="_blank" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;color:var(--text-primary);">
+                            <i class="fab fa-github" style="font-size:3rem;"></i>
+                            <span style="font-size:0.875rem;">GitHub Discussions</span>
+                        </a>
                     </div>
                     <a href="#" class="contact-link" data-i18n="contact.tech.join">Join Group</a>
                 </div>
@@ -479,10 +510,10 @@
                     <h3 data-i18n="contact.business.title">Business Partnership</h3>
                     <p data-i18n="contact.business.desc">Enterprise customization and technical support</p>
                     <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> contact@axons.dev</p>
-                        <p><i class="fas fa-phone"></i> +86 138-0000-0000</p>
+                        <p><i class="fas fa-envelope"></i> contact@axons.chat</p>
+                        <p><i class="fas fa-phone"></i> 13521678519</p>
                     </div>
-                    <a href="mailto:contact@axons.dev" class="contact-link" data-i18n="contact.business.reach">Contact
+                    <a href="mailto:contact@axons.chat" class="contact-link" data-i18n="contact.business.reach">Contact
                         Us</a>
                 </div>
                 <div class="contact-card">
@@ -522,14 +553,14 @@
                         <h4 data-i18n="footer.product">Product</h4>
                         <a href="#features" data-i18n="footer.features">Features</a>
                         <a href="#download" data-i18n="footer.download">Download</a>
-                        <a href="#" data-i18n="footer.changelog">Changelog</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CHANGELOG.md" data-i18n="footer.changelog">Changelog</a>
                     </div>
                     <div class="footer-column">
                         <h4 data-i18n="footer.resources">Resources</h4>
-                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md"
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs"
                             data-i18n="footer.docs">Documentation</a>
                         <a href="https://github.com/mengshi02/axons">GitHub</a>
-                        <a href="#" data-i18n="footer.api">API Reference</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md" data-i18n="footer.api">API Reference</a>
                     </div>
                     <div class="footer-column">
                         <h4 data-i18n="footer.community">Community</h4>

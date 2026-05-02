@@ -33,21 +33,31 @@ const translations = {
         'features.subtitle': 'Engine-Driven · Agent Collaboration · AI-Native Architecture',
 
         // 分类
-        'features.category.engine': 'Core Engines',
+        'features.category.engine': 'Core Computing Base',
         'features.category.engine.title': 'Three engines, the cornerstone of code understanding',
         'features.category.agent': 'Agent',
         'features.category.agent.title': 'Multi-agent collaboration, continuous evolution',
-        'features.category.tool': 'Tools',
+        'features.category.tool': 'Native Capabilities',
         'features.category.tool.title': 'Native toolchain, seamless integration',
         'features.category.native': 'AI-Native',
         'features.category.native.title': 'AI-native architecture, open capability boundaries',
 
+        // AI编程安全机制
+        'features.category.security': 'AI Coding Safety',
+        'features.category.security.title': 'Core guarantees for safe AI code editing',
+        'features.scope.title': 'Precise Scope Modification',
+        'features.scope.desc': 'Reject large-scale brute rewrites. Lock the minimal modification scope based on graph dependencies, preventing AI "hallucinations" from breaking unrelated code.',
+        'features.integrity.title': 'Structural Integrity Validation',
+        'features.integrity.desc': 'After each AI write, instantly perform syntax and dependency structure validation, ensuring code always stays in a compilable, runnable safe state.',
+        'features.rollback.title': 'Operation Rollback',
+        'features.rollback.desc': 'Every AI edit is atomically recorded, supporting line-level precise rollback, making AI code changes as safe and controllable as local version control.',
+
         // 核心引擎
-        'features.graph.title': 'Graph Engine',
+        'features.graph.title': 'Graph Computing Engine (GCE)',
         'features.graph.desc': 'Build code dependency graphs and call chain visualization, precisely mapping module relationships. Multi-level drill-down and interactive exploration for clear architecture insights.',
-        'features.analysis.title': 'Analysis Engine',
+        'features.analysis.title': 'Analysis Engine (ACE)',
         'features.analysis.desc': 'Deep fusion of static analysis and dynamic tracing, accurately identifying code defects, performance bottlenecks, and architecture smells. Multi-language, multi-dimensional scanning.',
-        'features.context.title': 'Context Engine',
+        'features.context.title': 'Conversation Context Engine (CCE)',
         'features.context.desc': 'Intelligently aggregate code context semantics, building cross-file, cross-module deep understanding, providing a precise semantic foundation for analysis and reasoning.',
 
         // 智能体
@@ -168,21 +178,31 @@ const translations = {
         'features.subtitle': '引擎驱动 · 智能体协同 · AI原生架构',
 
         // 分类
-        'features.category.engine': '核心引擎',
+        'features.category.engine': '核心计算底座',
         'features.category.engine.title': '三大引擎，构筑代码理解基石',
         'features.category.agent': '智能体',
         'features.category.agent.title': '多智能体协同，持续进化',
-        'features.category.tool': '工具',
+        'features.category.tool': '原生能力',
         'features.category.tool.title': '原生工具链，无缝集成',
         'features.category.native': 'AI原生',
         'features.category.native.title': 'AI原生架构，开放能力边界',
 
+        // AI编程安全机制
+        'features.category.security': 'AI编程安全机制',
+        'features.category.security.title': '核心保障，让AI改代码安全可控',
+        'features.scope.title': '精准定界修改',
+        'features.scope.desc': '拒绝大范围暴力重写，基于图谱依赖锁定最小修改范围，防止AI"幻觉"破坏无关代码。',
+        'features.integrity.title': '结构完整性校验',
+        'features.integrity.desc': '在AI每次写入后，即时进行语法与依赖结构校验，确保代码始终处于可编译、可运行的安全状态。',
+        'features.rollback.title': '操作可回滚',
+        'features.rollback.desc': 'AI的每一次编辑均被原子化记录，支持精准到单行级别的操作回滚，让AI改代码如同本地版本控制般安全可控。',
+
         // 核心引擎
-        'features.graph.title': '图谱引擎',
+        'features.graph.title': '图谱计算引擎（GCE）',
         'features.graph.desc': '构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。',
-        'features.analysis.title': '分析引擎',
+        'features.analysis.title': '分析引擎（ACE）',
         'features.analysis.desc': '静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。',
-        'features.context.title': '上下文引擎',
+        'features.context.title': '会话上下文引擎（CCE）',
         'features.context.desc': '智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。',
 
         // 智能体
@@ -315,8 +335,16 @@ function updateLanguage(lang) {
     // 更新推荐标签文字
     const recommendBadge = document.querySelector('.os-recommend');
     if (recommendBadge) {
-        const recommendText = lang === 'zh' ? '为您推荐' : 'Recommended for You';
+        const recommendText = lang === 'zh' ? '为您推荐' : 'Recommended';
         recommendBadge.innerHTML = `<i class="fas fa-magic"></i> ${recommendText}`;
+    }
+
+    // 根据语言切换技术交流区二维码/链接
+    const qrZh = document.getElementById('tech-qr-zh');
+    const qrEn = document.getElementById('tech-qr-en');
+    if (qrZh && qrEn) {
+        qrZh.style.display = lang === 'zh' ? 'block' : 'none';
+        qrEn.style.display = lang === 'en' ? 'block' : 'none';
     }
 }
 
