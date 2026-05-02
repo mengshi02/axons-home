@@ -820,39 +820,40 @@ function initVisitorCounter() {
     const counterEl = document.getElementById('visitor-count');
     if (!counterEl) return;
 
-    // 判断今天是否已经计过数
-    const today = new Date().toISOString().slice(0, 10); // "2026-05-02"
-    const lastCountDate = localStorage.getItem('axons_visit_date');
+    const API_URL = 'https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true';
 
-    if (lastCountDate !== today) {
-        // 新的一天，上报一次访问
+    // 本地防刷：同一天只上报一次
+    const today = new Date().toISOString().slice(0, 10);
+    const lastCountDate = localStorage.getItem('axons_visit_date');
+    const shouldCount = lastCountDate !== today;
+
+    if (shouldCount) {
+    // 今天首次访问，上报并记录日期
         localStorage.setItem('axons_visit_date', today);
-        // 用每日唯一路径保证 visitor-badge 只在今天计一次
-        fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat%2F' + today + '&label=&style=none&count=true')
+        fetch(API_URL)
             .then(res => res.json())
             .then(data => {
-                const count = data.value || data.count || 0;
-                counterEl.textContent = count.toLocaleString();
+                counterEl.textContent = (data.value || data.count || 0).toLocaleString();
             })
-            .catch(() => {
-                // 降级：本地 UV 计数
-                let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
-                localStorage.setItem('axons_uv', uv);
-                counterEl.textContent = uv.toLocaleString();
-            });
+            .catch(() => fallbackLocalCount());
     } else {
-        // 今天已计过数，只读取不重复上报
-        fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat%2F' + today + '&label=&style=none&count=true')
+        // 今天已上报过，只读取不重复计数
+        // 加 nocache 参数避免浏览器缓存返回旧数据
+        fetch(API_URL + '&t=' + Date.now())
             .then(res => res.json())
             .then(data => {
-                const count = data.value || data.count || 0;
-                counterEl.textContent = count.toLocaleString();
+                counterEl.textContent = (data.value || data.count || 0).toLocaleString();
             })
-            .catch(() => {
-                const uv = localStorage.getItem('axons_uv') || '--';
-                counterEl.textContent = uv;
-            });
+            .catch(() => fallbackLocalCount());
     }
+}
+
+function fallbackLocalCount() {
+    const counterEl = document.getElementById('visitor-count');
+    if (!counterEl) return;
+    const uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
+    localStorage.setItem('axons_uv', uv);
+    counterEl.textContent = uv.toLocaleString();
 }
 
 // ==================== 初始化 ====================
