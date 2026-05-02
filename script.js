@@ -820,18 +820,39 @@ function initVisitorCounter() {
     const counterEl = document.getElementById('visitor-count');
     if (!counterEl) return;
 
-    fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true')
-        .then(res => res.json())
-        .then(data => {
-            const count = data.value || data.count || 0;
-            counterEl.textContent = count.toLocaleString();
-        })
-        .catch(() => {
-            // 降级：用 localStorage 记录 PV
-            let pv = parseInt(localStorage.getItem('axons_pv') || '0', 10) + 1;
-            localStorage.setItem('axons_pv', pv);
-            counterEl.textContent = pv.toLocaleString();
-        });
+    // 判断今天是否已经计过数
+    const today = new Date().toISOString().slice(0, 10); // "2026-05-02"
+    const lastCountDate = localStorage.getItem('axons_visit_date');
+
+    if (lastCountDate !== today) {
+        // 新的一天，上报一次访问
+        localStorage.setItem('axons_visit_date', today);
+        // 用每日唯一路径保证 visitor-badge 只在今天计一次
+        fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat%2F' + today + '&label=&style=none&count=true')
+            .then(res => res.json())
+            .then(data => {
+                const count = data.value || data.count || 0;
+                counterEl.textContent = count.toLocaleString();
+            })
+            .catch(() => {
+                // 降级：本地 UV 计数
+                let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
+                localStorage.setItem('axons_uv', uv);
+                counterEl.textContent = uv.toLocaleString();
+            });
+    } else {
+        // 今天已计过数，只读取不重复上报
+        fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat%2F' + today + '&label=&style=none&count=true')
+            .then(res => res.json())
+            .then(data => {
+                const count = data.value || data.count || 0;
+                counterEl.textContent = count.toLocaleString();
+            })
+            .catch(() => {
+                const uv = localStorage.getItem('axons_uv') || '--';
+                counterEl.textContent = uv;
+            });
+    }
 }
 
 // ==================== 初始化 ====================
