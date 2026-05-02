@@ -391,6 +391,10 @@ body {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    padding: 8px;
+        margin: -8px;
+        position: relative;
+        z-index: 1001;
 }
 
 .hamburger span {
@@ -398,6 +402,7 @@ body {
     height: 2px;
     background: var(--text-primary);
     transition: var(--transition-base);
+    pointer-events: none;
 }
 
 /* Language Switch */
@@ -1308,7 +1313,6 @@ body {
     /* Navigation mobile */
         .navbar {
             padding: 0.75rem 0;
-            overflow: hidden;
         }
     .nav-container {
         padding: 0 0.75rem;
