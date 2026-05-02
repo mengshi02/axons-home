@@ -820,57 +820,48 @@ function initVisitorCounter() {
     const counterEl = document.getElementById('visitor-count');
     if (!counterEl) return;
 
-    const BADGE_URL = 'https://visitor-badge.laobi.icu/badge?page_id=axons.chat';
+    // API 返回纯文本数字，不是 JSON
+    const API_URL = 'https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true';
     const today = new Date().toISOString().slice(0, 10);
     const lastCountDate = localStorage.getItem('axons_visit_date');
 
     if (lastCountDate !== today) {
-        // 今天首次访问，尝试从 fetch 读取计数（<img> 已在 HTML 中触发计数）
+        // 今天首次访问，触发计数并缓存
         localStorage.setItem('axons_visit_date', today);
-        fetchCountFromBadge(counterEl, BADGE_URL, true);
+        fetch(API_URL)
+            .then(res => res.text())
+            .then(text => {
+                const count = parseInt(text.trim(), 10);
+                if (!isNaN(count) && count > 0) {
+                    localStorage.setItem('axons_visit_count', count);
+                    counterEl.textContent = count.toLocaleString();
+                } else {
+                    throw new Error('Invalid count');
+                }
+            })
+            .catch(() => {
+                let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10) + 1;
+                localStorage.setItem('axons_uv', uv);
+                counterEl.textContent = uv.toLocaleString();
+            });
     } else {
-        // 今天已计数，优先读缓存
+        // 今天已计数过，直接读缓存
         const cached = localStorage.getItem('axons_visit_count');
         if (cached) {
             counterEl.textContent = parseInt(cached, 10).toLocaleString();
         } else {
-            fetchCountFromBadge(counterEl, BADGE_URL, false);
+            // 缓存丢失，读一次 API（会触发+1，但比显示"--"好）
+            fetch(API_URL)
+                .then(res => res.text())
+                .then(text => {
+                    const count = parseInt(text.trim(), 10);
+                    if (!isNaN(count) && count > 0) {
+                        counterEl.textContent = count.toLocaleString();
+                    }
+                })
+                .catch(() => { counterEl.textContent = '--'; });
         }
     }
-}
-
-function fetchCountFromBadge(counterEl, url, shouldCache) {
-    fetch(url)
-        .then(res => res.text())
-        .then(svg => {
-            const count = extractCountFromSVG(svg);
-            if (count > 0) {
-                if (shouldCache) localStorage.setItem('axons_visit_count', count);
-                counterEl.textContent = count.toLocaleString();
-            } else {
-                throw new Error('Invalid count');
-            }
-        })
-        .catch(() => {
-            // fetch 失败（CORS 等），降级到本地 UV
-            let uv = parseInt(localStorage.getItem('axons_uv') || '0', 10);
-            if (shouldCache) {
-                uv += 1;
-                localStorage.setItem('axons_uv', uv);
-            }
-            counterEl.textContent = uv > 0 ? uv.toLocaleString() : '--';
-        });
-}
-
-// 从 visitor-badge SVG 中提取访客数字
-function extractCountFromSVG(svg) {
-    const matches = svg.match(/<text[^>]*>\s*(\d+)\s*<\/text>/g);
-    if (matches && matches.length >= 2) {
-        const last = matches[matches.length - 1];
-        const num = last.match(/(\d+)/);
-        if (num) return parseInt(num[1], 10);
-    }
-    return 0;
 }
 
 // ==================== 初始化 ====================
