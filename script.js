@@ -133,6 +133,7 @@ const translations = {
 
         // Footer
         'footer.tagline': 'Engine-Driven · Agent Collaboration · AI-Native',
+        'footer.visitors': 'Visitors',
         'footer.product': 'Product',
         'footer.features': 'Capabilities',
         'footer.download': 'Download',
@@ -278,6 +279,7 @@ const translations = {
 
         // Footer
         'footer.tagline': '引擎驱动 · 智能体协同 · AI原生',
+        'footer.visitors': '访客数',
         'footer.product': '产品',
         'footer.features': '核心能力',
         'footer.download': '下载',
@@ -813,6 +815,25 @@ function throttle(func, limit) {
     };
 }
 
+// ==================== 访客计数 ====================
+function initVisitorCounter() {
+    const counterEl = document.getElementById('visitor-count');
+    if (!counterEl) return;
+
+    fetch('https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Faxons.chat&label=&style=none&count=true')
+        .then(res => res.json())
+        .then(data => {
+            const count = data.value || data.count || 0;
+            counterEl.textContent = count.toLocaleString();
+        })
+        .catch(() => {
+            // 降级：用 localStorage 记录 PV
+            let pv = parseInt(localStorage.getItem('axons_pv') || '0', 10) + 1;
+            localStorage.setItem('axons_pv', pv);
+            counterEl.textContent = pv.toLocaleString();
+        });
+}
+
 // ==================== 初始化 ====================
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -840,6 +861,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 其他功能
     lazyLoadImages();
     handleKeyboardNavigation();
+
+    // 访客计数
+    initVisitorCounter();
 
     // 语言切换
     initLanguageSwitch();
