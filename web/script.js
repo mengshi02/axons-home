@@ -1,94 +1,133 @@
-// ==================== 国际化翻译配置 ====================
+// ==================== i18n Translation Configuration ====================
 const translations = {
     en: {
-        // 导航
+        // Page meta info
+        'page.title': 'Axons AI | Code Intelligence Engine',
+        'page.description': 'Code graph analysis, intelligent refactoring, and private deployment for complex engineering. Runs fully offline, your code never leaves your machine.',
+
+        // Navigation
         'nav.home': 'Home',
-        'nav.features': 'Product',
+        'nav.features': 'Core Capabilities',
+        'nav.pricing': 'Pricing',
         'nav.download': 'Download',
         'nav.contact': 'Contact',
 
-        // Hero区域
-        'hero.badge': 'AI-Native Code Analysis & Generation Agent',
-        'hero.description': 'Three engines driving, multi-agent collaboration, AI-native architecture. From code understanding to intelligent repair, full-chain protection for code security and quality.',
+        // Hero section
+        'hero.title': 'Axons AI',
+        'hero.positioning': 'Code Intelligence Engine',
+        'hero.subtitle': 'Code Graph Analysis · Intelligent Refactoring · Private Deployment for Complex Engineering',
+        'hero.declaration': 'Runs fully offline, your code never leaves your machine',
+        'hero.description': 'Most AI coding tools are limited to line-by-line completion and snippet generation, unable to understand the full picture of large projects, untangle complex dependencies, or handle legacy system transformation. Axons is built on a self-developed code graph engine + multi-agent collaborative architecture, constructing an engineering knowledge network from the source code foundation, precisely parsing cross-language, million-line complex projects. Focused on solving enterprise-level pain points: architectural chaos, technical debt accumulation, legacy system iteration difficulties, and uncontrollable code refactoring risks.',
+        'hero.sp1': '🔒 Private & Offline, Code Never Leaves Your Machine',
+        'hero.sp2': '🕸️ Self-built Code Knowledge Graph, Cross-language Architecture Understanding',
+        'hero.sp3': '⚡ Incremental Graph Updates, Sub-second Refresh for Large Projects',
         'hero.download': 'Download Now',
         'hero.demo': 'Watch Demo',
 
-        // 四大要素
-        'pillar.graph': 'Graph',
-        'pillar.analysis': 'Analysis',
-        'pillar.context': 'Context',
-        'pillar.intelligence': 'Intelligence',
-
-        // 语言支持
+        // Language support
         'languages.title': 'Supported Languages',
 
-        // 浮动卡片
-        'floating.graph': 'Graph Engine',
-        'floating.analysis': 'Multi-Agent',
-        'floating.security': 'Native Terminal',
-        'floating.intelligence': 'AI-Native',
+        // Floating cards
+        'floating.archgraph': 'Architecture Graph',
+        'floating.incremental': 'Incremental Update',
+        'floating.refactor': 'Smart Refactor',
+        'floating.private': 'Private Deploy',
 
-        // 特性
-        'features.title': 'Product Power',
-        'features.subtitle': 'Engine-Driven · Agent Collaboration · AI-Native Architecture',
+        // Features
+        'features.title': 'Core Capabilities',
+        'features.subtitle': 'Understand Architecture → Unravel Dependencies → Controlled Modification → Safe Rollback',
 
-        // 分类
-        'features.category.engine': 'Core Computing Base',
-        'features.category.engine.title': 'Three engines, the cornerstone of code understanding',
-        'features.category.agent': 'Agent',
-        'features.category.agent.title': 'Multi-agent collaboration, continuous evolution',
-        'features.category.tool': 'Native Capabilities',
-        'features.category.tool.title': 'Native toolchain, seamless integration',
-        'features.category.native': 'AI-Native',
-        'features.category.native.title': 'AI-native architecture, open capability boundaries',
+        // Core capabilities
+        'cf.graph.title': 'Full-Scope Code Architecture Graph',
+        'cf.graph.desc': 'Automatically reverse-engineer project layering, module dependencies, call chains, and package structure relationships. Visualize the real engineering architecture, eliminate manual梳理 costs.',
+        'cf.lang.title': 'Cross-Language Deep Source Code Understanding',
+        'cf.lang.desc': 'Native support for Go / Java / TypeScript / C# / Python / C/C++ / Rust. Unified semantic analysis framework, compatible with new and old mixed tech stack complex projects.',
+        'cf.refactor.title': 'Minimally Invasive Intelligent Refactoring',
+        'cf.refactor.desc': 'Follows original coding conventions and architectural constraints. Precise local modifications, rejecting large-scale destructive rewrites. Built-in change snapshots, one-click version rollback, avoiding production incidents.',
+        'cf.private.title': 'Offline Private Secure Deployment',
+        'cf.private.desc': 'Fully local computation, business code never uploaded or leaked. Adapts to intranet-isolated environments, meeting data security requirements for government, finance, and classified projects.',
 
-        // AI编程安全机制
-        'features.category.security': 'AI Coding Safety',
-        'features.category.security.title': 'Core guarantees for safe AI code editing',
-        'features.scope.title': 'Precise Scope Modification',
-        'features.scope.desc': 'Reject large-scale brute rewrites. Lock the minimal modification scope based on graph dependencies, preventing AI "hallucinations" from breaking unrelated code.',
-        'features.integrity.title': 'Structural Integrity Validation',
-        'features.integrity.desc': 'After each AI write, instantly perform syntax and dependency structure validation, ensuring code always stays in a compilable, runnable safe state.',
-        'features.rollback.title': 'Operation Rollback',
-        'features.rollback.desc': 'Every AI edit is atomically recorded, supporting line-level precise rollback, making AI code changes as safe and controllable as local version control.',
+        // Incremental graph
+        'cf.incremental.badge': 'Core Performance Barrier',
+        'cf.incremental.title': 'Incremental Graph Dynamic Update',
+        'cf.incremental.desc': 'Only detects changed files, functions, and dependencies. Only recalculates the changed parts, without touching the entire engineering graph.',
+        'cf.incremental.b1': '⚡ Sub-second architecture graph refresh',
+        'cf.incremental.b2': '💾 Large projects run background without resource drain',
+        'cf.incremental.b3': '🔄 Three-tier detection: Journal → mtime → content hash',
+        'cf.incremental.old.label': 'Traditional Tools',
+        'cf.incremental.old.desc': 'Change one line → full project re-analysis → slow, laggy, memory-hungry',
+        'cf.incremental.new.label': 'Axons',
+        'cf.incremental.new.desc': 'Change one line → only recalculate changes → sub-second refresh',
 
-        // 核心引擎
-        'features.graph.title': 'Graph Computing Engine (GCE)',
-        'features.graph.desc': 'Build code dependency graphs and call chain visualization, precisely mapping module relationships. Multi-level drill-down and interactive exploration for clear architecture insights.',
-        'features.analysis.title': 'Analysis Engine (ACE)',
-        'features.analysis.desc': 'Deep fusion of static analysis and dynamic tracing, accurately identifying code defects, performance bottlenecks, and architecture smells. Multi-language, multi-dimensional scanning.',
-        'features.context.title': 'Conversation Context Engine (CCE)',
-        'features.context.desc': 'Intelligently aggregate code context semantics, building cross-file, cross-module deep understanding, providing a precise semantic foundation for analysis and reasoning.',
+        // Comparison
+        'compare.title': 'Product Differentiation',
+        'compare.subtitle': 'Lightweight + Architectural + Domestic + Private',
+        'compare.ai.title': 'General AI Code Assistants',
+        'compare.ai.desc': 'Focused on code generation and conversational writing, no architectural awareness, no engineering global capability, only suitable for scattered daily development.',
+        'compare.ai.tag': 'Cursor / Copilot / Claude Code',
+        'compare.audit.title': 'Foreign Code Audit Tools',
+        'compare.audit.desc': 'Biased towards security vulnerability scanning, heavy and closed, poor localization, unsuitable for domestic legacy system iteration.',
+        'compare.audit.tag': 'SonarQube / CodeQL',
+        'compare.axons.title': 'Axons',
+        'compare.axons.desc': 'Designed for domestic SME R&D teams, traditional software companies, and legacy engineering projects. Balancing development efficiency, architecture governance, and data security.',
+        'compare.axons.tag': 'Architectural · Domestic · Private',
 
-        // 智能体
-        'features.multiagent.title': 'Multi-Agent Collaboration',
-        'features.multiagent.desc': 'Multiple specialized agents work in concert — graph construction, security auditing, code repair — each performing its role to collaboratively complete complex analysis tasks.',
-        'features.dialogue.title': 'Multi-Turn Dialogue',
-        'features.dialogue.desc': 'Context-aware multi-turn dialogue, progressively diving into code issues, precisely locating root causes and delivering targeted recommendations.',
-        'features.memory.title': 'Memory Persistence',
-        'features.memory.desc': 'Conversation history and analysis results are persistently stored, maintaining context continuity across sessions for seamless deep analysis without repetition.',
-        'features.vector.title': 'Dual-Modal Vectorization',
-        'features.vector.desc': 'Code text and graph structure dual-modal vector representation for more precise semantic retrieval and more efficient similar code discovery.',
+        // Use cases
+        'scenarios.title': 'Use Cases',
+        'scenarios.s1.title': 'Large Legacy System Architecture Analysis',
+        'scenarios.s1.desc': 'Technical debt governance, automatic reverse architecture restoration',
+        'scenarios.s2.title': 'Multi-language Mixed Project Refactoring',
+        'scenarios.s2.desc': 'Code standardization, unified semantic analysis for mixed tech stacks',
+        'scenarios.s3.title': 'Intranet-Isolated Development',
+        'scenarios.s3.desc': 'Security compliance scenarios where code cannot be transmitted externally',
+        'scenarios.s4.title': 'Onboarding Unfamiliar Legacy Projects',
+        'scenarios.s4.desc': 'Quickly understand overall architecture, reduce onboarding costs',
+        'scenarios.s5.title': 'Long-term Enterprise Engineering Iteration',
+        'scenarios.s5.desc': 'Reduce refactoring risks and maintenance costs',
 
-        // 工具
-        'features.terminal.title': 'Native Terminal',
-        'features.terminal.desc': 'Built-in native terminal environment, agents can directly execute commands, run tests, and operate the file system for a closed loop from analysis to repair.',
-        'features.editor.title': 'AI Autonomous Editor',
-        'features.editor.desc': 'AI-driven autonomous code editing, agents can independently read, understand, and modify code files for truly automated code repair and refactoring.',
-
-        // AI原生
-        'features.cli.title': 'CLI & MCP',
-        'features.cli.desc': 'CLI command-line and MCP protocol support for external capabilities, easily integrating into CI/CD pipelines and existing development toolchains.',
-        'features.container.title': 'Scratch Containerization',
-        'features.container.desc': 'Minimalist containerized deployment based on Scratch images, compact size, second-level startup, secure isolation, cloud-native out of the box.',
-        'features.crossplatform.title': 'Cross-Platform',
-        'features.crossplatform.desc': 'macOS / Windows / Linux desktop and Web full coverage. Build once, run everywhere, guarding code security anytime, anywhere.',
-
-        // 演示
+        // Demo
         'demo.title': 'Product Demo',
-        'demo.subtitle': 'See How Axons Guards Your Code Security',
+        'demo.subtitle': 'See How Axons Boosts Your Development Efficiency',
 
-        // 下载
+        // Pricing
+        'pricing.title': 'Choose Your Plan',
+        'pricing.subtitle': 'From individual developers to enterprise private deployment',
+        'pricing.free.tier': 'Free Community Edition',
+        'pricing.free.price': 'Free',
+        'pricing.free.f1': 'Basic code generation',
+        'pricing.free.f2': 'Small project syntax analysis',
+        'pricing.free.f3': 'Free for personal non-commercial use forever',
+        'pricing.free.cta': 'Free Download',
+        'pricing.pro.badge': 'Recommended',
+        'pricing.pro.tier': 'Professional Developer Edition',
+        'pricing.pro.price': '¥29/month',
+        'pricing.pro.annual': 'Annual discount',
+        'pricing.pro.f1': 'Full architecture graph',
+        'pricing.pro.f2': 'All-language analysis',
+        'pricing.pro.f3': 'Medium-large project refactoring',
+        'pricing.pro.f4': 'Advanced Agent collaboration',
+        'pricing.pro.f5': 'Incremental graph updates',
+        'pricing.pro.cta': 'Subscribe Now',
+        'pricing.enterprise.tier': 'Enterprise Private Edition',
+        'pricing.enterprise.price': 'Custom Quote',
+        'pricing.enterprise.f1': 'Intranet offline deployment',
+        'pricing.enterprise.f2': 'Custom feature adaptation',
+        'pricing.enterprise.f3': 'Dedicated technical support',
+        'pricing.enterprise.f4': 'Commercial license',
+        'pricing.enterprise.cta': 'Contact Us',
+
+        // FAQ
+        'faq.title': 'FAQ',
+        'faq.q1': 'Will my code be uploaded to the cloud?',
+        'faq.a1': 'All computation runs locally offline. Source code stays on your machine only, no cloud collection, ensuring code asset security.',
+        'faq.q2': 'What project scale is supported?',
+        'faq.a2': 'Natively supports 100K to million-line mid-to-large engineering projects, compatible with complex monolithic and microservice hybrid architectures.',
+        'faq.q3': 'Is IDE integration supported?',
+        'faq.a3': 'VSCode / IDEA native plugins are in continuous development. MCP protocol integration is already supported for seamless AI assistant connection.',
+        'faq.q4': 'Any open source plans?',
+        'faq.a4': 'The core engine is self-developed and closed-source. Basic framework components will be progressively open-sourced to build the developer ecosystem.',
+
+        // Download
         'download.title': 'Download Now',
         'download.subtitle': 'Choose the version for your platform',
         'download.version': 'Version 1.0.0',
@@ -112,13 +151,13 @@ const translations = {
         'download.web.server': 'Local Server',
         'download.web.portable': 'Portable Version',
 
-        // 系统要求
+        // System requirements
         'requirements.title': 'System Requirements',
         'requirements.mac': 'macOS 10.15 (Catalina) or later',
         'requirements.windows': 'Windows 10 or later (64-bit)',
         'requirements.linux': 'Modern Linux distribution (glibc 2.31+)',
 
-        // 联系
+        // Contact
         'contact.title': 'Contact Us',
         'contact.subtitle': 'Join the Community, Grow Together',
         'contact.tech.title': 'Tech Community',
@@ -132,13 +171,14 @@ const translations = {
         'contact.opensource.repo': 'Visit Repository',
 
         // Footer
-        'footer.tagline': 'Engine-Driven · Agent Collaboration · AI-Native',
+        'footer.tagline': 'Making complex software engineering intelligently understandable',
+        'footer.mission': 'Axons AI focuses on enterprise-grade code intelligence infrastructure',
         'footer.visitors': 'Visitors',
         'footer.visitors.pv': 'Page Views',
         'footer.visitors.uv': 'Unique Visitors',
         'footer.visitors.device': 'Your Device',
         'footer.product': 'Product',
-        'footer.features': 'Capabilities',
+        'footer.features': 'Core Capabilities',
         'footer.download': 'Download',
         'footer.changelog': 'Changelog',
         'footer.resources': 'Resources',
@@ -150,94 +190,133 @@ const translations = {
         'footer.contributing': 'Contributing'
     },
     zh: {
-        // 导航
+        // Page meta info
+        'page.title': 'Axons AI | 代码智能引擎',
+        'page.description': '面向复杂工程的代码图谱分析·智能重构·私有化部署。纯本地运行，代码不上云。',
+
+        // Navigation
         'nav.home': '首页',
-        'nav.features': '产品力',
+        'nav.features': '核心能力',
+        'nav.pricing': '版本',
         'nav.download': '下载',
         'nav.contact': '联系',
 
-        // Hero区域
-        'hero.badge': 'AI原生代码分析与生成智能体',
-        'hero.description': '三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。',
+        // Hero section
+        'hero.title': 'Axons AI',
+        'hero.positioning': '代码智能引擎',
+        'hero.subtitle': '面向复杂工程的代码图谱分析 · 智能重构 · 私有化部署',
+        'hero.declaration': '纯本地私有化运行，代码不上云，架构自主可控',
+        'hero.description': '当下AI编程工具，大多局限于单行补全、片段生成，无法理解大型项目全貌、梳理复杂依赖、承接存量遗留系统改造。Axons 基于自研代码图谱引擎 + 多Agent协同架构，从源码底层构建工程知识网络，精准解析跨语言、百万行级复杂项目。专注解决：架构混乱、技术债堆积、遗留系统迭代困难、代码重构风险不可控等企业级核心痛点。',
+        'hero.sp1': '🔒 本地私有化，代码不上云',
+        'hero.sp2': '🕸️ 自研代码知识图谱，跨语言架构全局理解',
+        'hero.sp3': '⚡ 增量图谱动态更新，超大项目秒级无感刷新',
         'hero.download': '立即下载',
         'hero.demo': '观看演示',
 
-        // 四大要素
-        'pillar.graph': '图谱',
-        'pillar.analysis': '分析',
-        'pillar.context': '上下文',
-        'pillar.intelligence': '智能',
-
-        // 语言支持
+        // Language support
         'languages.title': '支持的编程语言',
 
-        // 浮动卡片
-        'floating.graph': '图谱引擎',
-        'floating.analysis': '多智能体协同',
-        'floating.security': '原生终端',
-        'floating.intelligence': 'AI原生',
+        // Floating cards
+        'floating.archgraph': '架构图谱',
+        'floating.incremental': '增量更新',
+        'floating.refactor': '智能重构',
+        'floating.private': '私有化部署',
 
-        // 特性
-        'features.title': '产品力',
-        'features.subtitle': '引擎驱动 · 智能体协同 · AI原生架构',
+        // Features
+        'features.title': '核心能力',
+        'features.subtitle': '读懂架构 → 梳理依赖 → 可控修改 → 安全回滚',
 
-        // 分类
-        'features.category.engine': '核心计算底座',
-        'features.category.engine.title': '三大引擎，构筑代码理解基石',
-        'features.category.agent': '智能体',
-        'features.category.agent.title': '多智能体协同，持续进化',
-        'features.category.tool': '原生能力',
-        'features.category.tool.title': '原生工具链，无缝集成',
-        'features.category.native': 'AI原生',
-        'features.category.native.title': 'AI原生架构，开放能力边界',
+        // Core capabilities
+        'cf.graph.title': '全域代码架构图谱',
+        'cf.graph.desc': '自动逆向还原项目分层、模块依赖、调用链路、包结构关系。可视化呈现真实工程架构，告别人工梳理成本。',
+        'cf.lang.title': '跨语言深度源码理解',
+        'cf.lang.desc': '原生支持 Go / Java / TypeScript / C# / Python / C/C++ / Rust。统一语义分析框架，兼容新旧混合技术栈复杂项目。',
+        'cf.refactor.title': '最小侵入智能重构',
+        'cf.refactor.desc': '遵循原有编码规范与架构约束。精准局部修改，拒绝大范围破坏性改写。自带变更快照，一键版本回滚，规避线上事故。',
+        'cf.private.title': '离线私有化安全部署',
+        'cf.private.desc': '全程本地运算，业务代码不上传、不外泄。适配内网隔离环境，满足政企、金融、涉密项目数据安全要求。',
 
-        // AI编程安全机制
-        'features.category.security': 'AI编程安全机制',
-        'features.category.security.title': '核心保障，让AI改代码安全可控',
-        'features.scope.title': '精准定界修改',
-        'features.scope.desc': '拒绝大范围暴力重写，基于图谱依赖锁定最小修改范围，防止AI"幻觉"破坏无关代码。',
-        'features.integrity.title': '结构完整性校验',
-        'features.integrity.desc': '在AI每次写入后，即时进行语法与依赖结构校验，确保代码始终处于可编译、可运行的安全状态。',
-        'features.rollback.title': '操作可回滚',
-        'features.rollback.desc': 'AI的每一次编辑均被原子化记录，支持精准到单行级别的操作回滚，让AI改代码如同本地版本控制般安全可控。',
+        // Incremental graph
+        'cf.incremental.badge': '核心性能壁垒',
+        'cf.incremental.title': '增量图谱动态更新',
+        'cf.incremental.desc': '只检测改动的文件、函数、依赖，只重新计算变化部分，不动整个工程图谱。',
+        'cf.incremental.b1': '⚡ 秒级刷新架构图',
+        'cf.incremental.b2': '💾 大项目常驻后台不耗资源',
+        'cf.incremental.b3': '🔄 三层检测机制：Journal → mtime → content hash',
+        'cf.incremental.old.label': '普通工具',
+        'cf.incremental.old.desc': '改一行 → 全量重分析整个项目 → 卡、慢、耗内存',
+        'cf.incremental.new.label': 'Axons',
+        'cf.incremental.new.desc': '改一行 → 只重算变化部分 → 秒级刷新',
 
-        // 核心引擎
-        'features.graph.title': '图谱计算引擎（GCE）',
-        'features.graph.desc': '构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。',
-        'features.analysis.title': '分析引擎（ACE）',
-        'features.analysis.desc': '静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。',
-        'features.context.title': '会话上下文引擎（CCE）',
-        'features.context.desc': '智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。',
+        // Comparison
+        'compare.title': '产品差异化',
+        'compare.subtitle': '轻量化 + 架构化 + 国产化 + 私有化',
+        'compare.ai.title': '通用AI代码助手',
+        'compare.ai.desc': '侧重代码生成、对话仿写，无架构认知、无工程全局能力，仅适用于零散日常开发。',
+        'compare.ai.tag': 'Cursor / Copilot / Claude Code',
+        'compare.audit.title': '国外代码审计工具',
+        'compare.audit.desc': '偏重安全漏洞扫描，笨重封闭、本地化适配差、不适合国内遗留系统迭代。',
+        'compare.audit.tag': 'SonarQube / CodeQL',
+        'compare.axons.title': 'Axons',
+        'compare.axons.desc': '专为国内中小研发团队、传统软件企业、存量老旧工程项目设计。兼顾开发效率、架构治理、数据安全三者平衡。',
+        'compare.axons.tag': '架构化 · 国产化 · 私有化',
 
-        // 智能体
-        'features.multiagent.title': '多智能体协同',
-        'features.multiagent.desc': '多个专业智能体分工协作，图谱构建、安全审计、代码修复各司其职，协同完成复杂分析任务。',
-        'features.dialogue.title': '多轮对话',
-        'features.dialogue.desc': '支持上下文连续的多轮对话交互，逐步深入代码问题，精准定位根因并给出针对性建议。',
-        'features.memory.title': '记忆持久化',
-        'features.memory.desc': '对话历史与分析结果持久化存储，跨会话保持上下文连续性，无需重复描述即可延续深度分析。',
-        'features.vector.title': '双模态向量化',
-        'features.vector.desc': '代码文本与图谱结构双模态向量化表示，语义检索更精准，相似代码发现更高效。',
+        // Use cases
+        'scenarios.title': '适用场景',
+        'scenarios.s1.title': '大型遗留系统架构梳理',
+        'scenarios.s1.desc': '技术债治理，自动逆向还原架构全貌',
+        'scenarios.s2.title': '多语言混合项目重构',
+        'scenarios.s2.desc': '代码规范化，统一语义分析新旧混合技术栈',
+        'scenarios.s3.title': '内网隔离环境研发',
+        'scenarios.s3.desc': '禁止代码对外传输的安全合规场景',
+        'scenarios.s4.title': '接手陌生老项目',
+        'scenarios.s4.desc': '快速熟悉整体架构，降低上手成本',
+        'scenarios.s5.title': '企业长期工程迭代',
+        'scenarios.s5.desc': '降低重构风险与维护成本',
 
-        // 工具
-        'features.terminal.title': '原生终端',
-        'features.terminal.desc': '内置原生终端环境，智能体可直接执行命令、运行测试、操作文件系统，实现从分析到修复的全闭环。',
-        'features.editor.title': 'AI自主编辑器',
-        'features.editor.desc': 'AI驱动的自主代码编辑能力，智能体可自主读取、理解、修改代码文件，实现真正的自动化代码修复与重构。',
-
-        // AI原生
-        'features.cli.title': 'CLI & MCP',
-        'features.cli.desc': '支持CLI命令行与MCP协议对外提供能力，轻松集成到CI/CD流水线与现有开发工具链中。',
-        'features.container.title': 'Scratch级容器化',
-        'features.container.desc': '基于Scratch镜像的极简容器化部署，体积小巧、启动秒级、安全隔离，云原生环境开箱即用。',
-        'features.crossplatform.title': '全平台发行',
-        'features.crossplatform.desc': 'macOS / Windows / Linux 桌面端与Web端全覆盖，一次构建多端运行，随时随地守护代码安全。',
-
-        // 演示
+        // Demo
         'demo.title': '产品演示',
         'demo.subtitle': '看看 Axons 如何守护代码安全',
 
-        // 下载
+        // Pricing
+        'pricing.title': '选择版本',
+        'pricing.subtitle': '从个人开发到企业私有化，按需选择',
+        'pricing.free.tier': '免费社区版',
+        'pricing.free.price': '免费',
+        'pricing.free.f1': '基础代码生成',
+        'pricing.free.f2': '小型项目语法分析',
+        'pricing.free.f3': '个人非商用永久免费',
+        'pricing.free.cta': '免费下载',
+        'pricing.pro.badge': '推荐',
+        'pricing.pro.tier': '专业开发者版',
+        'pricing.pro.price': '¥29/月',
+        'pricing.pro.annual': '年付特惠',
+        'pricing.pro.f1': '完整架构图谱',
+        'pricing.pro.f2': '全语言分析',
+        'pricing.pro.f3': '中大项目重构',
+        'pricing.pro.f4': '高级Agent协作',
+        'pricing.pro.f5': '增量图谱更新',
+        'pricing.pro.cta': '立即订阅',
+        'pricing.enterprise.tier': '企业私有化版',
+        'pricing.enterprise.price': '定制报价',
+        'pricing.enterprise.f1': '内网离线部署',
+        'pricing.enterprise.f2': '定制化功能适配',
+        'pricing.enterprise.f3': '专属技术支持',
+        'pricing.enterprise.f4': '商业授权',
+        'pricing.enterprise.cta': '联系我们',
+
+        // FAQ
+        'faq.title': '常见问题',
+        'faq.q1': '代码是否会上传外网？',
+        'faq.a1': '全部本地离线计算，源码仅留存本机，无云端收集，保障代码资产安全。',
+        'faq.q2': '支持多大规模项目？',
+        'faq.a2': '原生支持十万～百万行级别中大型工程，适配复杂单体、微服务混合架构。',
+        'faq.q3': '是否支持IDE集成？',
+        'faq.a3': '后续持续迭代 VSCode / IDEA 原生插件，无缝融入现有开发工作流。当前已支持 MCP 协议接入。',
+        'faq.q4': '有无开源计划？',
+        'faq.a4': '核心底层引擎自研闭源，基础框架部分逐步开源，共建开发者生态。',
+
+        // Download
         'download.title': '立即下载',
         'download.subtitle': '选择适合您平台的版本',
         'download.version': '版本 1.0.0',
@@ -261,13 +340,13 @@ const translations = {
         'download.web.server': '本地服务器',
         'download.web.portable': '便携版本',
 
-        // 系统要求
+        // System requirements
         'requirements.title': '系统要求',
         'requirements.mac': 'macOS 10.15 (Catalina) 或更高版本',
         'requirements.windows': 'Windows 10 或更高版本 (64位)',
         'requirements.linux': '现代 Linux 发行版 (glibc 2.31+)',
 
-        // 联系
+        // Contact
         'contact.title': '联系我们',
         'contact.subtitle': '加入社区，共同成长',
         'contact.tech.title': '技术交流群',
@@ -281,7 +360,8 @@ const translations = {
         'contact.opensource.repo': '访问仓库',
 
         // Footer
-        'footer.tagline': '引擎驱动 · 智能体协同 · AI原生',
+        'footer.tagline': '让复杂软件工程，拥有可被理解的智能架构',
+        'footer.mission': 'Axons AI 专注企业级代码智能底层基建',
         'footer.visitors': '访客数',
         'footer.visitors.pv': '总访问',
         'footer.visitors.uv': '独立访客',
@@ -300,14 +380,14 @@ const translations = {
     }
 };
 
-// 当前语言
+// Current language
 let currentLang = 'en';
 
-// ==================== 语言切换功能 ====================
+// ==================== Language Switch Function ====================
 function initLanguageSwitch() {
     const langBtns = document.querySelectorAll('.lang-btn');
 
-    // 从本地存储读取语言偏好
+    // Read language preference from local storage
     const savedLang = localStorage.getItem('axons-lang');
     if (savedLang && translations[savedLang]) {
         currentLang = savedLang;
@@ -324,7 +404,7 @@ function initLanguageSwitch() {
                 updateActiveButton(lang);
                 localStorage.setItem('axons-lang', lang);
 
-                // 更新 HTML lang 属性
+                // Update HTML lang attribute
                 document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
             }
         });
@@ -340,14 +420,14 @@ function updateLanguage(lang) {
         }
     });
 
-    // 更新推荐标签文字
+    // Update recommend badge text
     const recommendBadge = document.querySelector('.os-recommend');
     if (recommendBadge) {
         const recommendText = lang === 'zh' ? '为您推荐' : 'Recommended';
         recommendBadge.innerHTML = `<i class="fas fa-magic"></i> ${recommendText}`;
     }
 
-    // 根据语言切换技术交流区二维码/链接
+    // Switch QR code/link based on language for tech community
     const qrZh = document.getElementById('tech-qr-zh');
     const qrEn = document.getElementById('tech-qr-en');
     if (qrZh && qrEn) {
@@ -355,9 +435,20 @@ function updateLanguage(lang) {
         qrEn.style.display = lang === 'en' ? 'block' : 'none';
     }
 
-    // 同步设备名称的语言
+    // Sync device label language
     if (typeof renderDeviceLabel === 'function') {
         renderDeviceLabel();
+    }
+
+    // Update page title
+    if (translations[lang] && translations[lang]['page.title']) {
+        document.title = translations[lang]['page.title'];
+    }
+
+    // Update meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && translations[lang] && translations[lang]['page.description']) {
+        metaDesc.setAttribute('content', translations[lang]['page.description']);
     }
 }
 
@@ -370,10 +461,10 @@ function updateActiveButton(lang) {
 
 
 
-// ==================== 粒子背景效果 ====================
+// ==================== Particle Background Effect ====================
 function createParticles() {
     const container = document.getElementById('particles-container');
-    const particleCount = 30; // 减少粒子数量，更适合浅色主题
+    const particleCount = 30; // Reduced particle count, better for light theme
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
@@ -385,13 +476,13 @@ function createParticles() {
         const size = 2 + Math.random() * 3;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
-        // 浅色主题使用橙色半透明粒子
+        // Light theme uses semi-transparent orange particles
         particle.style.background = `rgba(249, 115, 22, ${0.15 + Math.random() * 0.25})`;
         container.appendChild(particle);
     }
 }
 
-// ==================== 导航栏滚动效果 ====================
+// ==================== Navbar Scroll Effect ====================
 function handleNavScroll() {
     const navbar = document.querySelector('.navbar');
 
@@ -404,7 +495,7 @@ function handleNavScroll() {
     });
 }
 
-// ==================== 移动端菜单切换 ====================
+// ==================== Mobile Menu Toggle ====================
 function handleMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -414,7 +505,7 @@ function handleMobileMenu() {
         navMenu.classList.toggle('active');
     });
 
-    // 点击菜单项关闭菜单
+    // Close menu when clicking a menu item
     document.querySelectorAll('.nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -423,7 +514,7 @@ function handleMobileMenu() {
     });
 }
 
-// ==================== 平滑滚动 ====================
+// ==================== Smooth Scrolling ====================
 function handleSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -441,7 +532,7 @@ function handleSmoothScroll() {
     });
 }
 
-// ==================== 视频播放控制 ====================
+// ==================== Video Player Control ====================
 function handleVideoPlayer() {
     const video = document.getElementById('demo-video');
     const playBtn = document.getElementById('play-btn');
@@ -462,7 +553,7 @@ function handleVideoPlayer() {
         overlay.classList.remove('hidden');
     });
 
-    // 点击视频暂停/播放
+    // Click video to pause/play
     video.addEventListener('click', () => {
         if (video.paused) {
             video.play();
@@ -473,7 +564,7 @@ function handleVideoPlayer() {
     });
 }
 
-// ==================== 下载统计 ====================
+// ==================== Download Tracking ====================
 function trackDownloads() {
     const downloadButtons = document.querySelectorAll('.download-btn');
 
@@ -482,10 +573,10 @@ function trackDownloads() {
             const platform = btn.closest('.download-card').getAttribute('data-platform');
             console.log(`Download clicked: ${platform}`);
 
-            // 这里可以添加统计代码，比如发送到分析平台
+            // Analytics code can be added here, e.g., send to analytics platform
             // gtag('event', 'download', { 'platform': platform });
 
-            // 显示下载提示
+            // Show download notification
             showDownloadNotification(platform);
         });
     });
@@ -513,7 +604,7 @@ function showDownloadNotification(platform) {
         <span>${message}</span>
     `;
 
-    // 添加样式
+    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 100px;
@@ -534,14 +625,14 @@ function showDownloadNotification(platform) {
 
     document.body.appendChild(notification);
 
-    // 3秒后移除
+    // Remove after 3 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => notification.remove(), 300);
     }, 3000);
 }
 
-// 添加动画样式
+// Add animation styles
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideIn {
@@ -568,9 +659,9 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ==================== 架构选择器 ====================
+// ==================== Architecture Selector ====================
 function handleArchSelector() {
-    // macOS 架构切换
+    // macOS architecture switch
     const macCard = document.querySelector('[data-platform="mac"]');
     if (macCard) {
         const archBtns = macCard.querySelectorAll('.arch-btn');
@@ -583,7 +674,7 @@ function handleArchSelector() {
 
         archBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                e.stopPropagation(); // 阻止事件冒泡
+                e.stopPropagation(); // Prevent event bubbling
                 archBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
@@ -593,7 +684,7 @@ function handleArchSelector() {
         });
     }
 
-    // Web 平台自定义下拉选择器
+    // Web platform custom dropdown selector
     const webCard = document.querySelector('[data-platform="web"]');
     if (webCard) {
         const trigger = webCard.querySelector('.custom-select-trigger');
@@ -612,14 +703,14 @@ function handleArchSelector() {
             'windows-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-arm64.zip'
         };
 
-        // 点击触发器切换下拉菜单
+        // Click trigger to toggle dropdown
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
             trigger.classList.toggle('active');
             options.classList.toggle('active');
         });
 
-        // 允许在下拉菜单内滚动
+        // Allow scrolling inside dropdown
         options.addEventListener('wheel', (e) => {
             e.stopPropagation();
         });
@@ -628,35 +719,35 @@ function handleArchSelector() {
             e.stopPropagation();
         });
 
-        // 点击选项
+        // Click option
         optionItems.forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
 
-                // 移除所有选中状态
+                // Remove all selected states
                 optionItems.forEach(opt => opt.classList.remove('selected'));
 
-                // 添加当前选中状态
+                // Add current selected state
                 option.classList.add('selected');
 
-                // 更新显示文本
+                // Update display text
                 const text = option.querySelector('span').textContent;
                 selectText.textContent = text;
 
-                // 更新隐藏的 select 值
+                // Update hidden select value
                 const value = option.getAttribute('data-value');
                 hiddenSelect.value = value;
 
-                // 更新下载链接
+                // Update download link
                 downloadBtn.href = webUrls[value];
 
-                // 关闭下拉菜单
+                // Close dropdown
                 trigger.classList.remove('active');
                 options.classList.remove('active');
             });
         });
 
-        // 点击外部关闭下拉菜单
+        // Click outside to close dropdown
         document.addEventListener('click', (e) => {
             if (!webCard.contains(e.target)) {
                 trigger.classList.remove('active');
@@ -664,7 +755,7 @@ function handleArchSelector() {
             }
         });
 
-        // 键盘导航支持
+        // Keyboard navigation support
         trigger.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -678,13 +769,13 @@ function handleArchSelector() {
     }
 }
 
-// ==================== 卡片悬停效果 ====================
+// ==================== Card Hover Effect ====================
 function handleCardHover() {
     const cards = document.querySelectorAll('.feature-card, .download-card, .contact-card');
 
     cards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
-            // 如果目标是交互元素，不触发悬停效果
+            // Skip hover effect for interactive elements
             if (e.target.tagName === 'SELECT' ||
                 e.target.tagName === 'BUTTON' ||
                 e.target.tagName === 'A' ||
@@ -711,7 +802,7 @@ function handleCardHover() {
     });
 }
 
-// ==================== 滚动显示动画 ====================
+// ==================== Scroll Reveal Animation ====================
 function handleScrollAnimation() {
     const elements = document.querySelectorAll('.feature-card, .download-card, .contact-card');
 
@@ -735,7 +826,7 @@ function handleScrollAnimation() {
     });
 }
 
-// ==================== 自动检测操作系统 ====================
+// ==================== Auto OS Detection ====================
 function detectOS() {
     const userAgent = window.navigator.userAgent;
     const platform = navigator.platform;
@@ -750,12 +841,12 @@ function detectOS() {
         detectedOS = 'linux';
     }
 
-    // 高亮对应的下载卡片
+    // Highlight the corresponding download card
     const targetCard = document.querySelector(`.download-card[data-platform="${detectedOS}"]`);
     if (targetCard && detectedOS !== 'web') {
         targetCard.classList.add('recommended');
 
-        // 添加推荐标签
+        // Add recommend badge
         if (!targetCard.querySelector('.os-recommend')) {
             const badge = document.createElement('div');
             badge.className = 'os-recommend';
@@ -781,7 +872,7 @@ function detectOS() {
     }
 }
 
-// ==================== 懒加载图片 ====================
+// ==================== Lazy Load Images ====================
 function lazyLoadImages() {
     const images = document.querySelectorAll('img[data-src]');
 
@@ -799,10 +890,10 @@ function lazyLoadImages() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// ==================== 键盘导航支持 ====================
+// ==================== Keyboard Navigation ====================
 function handleKeyboardNavigation() {
     document.addEventListener('keydown', (e) => {
-        // ESC 关闭移动端菜单
+        // ESC closes mobile menu
         if (e.key === 'Escape') {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
@@ -812,7 +903,7 @@ function handleKeyboardNavigation() {
     });
 }
 
-// ==================== 性能优化：节流 ====================
+// ==================== Performance: Throttle ====================
 function throttle(func, limit) {
     let inThrottle;
     return function () {
@@ -826,14 +917,14 @@ function throttle(func, limit) {
     };
 }
 
-// ==================== 访客计数 + 设备识别 ====================
-// PV/UV 由不蒜子（busuanzi.pure.mini.js）跨设备统计，写入 #busuanzi_value_site_pv / _uv。
-// 这里只负责：1) 解析当前访客的设备类型并展示  2) 在不蒜子失败时给出占位
+// ==================== Visitor Counter + Device Detection ====================
+// PV/UV is tracked by a self-hosted backend via /api/stats.
+// This module: 1) Detects and displays the current visitor's device type  2) Shows placeholder when API is unavailable
 function detectDevice() {
     const ua = (navigator.userAgent || '').toLowerCase();
     const uaData = navigator.userAgentData;
 
-    // 优先使用现代 UA-CH
+    // Prefer modern UA-CH
     if (uaData && uaData.platform) {
         const p = uaData.platform.toLowerCase();
         if (uaData.mobile) {
@@ -846,7 +937,7 @@ function detectDevice() {
         if (p.includes('linux') || p.includes('chrome os')) return { key: 'linux', icon: 'fa-linux', brand: 'fab' };
     }
 
-    // 回退到 UA 字符串
+    // Fallback to UA string
     if (/iphone|ipad|ipod/.test(ua)) return { key: 'ios', icon: 'fa-apple', brand: 'fab' };
     if (/android/.test(ua)) return { key: 'android', icon: 'fa-android', brand: 'fab' };
     if (/mac os x|macintosh/.test(ua)) return { key: 'mac', icon: 'fa-apple', brand: 'fab' };
@@ -873,7 +964,7 @@ function renderDeviceLabel() {
 }
 
 function initVisitorCounter() {
-    // 渲染当前访客的设备类型
+    // Render current visitor's device type
     currentDevice = detectDevice();
     const iconEl = document.getElementById('device-icon');
     if (iconEl) {
@@ -883,12 +974,12 @@ function initVisitorCounter() {
     }
     renderDeviceLabel();
 
-    // 上报本次访问到自建后端
+    // Report this visit to self-hosted backend
     fetch('/api/stats/visit?path=' + encodeURIComponent(window.location.pathname), {
         method: 'POST'
     }).catch(() => { });
 
-    // 拉取 PV/UV 统计数据
+    // Fetch PV/UV statistics
     fetchVisitorStats();
 }
 
@@ -902,7 +993,7 @@ function fetchVisitorStats() {
             if (uvEl && data.uv !== undefined) uvEl.textContent = data.uv.toLocaleString();
         })
         .catch(() => {
-            // API 不可用时显示占位
+            // Show placeholder when API unavailable
             const pvEl = document.getElementById('site-pv');
             const uvEl = document.getElementById('site-uv');
             if (pvEl) {
@@ -916,44 +1007,44 @@ function fetchVisitorStats() {
         });
 }
 
-// ==================== 初始化 ====================
+// ==================== Initialization ====================
 document.addEventListener('DOMContentLoaded', () => {
 
 
-    // 创建粒子背景
+    // Create particle background
     createParticles();
 
-    // 导航相关
+    // Navigation
     handleNavScroll();
     handleMobileMenu();
     handleSmoothScroll();
 
-    // 动画效果
+    // Animation effects
     handleScrollAnimation();
     handleCardHover();
 
-    // 视频播放
+    // Video player
     handleVideoPlayer();
 
-    // 下载功能
+    // Download features
     trackDownloads();
     detectOS();
     handleArchSelector();
 
-    // 其他功能
+    // Other features
     lazyLoadImages();
     handleKeyboardNavigation();
 
-    // 访客计数
+    // Visitor counter
     initVisitorCounter();
 
-    // 语言切换
+    // Language switch
     initLanguageSwitch();
 
-    console.log('✨ Axons 官网已加载完成！');
+    console.log('✨ Axons website loaded successfully!');
 });
 
-// ==================== 页面加载完成动画 ====================
+// ==================== Page Load Complete Animation ====================
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });

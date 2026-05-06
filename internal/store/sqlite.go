@@ -12,14 +12,14 @@ import (
 	"github.com/mengshi02/axons-home/internal/model"
 )
 
-// Store 封装 SQLite 数据库操作
+// Store wraps SQLite database operations
 type Store struct {
 	db *sql.DB
 }
 
-// New 创建并初始化 Store，自动建表
+// New creates and initializes a Store, auto-creates tables
 func New(dbPath string) (*Store, error) {
-	// 确保目录存在
+	// Ensure directory exists
 	dir := filepath.Dir(dbPath)
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return nil, fmt.Errorf("create db dir: %w", err)
@@ -30,8 +30,8 @@ func New(dbPath string) (*Store, error) {
 		return nil, fmt.Errorf("open db: %w", err)
 	}
 
-	// 优化连接池
-	db.SetMaxOpenConns(1) // SQLite 单写
+	// Optimize connection pool
+	db.SetMaxOpenConns(1) // SQLite single writer
 	db.SetMaxIdleConns(1)
 
 	s := &Store{db: db}
@@ -63,12 +63,12 @@ func (s *Store) migrate() error {
 	return err
 }
 
-// Close 关闭数据库连接
+// Close closes the database connection
 func (s *Store) Close() error {
 	return s.db.Close()
 }
 
-// RecordVisit 记录一次访问
+// RecordVisit records a visit
 func (s *Store) RecordVisit(v *model.Visit) error {
 	_, err := s.db.Exec(`
 		INSERT INTO visits (ip, ua, path, referer, device, os, browser, country, visited_at)
@@ -78,7 +78,7 @@ func (s *Store) RecordVisit(v *model.Visit) error {
 	return err
 }
 
-// GetStats 获取站点统计摘要
+// GetStats retrieves site statistics summary
 func (s *Store) GetStats() (*model.StatsSummary, error) {
 	stats := &model.StatsSummary{
 		DeviceStats:  make(map[string]int64),
@@ -86,17 +86,17 @@ func (s *Store) GetStats() (*model.StatsSummary, error) {
 		BrowserStats: make(map[string]int64),
 	}
 
-	// 总 PV
+	// Total PV
 	if err := s.db.QueryRow(`SELECT COUNT(*) FROM visits`).Scan(&stats.PV); err != nil {
 		return nil, err
 	}
 
-	// 总 UV
+	// Total UV
 	if err := s.db.QueryRow(`SELECT COUNT(DISTINCT ip) FROM visits`).Scan(&stats.UV); err != nil {
 		return nil, err
 	}
 
-	// 今日 PV/UV
+	// Today PV/UV
 	today := time.Now().Format("2006-01-02")
 	if err := s.db.QueryRow(`SELECT COUNT(*) FROM visits WHERE date(visited_at) = ?`, today).Scan(&stats.TodayPV); err != nil {
 		return nil, err
@@ -105,7 +105,7 @@ func (s *Store) GetStats() (*model.StatsSummary, error) {
 		return nil, err
 	}
 
-	// 设备分布
+	// Device distribution
 	rows, err := s.db.Query(`SELECT device, COUNT(*) FROM visits GROUP BY device`)
 	if err != nil {
 		return nil, err
@@ -120,7 +120,7 @@ func (s *Store) GetStats() (*model.StatsSummary, error) {
 		stats.DeviceStats[device] = count
 	}
 
-	// OS 分布
+	// OS distribution
 	rows, err = s.db.Query(`SELECT os, COUNT(*) FROM visits GROUP BY os`)
 	if err != nil {
 		return nil, err
@@ -135,7 +135,7 @@ func (s *Store) GetStats() (*model.StatsSummary, error) {
 		stats.OSStats[os] = count
 	}
 
-	// 浏览器分布
+	// Browser distribution
 	rows, err = s.db.Query(`SELECT browser, COUNT(*) FROM visits GROUP BY browser`)
 	if err != nil {
 		return nil, err

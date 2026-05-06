@@ -419,39 +419,32 @@ body {
 .lang-switch {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: var(--bg-glass);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 0.35rem 0.75rem;
-    backdrop-filter: blur(10px);
+    gap: 0.7rem;
 }
 
 .lang-btn {
     background: none;
     border: none;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 500;
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    transition: var(--transition-base);
+    padding: 0;
+        transition: opacity 0.2s;
+        opacity: 0.55;
+    }
+    
+    .flag-img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        border-radius: 2px;
+        vertical-align: middle;
 }
 
 .lang-btn:hover {
-    color: var(--text-primary);
+    opacity: 0.85;
 }
 
 .lang-btn.active {
-    color: var(--primary-color);
-    background: rgba(249, 115, 22, 0.1);
-    font-weight: 600;
-}
-
-.lang-divider {
-    color: var(--text-muted);
-    font-size: 0.75rem;
+    opacity: 1;
 }
 
 /* ==================== Hero Section ==================== */
@@ -714,13 +707,67 @@ body {
     color: var(--text-secondary);
 }
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+/* Hero 新增样式 */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
 }
 
-.feature-card {
+.hero-positioning {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 0.1em;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.hero-declaration {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(249, 115, 22, 0.08);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    border-radius: 50px;
+    color: var(--primary-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.hero-selling-points {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.selling-point {
+    padding: 0.5rem 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+}
+
+/* 核心能力网格 */
+.core-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.core-feature-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 20px;
@@ -730,7 +777,7 @@ body {
     overflow: hidden;
 }
 
-.feature-card::before {
+.core-feature-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -742,20 +789,19 @@ body {
     transition: var(--transition-base);
 }
 
-.feature-card:hover {
-    transform: translateY(-10px);
+.core-feature-card:hover {
+    transform: translateY(-6px);
     border-color: var(--primary-light);
-    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
 }
 
-.feature-card:hover::before {
+.core-feature-card:hover::before {
     transform: scaleX(1);
 }
 
-.feature-icon {
+.core-feature-icon {
     width: 60px;
     height: 60px;
-    background: var(--gradient-primary);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -765,17 +811,436 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.feature-card h3 {
+.core-feature-icon.icon-graph {
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+}
+
+.core-feature-icon.icon-lang {
+    background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+}
+
+.core-feature-icon.icon-refactor {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 100%);
+}
+
+.core-feature-icon.icon-private {
+    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+}
+
+.core-feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
 }
 
-.feature-card p {
+.core-feature-card p {
     color: var(--text-secondary);
     line-height: 1.7;
 }
 
+/* 增量图谱板块 */
+.incremental-feature {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.incremental-badge {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: white;
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+    margin-bottom: 1.5rem;
+}
+
+.incremental-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.incremental-left h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.incremental-left p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.incremental-benefits {
+    list-style: none;
+    padding: 0;
+}
+
+.incremental-benefits li {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.incremental-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.compare-box {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.compare-old {
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.compare-new {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.compare-label {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+}
+
+.compare-old .compare-label {
+    background: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}
+
+.compare-new .compare-label {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+}
+
+.compare-box p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.compare-arrow {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ==================== Comparison Section ==================== */
+.comparison-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+    background: var(--gradient-bg);
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.comparison-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition-base);
+}
+
+.comparison-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.comp-axons {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color), 0 10px 30px rgba(249, 115, 22, 0.15);
+}
+
+.comp-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 auto 1.5rem;
+}
+
+.comp-ai .comp-icon {
+    background: linear-gradient(135deg, #94A3B8 0%, #64748B 100%);
+}
+
+.comp-audit .comp-icon {
+    background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+}
+
+.comp-axons .comp-icon {
+    background: var(--gradient-primary);
+}
+
+.comparison-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.comparison-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.comp-tag {
+    display: inline-block;
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--bg-darker);
+    color: var(--text-muted);
+}
+
+.comp-axons .comp-tag {
+    background: rgba(249, 115, 22, 0.1);
+    color: var(--primary-color);
+}
+
+/* ==================== Scenarios Section ==================== */
+.scenarios-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+}
+
+.scenario-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: var(--transition-base);
+}
+
+.scenario-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-light);
+    box-shadow: 0 15px 30px rgba(249, 115, 22, 0.12);
+}
+
+.scenario-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.scenario-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.scenario-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ==================== Pricing Section ==================== */
+.pricing-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+    background: var(--gradient-bg);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.pricing-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: var(--transition-base);
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.pricing-featured {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color), 0 10px 30px rgba(249, 115, 22, 0.15);
+    transform: scale(1.05);
+}
+
+.pricing-featured:hover {
+    transform: scale(1.05) translateY(-6px);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.35rem 1.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    background: var(--gradient-primary);
+}
+
+.pricing-tier {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.pricing-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-annual {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.pricing-features li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pricing-features li i {
+    color: var(--success-color);
+    font-size: 0.8rem;
+}
+
+.pricing-card .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: var(--transition-base);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ==================== FAQ Section ==================== */
+.faq-section {
+    padding: 6rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    transition: var(--transition-base);
+}
+
+.faq-item:hover {
+    border-color: var(--primary-light);
+}
+
+.faq-question {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.faq-answer {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Footer mission */
+.footer-mission {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
 /* ==================== Demo Section ==================== */
 .demo-section {
     padding: 6rem 0;
@@ -791,7 +1256,7 @@ body {
 
 .video-wrapper {
     position: relative;
-    border-radius: 20px;
+    border-radius: 8px;
     overflow: hidden;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -1486,6 +1951,47 @@ body {
         min-width: 0;
     }
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .core-features-grid {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: 1fr;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .incremental-content {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: 1fr;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    gap: 2rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .comparison-grid {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: 1fr;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .scenarios-grid {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: repeat(2, 1fr);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .pricing-grid {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: 1fr;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .pricing-featured {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    transform: none;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .pricing-featured:hover {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    transform: translateY(-6px);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .hero-title {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 2.5rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .hero-positioning {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    font-size: 1.35rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .hero-selling-points {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    flex-direction: column;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    align-items: center;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
     .feature-card,
     .download-card,
     .contact-card {
@@ -1683,6 +2189,21 @@ body {
         padding: 1.5rem;
     }
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .core-feature-card {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 1.5rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .scenarios-grid {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    grid-template-columns: 1fr;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .incremental-feature {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 2rem 1.5rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .faq-item {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    padding: 1.25rem 1.5rem;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
     .download-card {
         padding: 1.5rem 1rem;
     }

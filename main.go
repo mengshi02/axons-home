@@ -20,33 +20,33 @@ import (
 var webFS embed.FS
 
 func main() {
-	// 命令行参数
+	// Command line flags
 	port := flag.Int("port", 8080, "HTTP server port")
 	dbPath := flag.String("db", "data/stats.db", "SQLite database path")
 	flag.Parse()
 
-	// 初始化存储层
+	// Initialize storage layer
 	store, err := store.New(*dbPath)
 	if err != nil {
 		log.Fatalf("Failed to init store: %v", err)
 	}
 	defer store.Close()
 
-	// 初始化 handler
+	// Initialize handler
 	statsHandler := handler.New(store)
 
-	// 静态文件系统
+	// Static file system
 	webContent, err := fs.Sub(webFS, "web")
 	if err != nil {
 		log.Fatalf("Failed to create sub FS: %v", err)
 	}
 	fileServer := http.FileServer(http.FS(webContent))
 
-	// 路由：用自定义 handler 分发 API 和静态文件
+	// Routing: use custom handler to dispatch API and static files
 	rootHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		path := r.URL.Path
 
-		// API 路由
+		// API routes
 		if strings.HasPrefix(path, "/api/") {
 			switch {
 			case path == "/api/stats/visit" && r.Method == http.MethodPost:
@@ -61,9 +61,9 @@ func main() {
 			return
 		}
 
-		// 静态文件服务
+		// Static file serving
 		if path == "/" {
-			// 直接读取 index.html 避免 FileServer 的 301 重定向
+			// Read index.html directly to avoid FileServer's 301 redirect
 			data, err := fs.ReadFile(webContent, "index.html")
 			if err != nil {
 				http.Error(w, "index.html not found", http.StatusInternalServerError)
@@ -73,7 +73,7 @@ func main() {
 			w.Write(data)
 			return
 		} else {
-			// 检查文件是否存在，不存在则回退 index.html（SPA 兼容）
+			// If file not found, fall back to index.html (SPA compatibility)
 			f, err := webContent.Open(strings.TrimPrefix(path, "/"))
 			if err != nil {
 				r.URL.Path = "/index.html"
@@ -84,17 +84,17 @@ func main() {
 		fileServer.ServeHTTP(w, r)
 	})
 
-	// 中间件
+	// Middleware
 	finalHandler := withMiddleware(rootHandler)
 
-	// 启动 HTTP 服务器
+	// Start HTTP server
 	addr := fmt.Sprintf(":%d", *port)
 	server := &http.Server{
 		Addr:    addr,
 		Handler: finalHandler,
 	}
 
-	// 优雅关闭
+	// Graceful shutdown
 	go func() {
 		sigCh := make(chan os.Signal, 1)
 		signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
@@ -110,7 +110,7 @@ func main() {
 	}
 }
 
-// withMiddleware 添加通用中间件
+// withMiddleware adds common middleware
 func withMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// CORS
@@ -123,7 +123,7 @@ func withMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
-		// 缓存策略：API 不缓存，静态资源长缓存
+		// Cache strategy: no cache for API, long cache for static assets
 		if strings.HasPrefix(r.URL.Path, "/api/") {
 			w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 		} else {

@@ -10,17 +10,17 @@ import (
 	"github.com/mengshi02/axons-home/internal/store"
 )
 
-// StatsHandler 统计 API 处理器
+// StatsHandler handles statistics API requests
 type StatsHandler struct {
 	store *store.Store
 }
 
-// New 创建 StatsHandler
+// New creates a new StatsHandler
 func New(s *store.Store) *StatsHandler {
 	return &StatsHandler{store: s}
 }
 
-// RecordVisit 处理 POST /api/stats/visit
+// RecordVisit handles POST /api/stats/visit
 func (h *StatsHandler) RecordVisit(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
@@ -55,7 +55,7 @@ func (h *StatsHandler) RecordVisit(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
 }
 
-// GetStats 处理 GET /api/stats
+// GetStats handles GET /api/stats
 func (h *StatsHandler) GetStats(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
@@ -72,15 +72,15 @@ func (h *StatsHandler) GetStats(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(stats)
 }
 
-// Health 健康检查
+// Health check endpoint
 func (h *StatsHandler) Health(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
 }
 
-// realIP 从请求中提取真实 IP
+// realIP extracts the real IP from the request
 func realIP(r *http.Request) string {
-	// 优先从反向代理头获取
+	// Prefer reverse proxy headers
 	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
 		ips := strings.Split(xff, ",")
 		return strings.TrimSpace(ips[0])
@@ -88,7 +88,7 @@ func realIP(r *http.Request) string {
 	if xri := r.Header.Get("X-Real-IP"); xri != "" {
 		return strings.TrimSpace(xri)
 	}
-	// 移除端口
+	// Remove port
 	addr := r.RemoteAddr
 	if idx := strings.LastIndex(addr, ":"); idx != -1 {
 		return addr[:idx]
@@ -96,7 +96,7 @@ func realIP(r *http.Request) string {
 	return addr
 }
 
-// parseDevice 从 UA 解析设备类型
+// parseDevice parses device type from User-Agent
 func parseDevice(ua string) string {
 	uaLower := strings.ToLower(ua)
 	if strings.Contains(uaLower, "mobile") || strings.Contains(uaLower, "android") || strings.Contains(uaLower, "iphone") {
@@ -108,7 +108,7 @@ func parseDevice(ua string) string {
 	return "desktop"
 }
 
-// parseOS 从 UA 解析操作系统
+// parseOS parses operating system from User-Agent
 func parseOS(ua string) string {
 	uaLower := strings.ToLower(ua)
 	switch {
@@ -127,7 +127,7 @@ func parseOS(ua string) string {
 	}
 }
 
-// parseBrowser 从 UA 解析浏览器
+// parseBrowser parses browser from User-Agent
 func parseBrowser(ua string) string {
 	uaLower := strings.ToLower(ua)
 	switch {

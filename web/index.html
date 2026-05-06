@@ -4,18 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axons - AI-Native Code Analysis & Generation Agent</title>
-    <meta name="description" content="三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。">
+    <title>Axons AI | Code Intelligence Engine</title>
+    <meta name="description"
+        content="Code graph analysis, intelligent refactoring, and private deployment for complex engineering. Runs fully offline, your code never leaves your machine.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
 </head>
 
 <body>
-    <!-- 背景粒子效果 -->
+    <!-- Background particle effects -->
     <div id="particles-container"></div>
 
-    <!-- 导航栏 -->
+    <!-- Navigation bar -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -25,14 +26,15 @@
             <ul class="nav-menu">
                 <li><a href="#home" data-i18n="nav.home">首页</a></li>
                 <li><a href="#features" data-i18n="nav.features">核心能力</a></li>
+                <li><a href="#pricing" data-i18n="nav.pricing">版本</a></li>
                 <li><a href="#download" data-i18n="nav.download">下载</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
             </ul>
             <div class="nav-actions">
                 <div class="lang-switch">
-                    <button class="lang-btn active" data-lang="en">EN</button>
-                    <span class="lang-divider">|</span>
-                    <button class="lang-btn" data-lang="zh">中文</button>
+                    <button class="lang-btn active" data-lang="en"><img src="public/united-states-of-america.png" alt="EN"
+                            class="flag-img"></button>
+                    <button class="lang-btn" data-lang="zh"><img src="public/china.png" alt="中文" class="flag-img"></button>
                 </div>
                 <div class="hamburger">
                     <span></span>
@@ -46,13 +48,19 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-icon">🧠</span>
-                <span data-i18n="hero.badge">AI原生代码分析与生成智能体</span>
-            </div>
+            <h1 class="hero-title" data-i18n="hero.title">Axons AI</h1>
+            <p class="hero-positioning" data-i18n="hero.positioning">代码智能引擎</p>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">面向复杂工程的代码图谱分析 · 智能重构 · 私有化部署</p>
+            <p class="hero-declaration" data-i18n="hero.declaration">纯本地私有化运行，代码不上云，架构自主可控</p>
             <p class="hero-description" data-i18n="hero.description">
-                三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。
+                当下AI编程工具，大多局限于单行补全、片段生成，无法理解大型项目全貌、梳理复杂依赖、承接存量遗留系统改造。Axons 基于自研代码图谱引擎 +
+                多Agent协同架构，从源码底层构建工程知识网络，精准解析跨语言、百万行级复杂项目。专注解决：架构混乱、技术债堆积、遗留系统迭代困难、代码重构风险不可控等企业级核心痛点。
             </p>
+            <div class="hero-selling-points">
+                <span class="selling-point" data-i18n="hero.sp1">🔒 本地私有化，代码不上云</span>
+                <span class="selling-point" data-i18n="hero.sp2">🕸️ 自研代码知识图谱，跨语言架构全局理解</span>
+                <span class="selling-point" data-i18n="hero.sp3">⚡ 增量图谱动态更新，超大项目秒级无感刷新</span>
+            </div>
             <div class="hero-buttons">
                 <a href="#download" class="btn btn-primary">
                     <i class="fas fa-download"></i>
@@ -104,19 +112,19 @@
         <div class="hero-visual">
             <div class="floating-card card-1">
                 <i class="fas fa-project-diagram"></i>
-                <span data-i18n="floating.graph">图谱引擎</span>
+                <span data-i18n="floating.archgraph">架构图谱</span>
             </div>
             <div class="floating-card card-2">
-                <i class="fas fa-users-cog"></i>
-                <span data-i18n="floating.analysis">多智能体协同</span>
+                <i class="fas fa-bolt"></i>
+                <span data-i18n="floating.incremental">增量更新</span>
             </div>
             <div class="floating-card card-3">
-                <i class="fas fa-terminal"></i>
-                <span data-i18n="floating.security">原生终端</span>
+                <i class="fas fa-code-branch"></i>
+                <span data-i18n="floating.refactor">智能重构</span>
             </div>
             <div class="floating-card card-4">
-                <i class="fas fa-cube"></i>
-                <span data-i18n="floating.intelligence">AI原生</span>
+                <i class="fas fa-shield-alt"></i>
+                <span data-i18n="floating.private">私有化部署</span>
             </div>
         </div>
     </section>
@@ -125,159 +133,124 @@
     <section id="features" class="features">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="features.title">产品力</h2>
-                <p class="section-subtitle" data-i18n="features.subtitle">引擎驱动 · 智能体协同 · AI原生架构</p>
+                <h2 class="section-title" data-i18n="features.title">核心能力</h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">读懂架构 → 梳理依赖 → 可控修改 → 安全回滚</p>
             </div>
-            <!-- 核心计算底座 -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <span class="category-badge badge-engine" data-i18n="features.category.engine">核心计算底座</span>
-                    <h3 class="category-title" data-i18n="features.category.engine.title">三大引擎，构筑代码理解基石</h3>
+<!-- Four core capabilities -->
+<div class="core-features-grid">
+    <div class="core-feature-card">
+        <div class="core-feature-icon icon-graph"><i class="fas fa-project-diagram"></i></div>
+        <h3 data-i18n="cf.graph.title">全域代码架构图谱</h3>
+        <p data-i18n="cf.graph.desc">自动逆向还原项目分层、模块依赖、调用链路、包结构关系。可视化呈现真实工程架构，告别人工梳理成本。</p>
                 </div>
-                <div class="features-grid features-grid-3">
-                    <div class="feature-card feature-graph">
-                        <div class="feature-icon">
-                            <i class="fas fa-project-diagram"></i>
-                        </div>
-                        <h3 data-i18n="features.graph.title">图谱计算引擎（GCE）</h3>
-                        <p data-i18n="features.graph.desc">构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。</p>
-                    </div>
-                    <div class="feature-card feature-analysis">
-                        <div class="feature-icon">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <h3 data-i18n="features.analysis.title">分析引擎（ACE）</h3>
-                        <p data-i18n="features.analysis.desc">静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。</p>
-                    </div>
-                    <div class="feature-card feature-context">
-                        <div class="feature-icon">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <h3 data-i18n="features.context.title">会话上下文引擎（CCE）</h3>
-                        <p data-i18n="features.context.desc">智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。</p>
-                    </div>
+                <div class="core-feature-card">
+                    <div class="core-feature-icon icon-lang"><i class="fas fa-language"></i></div>
+                    <h3 data-i18n="cf.lang.title">跨语言深度源码理解</h3>
+                    <p data-i18n="cf.lang.desc">原生支持 Go / Java / TypeScript / C# / Python / C/C++ / Rust。统一语义分析框架，兼容新旧混合技术栈复杂项目。</p>
+                </div>
+                <div class="core-feature-card">
+                    <div class="core-feature-icon icon-refactor"><i class="fas fa-code-branch"></i></div>
+                    <h3 data-i18n="cf.refactor.title">最小侵入智能重构</h3>
+                    <p data-i18n="cf.refactor.desc">遵循原有编码规范与架构约束。精准局部修改，拒绝大范围破坏性改写。自带变更快照，一键版本回滚，规避线上事故。</p>
+                </div>
+                <div class="core-feature-card">
+                    <div class="core-feature-icon icon-private"><i class="fas fa-shield-alt"></i></div>
+                    <h3 data-i18n="cf.private.title">离线私有化安全部署</h3>
+                    <p data-i18n="cf.private.desc">全程本地运算，业务代码不上传、不外泄。适配内网隔离环境，满足政企、金融、涉密项目数据安全要求。</p>
                 </div>
             </div>
-
-            <!-- 智能体 -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <span class="category-badge badge-agent" data-i18n="features.category.agent">智能体</span>
-                    <h3 class="category-title" data-i18n="features.category.agent.title">多智能体协同，持续进化</h3>
-                </div>
-                <div class="features-grid features-grid-4">
-                    <div class="feature-card feature-multi-agent">
-                        <div class="feature-icon">
-                            <i class="fas fa-users-cog"></i>
-                        </div>
-                        <h3 data-i18n="features.multiagent.title">多智能体协同</h3>
-                        <p data-i18n="features.multiagent.desc">多个专业智能体分工协作，图谱构建、安全审计、代码修复各司其职，协同完成复杂分析任务。</p>
-                    </div>
-                    <div class="feature-card feature-dialogue">
-                        <div class="feature-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <h3 data-i18n="features.dialogue.title">多轮对话</h3>
-                        <p data-i18n="features.dialogue.desc">支持上下文连续的多轮对话交互，逐步深入代码问题，精准定位根因并给出针对性建议。</p>
-                    </div>
-                    <div class="feature-card feature-memory">
-                        <div class="feature-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3 data-i18n="features.memory.title">记忆持久化</h3>
-                        <p data-i18n="features.memory.desc">对话历史与分析结果持久化存储，跨会话保持上下文连续性，无需重复描述即可延续深度分析。</p>
-                    </div>
-                    <div class="feature-card feature-vector">
-                        <div class="feature-icon">
-                            <i class="fas fa-vector-square"></i>
-                        </div>
-                        <h3 data-i18n="features.vector.title">双模态向量化</h3>
-                        <p data-i18n="features.vector.desc">代码文本与图谱结构双模态向量化表示，语义检索更精准，相似代码发现更高效。</p>
+<!-- Incremental graph (core performance barrier) -->
+<div class="incremental-feature">
+    <div class="incremental-badge" data-i18n="cf.incremental.badge">核心性能壁垒</div>
+    <div class="incremental-content">
+        <div class="incremental-left">
+            <h3 data-i18n="cf.incremental.title">增量图谱动态更新</h3>
+            <p data-i18n="cf.incremental.desc">只检测改动的文件、函数、依赖，只重新计算变化部分，不动整个工程图谱。</p>
+            <ul class="incremental-benefits">
+                <li data-i18n="cf.incremental.b1">⚡ 秒级刷新架构图</li>
+                <li data-i18n="cf.incremental.b2">💾 大项目常驻后台不耗资源</li>
+                <li data-i18n="cf.incremental.b3">🔄 三层检测机制：Journal → mtime → content hash</li>
+            </ul>
+        </div>
+                    <div class="incremental-right">
+                        <div class="incremental-visual">
+                            <div class="compare-box compare-old">
+                                <span class="compare-label" data-i18n="cf.incremental.old.label">普通工具</span>
+                                <p data-i18n="cf.incremental.old.desc">改一行 → 全量重分析整个项目 → 卡、慢、耗内存</p>
+                            </div>
+                            <div class="compare-arrow">→</div>
+                            <div class="compare-box compare-new">
+                                <span class="compare-label" data-i18n="cf.incremental.new.label">Axons</span>
+                                <p data-i18n="cf.incremental.new.desc">改一行 → 只重算变化部分 → 秒级刷新</p>
+                            </div>
+                            </div>
                     </div>
                 </div>
             </div>
-            <!-- 工具 -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <span class="category-badge badge-tool" data-i18n="features.category.tool">原生能力</span>
-                    <h3 class="category-title" data-i18n="features.category.tool.title">原生工具链，无缝集成</h3>
-                </div>
-                <div class="features-grid features-grid-2">
-                    <div class="feature-card feature-terminal">
-                        <div class="feature-icon">
-                            <i class="fas fa-terminal"></i>
-                        </div>
-                        <h3 data-i18n="features.terminal.title">原生终端</h3>
-                        <p data-i18n="features.terminal.desc">内置原生终端环境，智能体可直接执行命令、运行测试、操作文件系统，实现从分析到修复的全闭环。</p>
-                    </div>
-                    <div class="feature-card feature-editor">
-                        <div class="feature-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 data-i18n="features.editor.title">AI自主编辑器</h3>
-                        <p data-i18n="features.editor.desc">AI驱动的自主代码编辑能力，智能体可自主读取、理解、修改代码文件，实现真正的自动化代码修复与重构。</p>
-                    </div>
-                </div>
+        </div>
+    </section>
+    
+    <!-- Comparison Section -->
+    <section id="comparison" class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="compare.title">产品差异化</h2>
+                <p class="section-subtitle" data-i18n="compare.subtitle">轻量化 + 架构化 + 国产化 + 私有化</p>
             </div>
-            <!-- AI编程安全机制 -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <span class="category-badge badge-security" data-i18n="features.category.security">AI编程安全机制</span>
-                    <h3 class="category-title" data-i18n="features.category.security.title">核心保障，让AI改代码安全可控</h3>
+            <div class="comparison-grid">
+                <div class="comparison-card comp-ai">
+                    <div class="comp-icon"><i class="fas fa-robot"></i></div>
+                    <h3 data-i18n="compare.ai.title">通用AI代码助手</h3>
+                    <p data-i18n="compare.ai.desc">侧重代码生成、对话仿写，无架构认知、无工程全局能力，仅适用于零散日常开发。</p>
+                    <span class="comp-tag" data-i18n="compare.ai.tag">Cursor / Copilot / Claude Code</span>
                 </div>
-                <div class="features-grid features-grid-3">
-                    <div class="feature-card feature-scope">
-                        <div class="feature-icon">
-                            <i class="fas fa-crosshairs"></i>
-                        </div>
-                        <h3 data-i18n="features.scope.title">精准定界修改</h3>
-                        <p data-i18n="features.scope.desc">拒绝大范围暴力重写，基于图谱依赖锁定最小修改范围，防止AI"幻觉"破坏无关代码。</p>
-                    </div>
-                    <div class="feature-card feature-integrity">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 data-i18n="features.integrity.title">结构完整性校验</h3>
-                        <p data-i18n="features.integrity.desc">在AI每次写入后，即时进行语法与依赖结构校验，确保代码始终处于可编译、可运行的安全状态。</p>
-                    </div>
-                    <div class="feature-card feature-rollback">
-                        <div class="feature-icon">
-                            <i class="fas fa-undo-alt"></i>
-                        </div>
-                        <h3 data-i18n="features.rollback.title">操作可回滚</h3>
-                        <p data-i18n="features.rollback.desc">AI的每一次编辑均被原子化记录，支持精准到单行级别的操作回滚，让AI改代码如同本地版本控制般安全可控。</p>
-                    </div>
+                <div class="comparison-card comp-audit">
+                    <div class="comp-icon"><i class="fas fa-search"></i></div>
+                    <h3 data-i18n="compare.audit.title">国外代码审计工具</h3>
+                    <p data-i18n="compare.audit.desc">偏重安全漏洞扫描，笨重封闭、本地化适配差、不适合国内遗留系统迭代。</p>
+                    <span class="comp-tag" data-i18n="compare.audit.tag">SonarQube / CodeQL</span>
                 </div>
+                <div class="comparison-card comp-axons">
+                    <div class="comp-icon"><i class="fas fa-cube"></i></div>
+                    <h3 data-i18n="compare.axons.title">Axons</h3>
+                    <p data-i18n="compare.axons.desc">专为国内中小研发团队、传统软件企业、存量老旧工程项目设计。兼顾开发效率、架构治理、数据安全三者平衡。</p>
+                    <span class="comp-tag" data-i18n="compare.axons.tag">架构化 · 国产化 · 私有化</span>
+                </div>
+                </div>
+                </div>
+    </section>
+    
+    <!-- Scenarios Section -->
+    <section id="scenarios" class="scenarios-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="scenarios.title">适用场景</h2>
             </div>
-            <!-- AI原生 -->
-            <div class="feature-category">
-                <div class="category-header">
-                    <span class="category-badge badge-native" data-i18n="features.category.native">AI原生</span>
-                    <h3 class="category-title" data-i18n="features.category.native.title">AI原生架构，开放能力边界</h3>
+            <div class="scenarios-grid">
+                <div class="scenario-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h4 data-i18n="scenarios.s1.title">大型遗留系统架构梳理</h4>
+                    <p data-i18n="scenarios.s1.desc">技术债治理，自动逆向还原架构全貌</p>
                 </div>
-                <div class="features-grid features-grid-3">
-                    <div class="feature-card feature-cli">
-                        <div class="feature-icon">
-                            <i class="fas fa-keyboard"></i>
-                        </div>
-                        <h3 data-i18n="features.cli.title">CLI & MCP</h3>
-                        <p data-i18n="features.cli.desc">支持CLI命令行与MCP协议对外提供能力，轻松集成到CI/CD流水线与现有开发工具链中。</p>
+                <div class="scenario-card">
+                    <i class="fas fa-code"></i>
+                    <h4 data-i18n="scenarios.s2.title">多语言混合项目重构</h4>
+                    <p data-i18n="scenarios.s2.desc">代码规范化，统一语义分析新旧混合技术栈</p>
                     </div>
-                    <div class="feature-card feature-container">
-                        <div class="feature-icon">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <h3 data-i18n="features.container.title">Scratch级容器化</h3>
-                        <p data-i18n="features.container.desc">基于Scratch镜像的极简容器化部署，体积小巧、启动秒级、安全隔离，云原生环境开箱即用。</p>
-                    </div>
-                    <div class="feature-card feature-crossplatform">
-                        <div class="feature-icon">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h3 data-i18n="features.crossplatform.title">全平台发行</h3>
-                        <p data-i18n="features.crossplatform.desc">macOS / Windows / Linux
-                            桌面端与Web端全覆盖，一次构建多端运行，随时随地守护代码安全。</p>
-                    </div>
+                <div class="scenario-card">
+                    <i class="fas fa-lock"></i>
+                    <h4 data-i18n="scenarios.s3.title">内网隔离环境研发</h4>
+                    <p data-i18n="scenarios.s3.desc">禁止代码对外传输的安全合规场景</p>
+                </div>
+                <div class="scenario-card">
+                    <i class="fas fa-users"></i>
+                    <h4 data-i18n="scenarios.s4.title">接手陌生老项目</h4>
+                    <p data-i18n="scenarios.s4.desc">快速熟悉整体架构，降低上手成本</p>
+                </div>
+                <div class="scenario-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h4 data-i18n="scenarios.s5.title">企业长期工程迭代</h4>
+                    <p data-i18n="scenarios.s5.desc">降低重构风险与维护成本</p>
                 </div>
             </div>
         </div>
@@ -303,6 +276,55 @@
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="pricing.title">选择版本</h2>
+                <p class="section-subtitle" data-i18n="pricing.subtitle">从个人开发到企业私有化，按需选择</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-tier" data-i18n="pricing.free.tier">免费社区版</div>
+                    <div class="pricing-price" data-i18n="pricing.free.price">免费</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f1">基础代码生成</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f2">小型项目语法分析</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f3">个人非商用永久免费</span></li>
+                    </ul>
+                    <a href="#download" class="btn btn-outline" data-i18n="pricing.free.cta">免费下载</a>
+                </div>
+                <div class="pricing-card pricing-featured">
+                    <div class="pricing-badge" data-i18n="pricing.pro.badge">推荐</div>
+                    <div class="pricing-tier" data-i18n="pricing.pro.tier">专业开发者版</div>
+                    <div class="pricing-price">
+                        <span data-i18n="pricing.pro.price">¥29/月</span>
+                        <span class="pricing-annual" data-i18n="pricing.pro.annual">年付特惠</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f1">完整架构图谱</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f2">全语言分析</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f3">中大项目重构</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f4">高级Agent协作</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f5">增量图谱更新</span></li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary" data-i18n="pricing.pro.cta">立即订阅</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-tier" data-i18n="pricing.enterprise.tier">企业私有化版</div>
+                    <div class="pricing-price" data-i18n="pricing.enterprise.price">定制报价</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f1">内网离线部署</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f2">定制化功能适配</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f3">专属技术支持</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f4">商业授权</span></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" data-i18n="pricing.enterprise.cta">联系我们</a>
                 </div>
             </div>
         </div>
@@ -542,6 +564,33 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="faq.title">常见问题</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q1">代码是否会上传外网？</div>
+                    <div class="faq-answer" data-i18n="faq.a1">全部本地离线计算，源码仅留存本机，无云端收集，保障代码资产安全。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q2">支持多大规模项目？</div>
+                    <div class="faq-answer" data-i18n="faq.a2">原生支持十万～百万行级别中大型工程，适配复杂单体、微服务混合架构。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q3">是否支持IDE集成？</div>
+                    <div class="faq-answer" data-i18n="faq.a3">后续持续迭代 VSCode / IDEA 原生插件，无缝融入现有开发工作流。当前已支持 MCP 协议接入。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-i18n="faq.q4">有无开源计划？</div>
+                    <div class="faq-answer" data-i18n="faq.a4">核心底层引擎自研闭源，基础框架部分逐步开源，共建开发者生态。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -551,7 +600,8 @@
                         <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
                         <span class="logo-text">Axons</span>
                     </div>
-                    <p data-i18n="footer.tagline">引擎驱动 · 智能体协同 · AI原生</p>
+                    <p data-i18n="footer.tagline">让复杂软件工程，拥有可被理解的智能架构</p>
+                    <p class="footer-mission" data-i18n="footer.mission">Axons AI 专注企业级代码智能底层基建</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">

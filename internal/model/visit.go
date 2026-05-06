@@ -2,7 +2,7 @@ package model
 
 import "time"
 
-// Visit 表示一次页面访问记录
+// Visit represents a single page visit record
 type Visit struct {
 	ID        int64     `json:"id"`
 	IP        string    `json:"ip"`
@@ -12,11 +12,11 @@ type Visit struct {
 	Device    string    `json:"device"`    // desktop / mobile / tablet
 	OS        string    `json:"os"`        // windows / mac / linux / android / ios
 	Browser   string    `json:"browser"`   // chrome / firefox / safari / edge / other
-	Country   string    `json:"country"`   // 可选：IP 归属地
+	Country   string    `json:"country"`   // Optional: IP geolocation
 	VisitedAt time.Time `json:"visited_at"`
 }
 
-// StatsSummary 表示站点统计摘要
+// StatsSummary represents site statistics summary
 type StatsSummary struct {
 	PV          int64            `json:"pv"`
 	UV          int64            `json:"uv"`

@@ -2,47 +2,65 @@ BINARY   := axons-home
 VERSION  := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 LDFLAGS  := -ldflags "-s -w -X main.version=$(VERSION)"
 
-.PHONY: all dev build build-linux build-darwin clean tidy run docker
+.PHONY: all dev build build-linux build-darwin clean tidy run docker help
 
-# 默认：编译当前平台
+# Help information
+help:
+	@echo "Usage: make <target>"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all              - Build for current platform (default)"
+	@echo "  dev              - Run in development mode (go run)"
+	@echo "  build            - Build for current platform"
+	@echo "  build-linux      - Build for Linux amd64"
+	@echo "  build-linux-arm64- Build for Linux arm64"
+	@echo "  build-darwin     - Build for macOS arm64"
+	@echo "  build-all        - Build for all platforms"
+	@echo "  run              - Build and run locally"
+	@echo "  docker           - Docker build"
+	@echo "  clean            - Clean build artifacts and data"
+	@echo "  tidy             - Tidy Go dependencies"
+	@echo "  help             - Show this help message"
+
+# Default: build for current platform
 all: build
 
-# 开发模式运行
+# Run in development mode
 dev:
 	go run . -port 8080 -db data/stats.db
 
-# 编译当前平台
+# Build for current platform
 build:
 	go build $(LDFLAGS) -o $(BINARY) .
 
-# 编译 Linux amd64
+# Build for Linux amd64
 build-linux:
 	GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o $(BINARY)-linux-amd64 .
 
-# 编译 Linux arm64
+# Build for Linux arm64
 build-linux-arm64:
 	GOOS=linux GOARCH=arm64 go build $(LDFLAGS) -o $(BINARY)-linux-arm64 .
 
-# 编译 macOS arm64
+# Build for macOS arm64
 build-darwin:
 	GOOS=darwin GOARCH=arm64 go build $(LDFLAGS) -o $(BINARY)-darwin-arm64 .
 
-# 编译全部平台
+# Build for all platforms
 build-all: build-linux build-linux-arm64 build-darwin
 
-# 本地运行
+# Run locally
 run: build
 	./$(BINARY) -port 8080 -db data/stats.db
 
-# Docker 构建
+# Docker build
 docker:
 	docker build -t $(BINARY):$(VERSION) .
 
-# 清理
+# Clean
 clean:
 	rm -f $(BINARY) $(BINARY)-linux-amd64 $(BINARY)-linux-arm64 $(BINARY)-darwin-arm64
 	rm -rf data/
 
-# 整理依赖
+# Tidy dependencies
 tidy:
 	go mod tidy

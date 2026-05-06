@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# axons-home 服务管理脚本
-# 用法: ./axons-home.sh {start|stop|restart|status}
+# axons-home service management script
+# Usage: ./axons-home.sh {start|stop|restart|status}
 #
 
-# ===== 配置 =====
+# ===== Configuration =====
 APP_NAME="axons-home"
 APP_BIN="${APP_NAME}-linux-amd64"
 APP_PORT=8080
@@ -12,13 +12,13 @@ APP_DB="data/stats.db"
 PID_FILE="/var/run/${APP_NAME}.pid"
 LOG_FILE="/var/log/${APP_NAME}.log"
 
-# ===== 颜色 =====
+# ===== Colors =====
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-# ===== 函数 =====
+# ===== Functions =====
 
 get_pid() {
     if [ -f "$PID_FILE" ]; then
@@ -31,7 +31,7 @@ is_running() {
     if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
         return 0
     fi
-    # PID 文件不存在或进程已死，尝试通过端口查找
+    # PID file missing or process dead, try finding by port
     pid=$(ss -tlnp "sport = :${APP_PORT}" 2>/dev/null | grep -oP 'pid=\K\d+' | head -1)
     if [ -n "$pid" ]; then
         echo "$pid" > "$PID_FILE"
@@ -42,27 +42,27 @@ is_running() {
 
 do_start() {
     if is_running; then
-        echo -e "${YELLOW}[${APP_NAME}] 已在运行，PID: $(get_pid)${NC}"
+        echo -e "${YELLOW}[${APP_NAME}] Already running, PID: $(get_pid)${NC}"
         return 1
     fi
 
-    # 确保日志目录存在
+    # Ensure log directory exists
     mkdir -p "$(dirname "$LOG_FILE")"
     mkdir -p "$(dirname "$APP_DB")"
 
-    echo -e "${GREEN}[${APP_NAME}] 启动中...${NC}"
+    echo -e "${GREEN}[${APP_NAME}] Starting...${NC}"
     nohup "$APP_BIN" --port "$APP_PORT" --db "$APP_DB" >> "$LOG_FILE" 2>&1 &
     local pid=$!
     echo "$pid" > "$PID_FILE"
 
-    # 等待启动
+    # Wait for startup
     sleep 1
     if kill -0 "$pid" 2>/dev/null; then
-        echo -e "${GREEN}[${APP_NAME}] 启动成功，PID: $pid，端口: ${APP_PORT}${NC}"
-        echo -e "${GREEN}[${APP_NAME}] 日志: ${LOG_FILE}${NC}"
+        echo -e "${GREEN}[${APP_NAME}] Started successfully, PID: $pid, Port: ${APP_PORT}${NC}"
+        echo -e "${GREEN}[${APP_NAME}] Log: ${LOG_FILE}${NC}"
         return 0
     else
-        echo -e "${RED}[${APP_NAME}] 启动失败，请检查日志: ${LOG_FILE}${NC}"
+        echo -e "${RED}[${APP_NAME}] Failed to start, check log: ${LOG_FILE}${NC}"
         rm -f "$PID_FILE"
         return 1
     fi
@@ -70,30 +70,30 @@ do_start() {
 
 do_stop() {
     if ! is_running; then
-        echo -e "${YELLOW}[${APP_NAME}] 未运行${NC}"
+        echo -e "${YELLOW}[${APP_NAME}] Not running${NC}"
         rm -f "$PID_FILE"
         return 1
     fi
 
     local pid=$(get_pid)
-    echo -e "${GREEN}[${APP_NAME}] 停止中，PID: $pid${NC}"
+    echo -e "${GREEN}[${APP_NAME}] Stopping, PID: $pid${NC}"
     kill "$pid"
 
-    # 等待进程退出（最多 10 秒）
+    # Wait for process to exit (max 10 seconds)
     for i in $(seq 1 10); do
         if ! kill -0 "$pid" 2>/dev/null; then
-            echo -e "${GREEN}[${APP_NAME}] 已停止${NC}"
+            echo -e "${GREEN}[${APP_NAME}] Stopped${NC}"
             rm -f "$PID_FILE"
             return 0
         fi
         sleep 1
     done
 
-    # 超时强制杀死
-    echo -e "${YELLOW}[${APP_NAME}] 正常停止超时，强制终止${NC}"
+    # Force kill on timeout
+    echo -e "${YELLOW}[${APP_NAME}] Graceful stop timed out, force killing${NC}"
     kill -9 "$pid" 2>/dev/null
     rm -f "$PID_FILE"
-    echo -e "${GREEN}[${APP_NAME}] 已强制停止${NC}"
+    echo -e "${GREEN}[${APP_NAME}] Force stopped${NC}"
     return 0
 }
 
@@ -106,16 +106,16 @@ do_restart() {
 do_status() {
     if is_running; then
         local pid=$(get_pid)
-        echo -e "${GREEN}[${APP_NAME}] 运行中，PID: $pid，端口: ${APP_PORT}${NC}"
-        # 显示监听状态
+        echo -e "${GREEN}[${APP_NAME}] Running, PID: $pid, Port: ${APP_PORT}${NC}"
+        # Show listening status
         ss -tlnp "sport = :${APP_PORT}" 2>/dev/null | head -2
     else
-        echo -e "${RED}[${APP_NAME}] 未运行${NC}"
+        echo -e "${RED}[${APP_NAME}] Not running${NC}"
         rm -f "$PID_FILE"
     fi
 }
 
-# ===== 主逻辑 =====
+# ===== Main Logic =====
 
 case "$1" in
     start)
@@ -131,7 +131,7 @@ case "$1" in
         do_status
         ;;
     *)
-        echo "用法: $0 {start|stop|restart|status}"
+        echo "Usage: $0 {start|stop|restart|status}"
         exit 1
         ;;
 esac
