@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axons - AI-Native Code Analysis & Generation Agent</title>
+    <meta name="description" content="三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
+</head>
+
+<body>
+    <!-- 背景粒子效果 -->
+    <div id="particles-container"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                <span class="logo-text">Axons</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" data-i18n="nav.home">首页</a></li>
+                <li><a href="#features" data-i18n="nav.features">核心能力</a></li>
+                <li><a href="#download" data-i18n="nav.download">下载</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <span class="lang-divider">|</span>
+                    <button class="lang-btn" data-lang="zh">中文</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-icon">🧠</span>
+                <span data-i18n="hero.badge">AI原生代码分析与生成智能体</span>
+            </div>
+            <p class="hero-description" data-i18n="hero.description">
+                三大引擎驱动，多智能体协同，AI原生架构。从代码理解到智能修复，全链路守护代码安全与质量。
+            </p>
+            <div class="hero-buttons">
+                <a href="#download" class="btn btn-primary">
+                    <i class="fas fa-download"></i>
+                    <span data-i18n="hero.download">立即下载</span>
+                </a>
+                <a href="#demo" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    <span data-i18n="hero.demo">观看演示</span>
+                </a>
+            </div>
+            <div class="language-support">
+                <h3 class="support-title" data-i18n="languages.title">支持的编程语言</h3>
+                <div class="language-grid">
+                    <div class="language-item">
+                        <img src="public/devicon/go-original-wordmark.svg" alt="Go" class="devicon-img">
+                        <span>Go</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/c-plain.svg" alt="C" class="devicon-img">
+                        <span>C</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/cplusplus-plain.svg" alt="C++" class="devicon-img">
+                        <span>C++</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/java-plain.svg" alt="Java" class="devicon-img">
+                        <span>Java</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/python-plain.svg" alt="Python" class="devicon-img">
+                        <span>Python</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/rust-original.svg" alt="Rust" class="devicon-img">
+                        <span>Rust</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/csharp-plain.svg" alt="C#" class="devicon-img">
+                        <span>C#</span>
+                    </div>
+                    <div class="language-item">
+                        <img src="public/devicon/javascript-plain.svg" alt="JS/TS" class="devicon-img">
+                        <span>JS/TS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-1">
+                <i class="fas fa-project-diagram"></i>
+                <span data-i18n="floating.graph">图谱引擎</span>
+            </div>
+            <div class="floating-card card-2">
+                <i class="fas fa-users-cog"></i>
+                <span data-i18n="floating.analysis">多智能体协同</span>
+            </div>
+            <div class="floating-card card-3">
+                <i class="fas fa-terminal"></i>
+                <span data-i18n="floating.security">原生终端</span>
+            </div>
+            <div class="floating-card card-4">
+                <i class="fas fa-cube"></i>
+                <span data-i18n="floating.intelligence">AI原生</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="features.title">产品力</h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">引擎驱动 · 智能体协同 · AI原生架构</p>
+            </div>
+            <!-- 核心计算底座 -->
+            <div class="feature-category">
+                <div class="category-header">
+                    <span class="category-badge badge-engine" data-i18n="features.category.engine">核心计算底座</span>
+                    <h3 class="category-title" data-i18n="features.category.engine.title">三大引擎，构筑代码理解基石</h3>
+                </div>
+                <div class="features-grid features-grid-3">
+                    <div class="feature-card feature-graph">
+                        <div class="feature-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <h3 data-i18n="features.graph.title">图谱计算引擎（GCE）</h3>
+                        <p data-i18n="features.graph.desc">构建代码依赖图谱与调用链可视化，精准映射模块关系，支持多层级钻取与交互式探索，让代码架构一目了然。</p>
+                    </div>
+                    <div class="feature-card feature-analysis">
+                        <div class="feature-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                        <h3 data-i18n="features.analysis.title">分析引擎（ACE）</h3>
+                        <p data-i18n="features.analysis.desc">静态分析与动态追踪深度融合，精准识别代码缺陷、性能瓶颈与架构异味，支持多语言多维度全面扫描。</p>
+                    </div>
+                    <div class="feature-card feature-context">
+                        <div class="feature-icon">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 data-i18n="features.context.title">会话上下文引擎（CCE）</h3>
+                        <p data-i18n="features.context.desc">智能聚合代码上下文语义，构建跨文件、跨模块的深层理解，为分析与推理提供精准的语义基座。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 智能体 -->
+            <div class="feature-category">
+                <div class="category-header">
+                    <span class="category-badge badge-agent" data-i18n="features.category.agent">智能体</span>
+                    <h3 class="category-title" data-i18n="features.category.agent.title">多智能体协同，持续进化</h3>
+                </div>
+                <div class="features-grid features-grid-4">
+                    <div class="feature-card feature-multi-agent">
+                        <div class="feature-icon">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 data-i18n="features.multiagent.title">多智能体协同</h3>
+                        <p data-i18n="features.multiagent.desc">多个专业智能体分工协作，图谱构建、安全审计、代码修复各司其职，协同完成复杂分析任务。</p>
+                    </div>
+                    <div class="feature-card feature-dialogue">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 data-i18n="features.dialogue.title">多轮对话</h3>
+                        <p data-i18n="features.dialogue.desc">支持上下文连续的多轮对话交互，逐步深入代码问题，精准定位根因并给出针对性建议。</p>
+                    </div>
+                    <div class="feature-card feature-memory">
+                        <div class="feature-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 data-i18n="features.memory.title">记忆持久化</h3>
+                        <p data-i18n="features.memory.desc">对话历史与分析结果持久化存储，跨会话保持上下文连续性，无需重复描述即可延续深度分析。</p>
+                    </div>
+                    <div class="feature-card feature-vector">
+                        <div class="feature-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </div>
+                        <h3 data-i18n="features.vector.title">双模态向量化</h3>
+                        <p data-i18n="features.vector.desc">代码文本与图谱结构双模态向量化表示，语义检索更精准，相似代码发现更高效。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 工具 -->
+            <div class="feature-category">
+                <div class="category-header">
+                    <span class="category-badge badge-tool" data-i18n="features.category.tool">原生能力</span>
+                    <h3 class="category-title" data-i18n="features.category.tool.title">原生工具链，无缝集成</h3>
+                </div>
+                <div class="features-grid features-grid-2">
+                    <div class="feature-card feature-terminal">
+                        <div class="feature-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <h3 data-i18n="features.terminal.title">原生终端</h3>
+                        <p data-i18n="features.terminal.desc">内置原生终端环境，智能体可直接执行命令、运行测试、操作文件系统，实现从分析到修复的全闭环。</p>
+                    </div>
+                    <div class="feature-card feature-editor">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 data-i18n="features.editor.title">AI自主编辑器</h3>
+                        <p data-i18n="features.editor.desc">AI驱动的自主代码编辑能力，智能体可自主读取、理解、修改代码文件，实现真正的自动化代码修复与重构。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- AI编程安全机制 -->
+            <div class="feature-category">
+                <div class="category-header">
+                    <span class="category-badge badge-security" data-i18n="features.category.security">AI编程安全机制</span>
+                    <h3 class="category-title" data-i18n="features.category.security.title">核心保障，让AI改代码安全可控</h3>
+                </div>
+                <div class="features-grid features-grid-3">
+                    <div class="feature-card feature-scope">
+                        <div class="feature-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <h3 data-i18n="features.scope.title">精准定界修改</h3>
+                        <p data-i18n="features.scope.desc">拒绝大范围暴力重写，基于图谱依赖锁定最小修改范围，防止AI"幻觉"破坏无关代码。</p>
+                    </div>
+                    <div class="feature-card feature-integrity">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 data-i18n="features.integrity.title">结构完整性校验</h3>
+                        <p data-i18n="features.integrity.desc">在AI每次写入后，即时进行语法与依赖结构校验，确保代码始终处于可编译、可运行的安全状态。</p>
+                    </div>
+                    <div class="feature-card feature-rollback">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo-alt"></i>
+                        </div>
+                        <h3 data-i18n="features.rollback.title">操作可回滚</h3>
+                        <p data-i18n="features.rollback.desc">AI的每一次编辑均被原子化记录，支持精准到单行级别的操作回滚，让AI改代码如同本地版本控制般安全可控。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- AI原生 -->
+            <div class="feature-category">
+                <div class="category-header">
+                    <span class="category-badge badge-native" data-i18n="features.category.native">AI原生</span>
+                    <h3 class="category-title" data-i18n="features.category.native.title">AI原生架构，开放能力边界</h3>
+                </div>
+                <div class="features-grid features-grid-3">
+                    <div class="feature-card feature-cli">
+                        <div class="feature-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <h3 data-i18n="features.cli.title">CLI & MCP</h3>
+                        <p data-i18n="features.cli.desc">支持CLI命令行与MCP协议对外提供能力，轻松集成到CI/CD流水线与现有开发工具链中。</p>
+                    </div>
+                    <div class="feature-card feature-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3 data-i18n="features.container.title">Scratch级容器化</h3>
+                        <p data-i18n="features.container.desc">基于Scratch镜像的极简容器化部署，体积小巧、启动秒级、安全隔离，云原生环境开箱即用。</p>
+                    </div>
+                    <div class="feature-card feature-crossplatform">
+                        <div class="feature-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3 data-i18n="features.crossplatform.title">全平台发行</h3>
+                        <p data-i18n="features.crossplatform.desc">macOS / Windows / Linux
+                            桌面端与Web端全覆盖，一次构建多端运行，随时随地守护代码安全。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Video Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="demo.title">Product Demo</h2>
+                <p class="section-subtitle" data-i18n="demo.subtitle">See How Axons Boosts Your Development Efficiency
+                </p>
+            </div>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="demo-video" controls poster="video-poster.png">
+                        <source src="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-demo.mp4"
+                            type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <div class="video-overlay">
+                        <button class="play-button" id="play-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="download.title">Download Now</h2>
+                <p class="section-subtitle" data-i18n="download.subtitle">Choose the version for your platform</p>
+            </div>
+            <div class="download-cards">
+                <!-- macOS -->
+                <div class="download-card" data-platform="mac">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fab fa-apple"></i>
+                    </div>
+                    <h3>macOS</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.silicon">Apple Silicon
+                                (M1/M2/M3)</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.intel">Intel Chip</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.mac.native">Native Experience</span>
+                        </li>
+                    </ul>
+                    <div class="arch-selector">
+                        <button class="arch-btn active" data-arch="arm64">Apple Silicon</button>
+                        <button class="arch-btn" data-arch="amd64">Intel</button>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-arm64.dmg"
+                        class="download-btn" id="download-mac">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.dmg">Download .dmg</span>
+                    </a>
+                    <p class="file-size">~45 MB</p>
+                </div>
+
+                <!-- Windows -->
+                <div class="download-card featured" data-platform="windows">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fab fa-windows"></i>
+                    </div>
+                    <h3>Windows</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.support">Windows 10/11
+                                Support</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.bit">64-bit
+                                Application</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.windows.portable">Portable, No
+                                Install</span></li>
+                    </ul>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-windows-amd64.zip"
+                        class="download-btn" id="download-windows">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.zip">Download .zip</span>
+                    </a>
+                    <p class="file-size">~40 MB</p>
+                </div>
+
+                <!-- Linux -->
+                <div class="download-card" data-platform="linux">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fab fa-linux"></i>
+                    </div>
+                    <h3>Linux</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.linux.desktop">Desktop
+                                Application</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.linux.deb">DEB / RPM Packages</span>
+                        </li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.linux.appimage">AppImage
+                                Portable</span></li>
+                    </ul>
+                    <div class="arch-selector">
+                        <button class="arch-btn active" data-arch="amd64">x86_64</button>
+                        <button class="arch-btn" data-arch="arm64">ARM64</button>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-linux-amd64.AppImage"
+                        class="download-btn" id="download-linux">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.appimage">Download AppImage</span>
+                    </a>
+                    <p class="file-size">~42 MB</p>
+                </div>
+                <!-- Web -->
+                <div class="download-card" data-platform="web">
+                    <div class="card-glow"></div>
+                    <div class="download-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web (Cross-Platform)</h3>
+                    <p class="version-info" data-i18n="download.version">Version 1.0.0</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.browser">Browser-Based</span>
+                        </li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.server">Local Server</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="download.web.portable">Portable Version</span>
+                        </li>
+                    </ul>
+                    <div class="arch-selector web-selector">
+                        <div class="custom-select-wrapper">
+                            <div class="custom-select-trigger" id="web-select-trigger">
+                                <span class="select-text">Linux (x86_64)</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="custom-options" id="web-custom-options">
+                                <div class="custom-option selected" data-value="linux-amd64">
+                                    <i class="fab fa-linux"></i>
+                                    <span>Linux (x86_64)</span>
+                                </div>
+                                <div class="custom-option" data-value="linux-arm64">
+                                    <i class="fab fa-linux"></i>
+                                    <span>Linux (ARM64)</span>
+                                </div>
+                                <div class="custom-option" data-value="darwin-amd64">
+                                    <i class="fab fa-apple"></i>
+                                    <span>macOS (Intel)</span>
+                                </div>
+                                <div class="custom-option" data-value="darwin-arm64">
+                                    <i class="fab fa-apple"></i>
+                                    <span>macOS (Apple Silicon)</span>
+                                </div>
+                                <div class="custom-option" data-value="windows-amd64">
+                                    <i class="fab fa-windows"></i>
+                                    <span>Windows (x86_64)</span>
+                                </div>
+                                <div class="custom-option" data-value="windows-arm64">
+                                    <i class="fab fa-windows"></i>
+                                    <span>Windows (ARM64)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <select class="arch-select-hidden" id="web-arch-select" style="display: none;">
+                            <option value="linux-amd64">Linux (x86_64)</option>
+                            <option value="linux-arm64">Linux (ARM64)</option>
+                            <option value="darwin-amd64">macOS (Intel)</option>
+                            <option value="darwin-arm64">macOS (Apple Silicon)</option>
+                            <option value="windows-amd64">Windows (x86_64)</option>
+                            <option value="windows-arm64">Windows (ARM64)</option>
+                        </select>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.zip"
+                        class="download-btn" id="download-web">
+                        <i class="fas fa-download"></i>
+                        <span data-i18n="download.zip">Download .zip</span>
+                    </a>
+                    <p class="file-size">~35 MB</p>
+                </div>
+            </div>
+
+            <div class="system-requirements">
+                <h4><i class="fas fa-info-circle"></i> <span data-i18n="requirements.title">System Requirements</span>
+                </h4>
+                <div class="requirements-grid">
+                    <div class="requirement-item">
+                        <strong>macOS:</strong> <span data-i18n="requirements.mac">macOS 10.15 (Catalina) or
+                            later</span>
+                    </div>
+                    <div class="requirement-item">
+                        <strong>Windows:</strong> <span data-i18n="requirements.windows">Windows 10 or later
+                            (64-bit)</span>
+                    </div>
+                    <div class="requirement-item">
+                        <strong>Linux:</strong> <span data-i18n="requirements.linux">Modern Linux distribution
+                            (glibc 2.31+)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle">Join the Community, Grow Together</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-i18n="contact.tech.title">Tech Community</h3>
+                    <p data-i18n="contact.tech.desc">Exchange technical insights with developers</p>
+                    <div class="qr-code" id="tech-qr-zh">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/mengshi02/axons"
+                            alt="微信群二维码">
+                    </div>
+                    <div class="qr-code" id="tech-qr-en" style="display:none;">
+                        <a href="https://github.com/mengshi02/axons/discussions" target="_blank"
+                            style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;text-decoration:none;color:var(--text-primary);">
+                            <i class="fab fa-github" style="font-size:3rem;"></i>
+                            <span style="font-size:0.875rem;">GitHub Discussions</span>
+                        </a>
+                    </div>
+                    <a href="#" class="contact-link" data-i18n="contact.tech.join">Join Group</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-i18n="contact.business.title">Business Partnership</h3>
+                    <p data-i18n="contact.business.desc">Enterprise customization and technical support</p>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> contact@axons.chat</p>
+                        <p><i class="fas fa-phone"></i> 13521678519</p>
+                    </div>
+                    <a href="mailto:contact@axons.chat" class="contact-link" data-i18n="contact.business.reach">Contact
+                        Us</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <h3 data-i18n="contact.opensource.title">Open Source</h3>
+                    <p data-i18n="contact.opensource.desc">Participate in project development</p>
+                    <div class="social-links">
+                        <a href="https://github.com/mengshi02/axons" target="_blank" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://gitee.com/mengshi02/axons" target="_blank" title="Gitee">
+                            <i class="fas fa-code-branch"></i>
+                        </a>
+                    </div>
+                    <a href="https://github.com/mengshi02/axons" target="_blank" class="contact-link"
+                        data-i18n="contact.opensource.repo">Visit Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                        <span class="logo-text">Axons</span>
+                    </div>
+                    <p data-i18n="footer.tagline">引擎驱动 · 智能体协同 · AI原生</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.product">Product</h4>
+                        <a href="#features" data-i18n="footer.features">Features</a>
+                        <a href="#download" data-i18n="footer.download">Download</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CHANGELOG.md"
+                            data-i18n="footer.changelog">Changelog</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.resources">Resources</h4>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs"
+                            data-i18n="footer.docs">Documentation</a>
+                        <a href="https://github.com/mengshi02/axons">GitHub</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md" data-i18n="footer.api">API
+                            Reference</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.community">Community</h4>
+                        <a href="https://github.com/mengshi02/axons/issues" data-i18n="footer.issues">Issue Tracker</a>
+                        <a href="https://github.com/mengshi02/axons/discussions"
+                            data-i18n="footer.discussions">Discussions</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CONTRIBUTING.md"
+                            data-i18n="footer.contributing">Contributing</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="visitor-stats">
+                    <div class="visitor-counter" title="Total visitors">
+                        <i class="fas fa-eye"></i>
+                        <span data-i18n="footer.visitors.pv">总访问</span>
+                        <span class="visitor-count" id="site-pv">--</span>
+                    </div>
+                    <div class="visitor-counter" title="Unique visitors">
+                        <i class="fas fa-user-friends"></i>
+                        <span data-i18n="footer.visitors.uv">独立访客</span>
+                        <span class="visitor-count" id="site-uv">--</span>
+                    </div>
+                    <div class="visitor-counter device-counter" id="device-counter" title="Your device">
+                        <i class="fas" id="device-icon"></i>
+                        <span data-i18n="footer.visitors.device">当前设备</span>
+                        <span class="visitor-count" id="device-name">--</span>
+                    </div>
+                </div>
+                <p>&copy; 2026 Axons. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

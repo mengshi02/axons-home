@@ -27,8 +27,15 @@ go.work.sum
 # env file
 .env
 
+# Build output
+axons-home
+
+# SQLite data
+data/
+
 # Editor/IDE
 # .idea/
 # .vscode/
 
 .jo*
+.axons*
