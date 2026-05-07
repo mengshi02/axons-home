@@ -109,13 +109,6 @@ make tidy          # Tidy Go module dependencies
 | `-port`  | `8080`          | HTTP server listen port  |
 | `-db`    | `data/stats.db` | SQLite database file path|
 
-## Technology Stack
-
-- **Backend**: Go 1.23, `net/http`, `embed`
-- **Database**: SQLite (via `modernc.org/sqlite` — pure Go, no CGO required)
-- **Frontend**: Vanilla HTML/CSS/JS with i18n support (EN/ZH)
-- **Deployment**: Single binary, Docker, or systemd service script
-
 ## License
 
 Proprietary — © 2026 Axons. All rights reserved.
