@@ -9,7 +9,7 @@
         content="Code graph analysis, intelligent refactoring, and private deployment for complex engineering. Runs fully offline, your code never leaves your machine.">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="../public/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
 </head>
 
 <body>
@@ -26,7 +26,9 @@
             <ul class="nav-menu">
                 <li><a href="#home" data-i18n="nav.home">首页</a></li>
                 <li><a href="#features" data-i18n="nav.features">核心能力</a></li>
-                <li><a href="#pricing" data-i18n="nav.pricing">版本</a></li>
+                <li><a href="#agents" data-i18n="nav.agents">AI 专家</a></li>
+                <li><a href="#mcp" data-i18n="nav.mcp">能力输出</a></li>
+                <li><a href="#pricing" data-i18n="nav.pricing">价格</a></li>
                 <li><a href="#download" data-i18n="nav.download">下载</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">联系</a></li>
             </ul>
@@ -47,85 +49,102 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title" data-i18n="hero.title">Axons AI</h1>
-            <p class="hero-positioning" data-i18n="hero.positioning">代码智能引擎</p>
-            <p class="hero-subtitle" data-i18n="hero.subtitle">面向复杂工程的代码图谱分析 · 智能重构 · 私有化部署</p>
-            <p class="hero-declaration" data-i18n="hero.declaration">纯本地私有化运行，代码不上云，架构自主可控</p>
-            <p class="hero-description" data-i18n="hero.description">
-                当下AI编程工具，大多局限于单行补全、片段生成，无法理解大型项目全貌、梳理复杂依赖、承接存量遗留系统改造。Axons 基于自研代码图谱引擎 +
-                多Agent协同架构，从源码底层构建工程知识网络，精准解析跨语言、百万行级复杂项目。专注解决：架构混乱、技术债堆积、遗留系统迭代困难、代码重构风险不可控等企业级核心痛点。
-            </p>
-            <div class="hero-selling-points">
-                <span class="selling-point" data-i18n="hero.sp1">🔒 本地私有化，代码不上云</span>
-                <span class="selling-point" data-i18n="hero.sp2">🕸️ 自研代码知识图谱，跨语言架构全局理解</span>
-                <span class="selling-point" data-i18n="hero.sp3">⚡ 增量图谱动态更新，超大项目秒级无感刷新</span>
-            </div>
-            <div class="hero-buttons">
-                <a href="#download" class="btn btn-primary">
-                    <i class="fas fa-download"></i>
-                    <span data-i18n="hero.download">立即下载</span>
-                </a>
-                <a href="#demo" class="btn btn-secondary">
-                    <i class="fas fa-play-circle"></i>
-                    <span data-i18n="hero.demo">观看演示</span>
-                </a>
-            </div>
-            <div class="language-support">
-                <h3 class="support-title" data-i18n="languages.title">支持的编程语言</h3>
-                <div class="language-grid">
-                    <div class="language-item">
-                        <img src="public/devicon/go-original-wordmark.svg" alt="Go" class="devicon-img">
-                        <span>Go</span>
+        <div class="hero-glow hero-glow-left"></div>
+        <div class="hero-glow hero-glow-right"></div>
+        
+        <div class="hero-grid">
+            <!-- Left: Text content -->
+            <div class="hero-content">
+                <p class="hero-eyebrow" data-i18n="hero.positioning">代码智能引擎</p>
+                <h1 class="hero-title" data-i18n="hero.title">Axons AI</h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">代码图谱 · 多 Agent 协同 · 能力输出（MCP/CLI/Skills）· 全链路私有化</p>
+                <p class="hero-declaration" data-i18n="hero.declaration">三引擎驱动，四形态产品，企业级代码智能基础设施</p>
+                <p class="hero-description" data-i18n="hero.description">
+                    自研图计算（GCE）、分析（ACE）、上下文（CCE）三大引擎，从源码构建工程知识网络；5 位 AI 专家 Agent 协同作战，30+ 工具通过 MCP 反向赋能 Cursor、Claude Desktop。
+                    </p>
+                    <div class="hero-selling-points">
+                    <span class="selling-point" data-i18n="hero.sp1">🕸️ 三引擎自研：图计算 · 分析 · 上下文</span>
+                    <span class="selling-point" data-i18n="hero.sp2">🤖 5 位 AI 专家 Agent 开箱即用</span>
+                    <span class="selling-point" data-i18n="hero.sp3">🔌 MCP 上游能力源，30+ 工具反向赋能</span>
+                    <span class="selling-point" data-i18n="hero.sp4">🔒 全链路本地私有化，代码不出机器</span>
                     </div>
-                    <div class="language-item">
-                        <img src="public/devicon/c-plain.svg" alt="C" class="devicon-img">
-                        <span>C</span>
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn btn-primary">
+                            <i class="fas fa-download"></i>
+                            <span data-i18n="hero.download">立即下载</span>
+                        </a>
+                        <a href="#demo" class="btn btn-secondary">
+                            <i class="fas fa-play-circle"></i>
+                            <span data-i18n="hero.demo">观看演示</span>
+                        </a>
                     </div>
-                    <div class="language-item">
-                        <img src="public/devicon/cplusplus-plain.svg" alt="C++" class="devicon-img">
-                        <span>C++</span>
+                    <div class="language-support">
+                        <h3 class="support-title" data-i18n="languages.title">支持的编程语言</h3>
+                        <div class="language-grid">
+                            <div class="language-item">
+                                <img src="public/devicon/go-original-wordmark.svg" alt="Go" class="devicon-img">
+                                <span>Go</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/c-plain.svg" alt="C" class="devicon-img">
+                                <span>C</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/cplusplus-plain.svg" alt="C++" class="devicon-img">
+                                <span>C++</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/java-plain.svg" alt="Java" class="devicon-img">
+                                <span>Java</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/python-plain.svg" alt="Python" class="devicon-img">
+                                <span>Python</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/rust-original.svg" alt="Rust" class="devicon-img">
+                                <span>Rust</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/csharp-plain.svg" alt="C#" class="devicon-img">
+                                <span>C#</span>
+                            </div>
+                            <div class="language-item">
+                                <img src="public/devicon/javascript-plain.svg" alt="JS/TS" class="devicon-img">
+                                <span>JS/TS</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="language-item">
-                        <img src="public/devicon/java-plain.svg" alt="Java" class="devicon-img">
-                        <span>Java</span>
                     </div>
-                    <div class="language-item">
-                        <img src="public/devicon/python-plain.svg" alt="Python" class="devicon-img">
-                        <span>Python</span>
-                    </div>
-                    <div class="language-item">
-                        <img src="public/devicon/rust-original.svg" alt="Rust" class="devicon-img">
-                        <span>Rust</span>
-                    </div>
-                    <div class="language-item">
-                        <img src="public/devicon/csharp-plain.svg" alt="C#" class="devicon-img">
-                        <span>C#</span>
-                    </div>
-                    <div class="language-item">
-                        <img src="public/devicon/javascript-plain.svg" alt="JS/TS" class="devicon-img">
-                        <span>JS/TS</span>
-                    </div>
-                </div>
-            </div>
+<!-- Right: Product UI showcase -->
+<div class="hero-showcase">
+    <div class="showcase-frame">
+        <div class="showcase-topbar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="showcase-title">Axons · Code Intelligence</span>
         </div>
-        <div class="hero-visual">
-            <div class="floating-card card-1">
-                <i class="fas fa-project-diagram"></i>
-                <span data-i18n="floating.archgraph">架构图谱</span>
-            </div>
-            <div class="floating-card card-2">
-                <i class="fas fa-bolt"></i>
-                <span data-i18n="floating.incremental">增量更新</span>
-            </div>
-            <div class="floating-card card-3">
-                <i class="fas fa-code-branch"></i>
-                <span data-i18n="floating.refactor">智能重构</span>
-            </div>
-            <div class="floating-card card-4">
-                <i class="fas fa-shield-alt"></i>
-                <span data-i18n="floating.private">私有化部署</span>
-            </div>
+        <img src="snapscreen/video-poster.png" alt="Axons Product UI" class="showcase-img">
+    </div>
+
+    <div class="floating-card card-1">
+        <i class="fas fa-project-diagram"></i>
+        <span data-i18n="floating.archgraph">架构图谱</span>
+    </div>
+    <div class="floating-card card-2">
+        <i class="fas fa-bolt"></i>
+        <span data-i18n="floating.incremental">增量更新</span>
+    </div>
+    <div class="floating-card card-3">
+        <i class="fas fa-code-branch"></i>
+        <span data-i18n="floating.refactor">智能重构</span>
+    </div>
+    <div class="floating-card card-4">
+        <i class="fas fa-shield-alt"></i>
+        <span data-i18n="floating.private">私有化部署</span>
+    </div>
+</div>
         </div>
     </section>
 
@@ -136,27 +155,41 @@
                 <h2 class="section-title" data-i18n="features.title">核心能力</h2>
                 <p class="section-subtitle" data-i18n="features.subtitle">读懂架构 → 梳理依赖 → 可控修改 → 安全回滚</p>
             </div>
-<!-- Four core capabilities -->
+<!-- Six core capabilities -->
 <div class="core-features-grid">
     <div class="core-feature-card">
         <div class="core-feature-icon icon-graph"><i class="fas fa-project-diagram"></i></div>
         <h3 data-i18n="cf.graph.title">全域代码架构图谱</h3>
-        <p data-i18n="cf.graph.desc">自动逆向还原项目分层、模块依赖、调用链路、包结构关系。可视化呈现真实工程架构，告别人工梳理成本。</p>
+        <p data-i18n="cf.graph.desc">基于 Tree-sitter 解析 + 自研图计算引擎，自动逆向还原分层、模块依赖、调用链、包结构。内置 PageRank、Louvain 社区检测、Tarjan
+            环检测等图算法，工程架构一目了然。</p>
                 </div>
                 <div class="core-feature-card">
                     <div class="core-feature-icon icon-lang"><i class="fas fa-language"></i></div>
                     <h3 data-i18n="cf.lang.title">跨语言深度源码理解</h3>
-                    <p data-i18n="cf.lang.desc">原生支持 Go / Java / TypeScript / C# / Python / C/C++ / Rust。统一语义分析框架，兼容新旧混合技术栈复杂项目。</p>
+                    <p data-i18n="cf.lang.desc">原生支持 Go / TypeScript / JavaScript / Python / Java / Rust / C/C++ / C# 共 9
+                        种语言。统一节点（function/class/interface 等）与边（CALLS/IMPORTS/IMPLEMENTS 等）模型，新旧混栈一视同仁。</p>
+                    </div>
+                    <div class="core-feature-card">
+                        <div class="core-feature-icon icon-agent"><i class="fas fa-users-gear"></i></div>
+                        <h3 data-i18n="cf.agent.title">5 位 AI 专家协同</h3>
+                        <p data-i18n="cf.agent.desc">Orchestrator 总控 + 架构师 / 质量分析师 / 影响分析师 / 代码工程师四位专家 Agent，基于 ReAct 推理与反循环检测，复杂任务自动拆解协作。支持
+                            OpenAI / Anthropic / Ollama 本地模型。</p>
+                    </div>
+                    <div class="core-feature-card">
+                        <div class="core-feature-icon icon-cce"><i class="fas fa-brain"></i></div>
+                        <h3 data-i18n="cf.cce.title">CCE 上下文引擎</h3>
+                        <p data-i18n="cf.cce.desc">双模态向量化（描述 + 代码）+ 5 套场景模板（理解函数 / 影响评估 / 调试追踪 / 模块探索 / 通用），结合 FTS5 关键词与图谱遍历，给 LLM 端上 Token
+                            预算友好的精准上下文。</p>
                 </div>
                 <div class="core-feature-card">
                     <div class="core-feature-icon icon-refactor"><i class="fas fa-code-branch"></i></div>
-                    <h3 data-i18n="cf.refactor.title">最小侵入智能重构</h3>
-                    <p data-i18n="cf.refactor.desc">遵循原有编码规范与架构约束。精准局部修改，拒绝大范围破坏性改写。自带变更快照，一键版本回滚，规避线上事故。</p>
+                    <h3 data-i18n="cf.refactor.title">AI 编码安全三件套</h3>
+                    <p data-i18n="cf.refactor.desc">基于图谱依赖锁定最小修改范围 · 写入后即时校验语法与依赖结构 · 每次 AI 编辑原子记录，支持行级精准回滚。拒绝大范围破坏性改写，规避线上事故。</p>
                 </div>
                 <div class="core-feature-card">
                     <div class="core-feature-icon icon-private"><i class="fas fa-shield-alt"></i></div>
-                    <h3 data-i18n="cf.private.title">离线私有化安全部署</h3>
-                    <p data-i18n="cf.private.desc">全程本地运算，业务代码不上传、不外泄。适配内网隔离环境，满足政企、金融、涉密项目数据安全要求。</p>
+                    <h3 data-i18n="cf.private.title">全链路本地私有化</h3>
+                    <p data-i18n="cf.private.desc">代码、图谱、向量、对话记忆全部本地落盘。LLM 可对接 Ollama 实现完全离线，适配内网隔离环境，满足政企、金融、涉密项目数据安全要求。</p>
                 </div>
             </div>
 <!-- Incremental graph (core performance barrier) -->
@@ -167,9 +200,10 @@
             <h3 data-i18n="cf.incremental.title">增量图谱动态更新</h3>
             <p data-i18n="cf.incremental.desc">只检测改动的文件、函数、依赖，只重新计算变化部分，不动整个工程图谱。</p>
             <ul class="incremental-benefits">
-                <li data-i18n="cf.incremental.b1">⚡ 秒级刷新架构图</li>
-                <li data-i18n="cf.incremental.b2">💾 大项目常驻后台不耗资源</li>
-                <li data-i18n="cf.incremental.b3">🔄 三层检测机制：Journal → mtime → content hash</li>
+                <li data-i18n="cf.incremental.b1">⚡ 秒级刷新架构图，百万行级项目无感更新</li>
+                <li data-i18n="cf.incremental.b2">💾 daemon 后台常驻，内存占用 &lt; 200MB</li>
+                <li data-i18n="cf.incremental.b3">🔄 三层级联检测：Tier 0 Journal（毫秒级）→ Tier 1 mtime（秒级）→ Tier 2 内容哈希（兜底准确）</li>
+                <li data-i18n="cf.incremental.b4">🗄️ 项目隔离存储 + Embedding 缓存复用</li>
             </ul>
         </div>
                     <div class="incremental-right">
@@ -190,36 +224,226 @@
         </div>
     </section>
     
+    <!-- Product Forms Section -->
+    <section id="forms" class="forms-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="forms.title">一套引擎，四种形态</h2>
+                <p class="section-subtitle" data-i18n="forms.subtitle">按团队与场景自由组合，共享同一份 Core 业务逻辑</p>
+            </div>
+            <div class="forms-grid">
+                <div class="form-card">
+                    <div class="form-icon"><i class="fas fa-desktop"></i></div>
+                    <h3 data-i18n="forms.desktop.title">桌面客户端</h3>
+                    <p data-i18n="forms.desktop.desc">采用 Daemon-First 桌面架构设计，本地视图容器承载交互界面，与本地守护服务进程直通调用，原生性能体验无 CORS 烦恼。
+                    </p>
+                    <span class="form-tag" data-i18n="forms.desktop.tag">macOS · Windows · Linux</span>
+                </div>
+                <div class="form-card">
+                    <div class="form-icon"><i class="fas fa-globe"></i></div>
+                    <h3 data-i18n="forms.web.title">Web 端</h3>
+                    <p data-i18n="forms.web.desc">Web 端搭载自研高性能知识图谱可视化、内置在线终端能力，团队高效研发协作共享利器。</p>
+                    <span class="form-tag" data-i18n="forms.web.tag">浏览器即开即用</span>
+                </div>
+                <div class="form-card">
+                    <div class="form-icon"><i class="fas fa-terminal"></i></div>
+                    <h3 data-i18n="forms.cli.title">命令行 CLI</h3>
+                    <p data-i18n="forms.cli.desc">20+ 命令直连 core，无需 daemon 即可 build / query / audit / watch，天然 CI/CD 友好。</p>
+                    <span class="form-tag" data-i18n="forms.cli.tag">build · audit · watch · diff-impact …</span>
+                </div>
+                <div class="form-card form-highlight">
+                    <div class="form-icon"><i class="fas fa-plug"></i></div>
+                    <h3 data-i18n="forms.mcp.title">MCP Server</h3>
+                    <p data-i18n="forms.mcp.desc">基于 JSON-RPC 2.0 暴露 30+ 工具，作为代码知识源反向赋能主流 AI 编程客户端，生态位独占。</p>
+                    <span class="form-tag" data-i18n="forms.mcp.tag">Claude Desktop · Cursor · Cline · Continue · Zed</span>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Comparison Section -->
     <section id="comparison" class="comparison-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="compare.title">产品差异化</h2>
-                <p class="section-subtitle" data-i18n="compare.subtitle">轻量化 + 架构化 + 国产化 + 私有化</p>
+                <h2 class="section-title" data-i18n="compare.title">能力对比一览</h2>
+                <p class="section-subtitle" data-i18n="compare.subtitle">不抢补全赛道，做代码智能基础设施</p>
             </div>
-            <div class="comparison-grid">
-                <div class="comparison-card comp-ai">
-                    <div class="comp-icon"><i class="fas fa-robot"></i></div>
-                    <h3 data-i18n="compare.ai.title">通用AI代码助手</h3>
-                    <p data-i18n="compare.ai.desc">侧重代码生成、对话仿写，无架构认知、无工程全局能力，仅适用于零散日常开发。</p>
-                    <span class="comp-tag" data-i18n="compare.ai.tag">Cursor / Copilot / Claude Code</span>
+            <div class="compare-table-wrapper">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th data-i18n="compare.col.dimension">能力维度</th>
+                            <th data-i18n="compare.col.ai">Cursor / Copilot</th>
+                            <th data-i18n="compare.col.audit">SonarQube / CodeQL</th>
+                            <th class="col-axons">Axons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="compare.row.graph">代码图谱</td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span data-i18n="compare.partial">部分</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.graph.axons">全量 + 增量</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.agent">多 Agent 协作</td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.agent.axons">5 内建 + 自定义</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.mcp">MCP 协议角色</td>
+                            <td><span data-i18n="compare.row.mcp.client">消费方（Client）</span></td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.mcp.axons">提供方（Server, 30+ 工具）</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.private">私有化离线</td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span data-i18n="compare.partial">部分</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.private.axons">全链路（含 LLM）</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.lang">跨语言</td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.lang.axons">9 种统一图谱</span></td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.arch">架构合规规则</td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.arch.axons">Deny / Allow Rules</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="compare.row.refactor">智能重构 + 回滚</td>
+                            <td><span data-i18n="compare.partial">部分</span></td>
+                            <td><span class="x-mark">✗</span></td>
+                            <td><span class="check-mark">✓</span> <span data-i18n="compare.row.refactor.axons">行级原子回滚</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="compare-summary" data-i18n="compare.summary" data-i18n-html>
+                Axons 不与 Cursor / Copilot 抢"代码补全"赛道，而是作为它们的<strong>上游知识源</strong>，
+                通过 MCP 协议输出代码图谱、架构分析、影响评估等能力，让通用 AI 编程工具真正"读懂"企业代码。
+            </p>
+            </div>
+            </section>
+            
+            <!-- AI Agents Section -->
+            <section id="agents" class="agents-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title" data-i18n="agents.title">5 位 AI 专家，协同作战</h2>
+                        <p class="section-subtitle" data-i18n="agents.subtitle">Orchestrator 统筹 → 专家并行分析 → 结果融合答复</p>
+                    </div>
+                    <div class="agents-grid">
+                        <div class="agent-card agent-master">
+                            <div class="agent-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                            <h4 data-i18n="agents.orch.title">AI 总控 · Orchestrator</h4>
+                            <p data-i18n="agents.orch.desc">任务拆解与委派，多 Agent 编排中枢，带反循环检测与终止条件。</p>
+                        </div>
+                        <div class="agent-card">
+                            <div class="agent-icon"><i class="fas fa-sitemap"></i></div>
+                            <h4 data-i18n="agents.arch.title">架构师 · Architect</h4>
+                            <p data-i18n="agents.arch.desc">模块边界识别、依赖分析、架构合规规则检查（Deny / Allow Rules）。</p>
+                        </div>
+                        <div class="agent-card">
+                            <div class="agent-icon"><i class="fas fa-heart-pulse"></i></div>
+                            <h4 data-i18n="agents.quality.title">质量分析师 · Quality</h4>
+                            <p data-i18n="agents.quality.desc">圈复杂度、死代码、热点函数、耦合度（fan-in / fan-out）检测。</p>
+                        </div>
+                        <div class="agent-card">
+                            <div class="agent-icon"><i class="fas fa-crosshairs"></i></div>
+                            <h4 data-i18n="agents.impact.title">影响分析师 · Impact</h4>
+                            <p data-i18n="agents.impact.desc">变更影响范围、调用链回溯、爆炸半径评估，辅助 PR Review 决策。</p>
+                        </div>
+                        <div class="agent-card">
+                            <div class="agent-icon"><i class="fas fa-code"></i></div>
+                            <h4 data-i18n="agents.engineer.title">代码工程师 · Engineer</h4>
+                            <p data-i18n="agents.engineer.desc">读写文件、执行命令、端到端完成编码任务，集成原生 PTY 终端。</p>
                 </div>
-                <div class="comparison-card comp-audit">
-                    <div class="comp-icon"><i class="fas fa-search"></i></div>
-                    <h3 data-i18n="compare.audit.title">国外代码审计工具</h3>
-                    <p data-i18n="compare.audit.desc">偏重安全漏洞扫描，笨重封闭、本地化适配差、不适合国内遗留系统迭代。</p>
-                    <span class="comp-tag" data-i18n="compare.audit.tag">SonarQube / CodeQL</span>
+                <div class="agent-card agent-custom">
+                    <div class="agent-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h4 data-i18n="agents.custom.title">自定义 Agent</h4>
+                    <p data-i18n="agents.custom.desc">通过系统提示词 + 工具白名单，一键创建领域专属 Agent， 记忆持久化。</p>
                 </div>
-                <div class="comparison-card comp-axons">
-                    <div class="comp-icon"><i class="fas fa-cube"></i></div>
-                    <h3 data-i18n="compare.axons.title">Axons</h3>
-                    <p data-i18n="compare.axons.desc">专为国内中小研发团队、传统软件企业、存量老旧工程项目设计。兼顾开发效率、架构治理、数据安全三者平衡。</p>
-                    <span class="comp-tag" data-i18n="compare.axons.tag">架构化 · 国产化 · 私有化</span>
-                </div>
-                </div>
-                </div>
+            </div>
+            <p class="agents-note" data-i18n="agents.note">
+                ReAct 推理循环 · 反循环检测与终止条件 · 对话记忆 · 支持 OpenAI / Anthropic / Ollama / 自定义 OpenAI 兼容端点
+            </p>
+        </div>
     </section>
     
+    <!-- Provider Section -->
+    <section id="mcp" class="mcp-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="mcp.title">三种接入形态，做 AI 编程的上游能力源</h2>
+                <p class="section-subtitle" data-i18n="mcp.subtitle">MCP Server · CLI · Agent Skills —— 30+ 工具一次构建，多端复用</p>
+            </div>
+            <div class="mcp-forms">
+                <div class="mcp-form-card">
+                    <h4><i class="fas fa-plug"></i> <span data-i18n="mcp.form.mcp.title">MCP Server</span></h4>
+                    <p data-i18n="mcp.form.mcp.desc">JSON-RPC 2.0 over HTTP，被 Claude Desktop / Cursor / Cline 等主流 AI 客户端直接接入
+                    </p>
+                </div>
+                <div class="mcp-form-card">
+                    <h4><i class="fas fa-terminal"></i> <span data-i18n="mcp.form.cli.title">CLI</span></h4>
+                    <p data-i18n="mcp.form.cli.desc">axons 命令行覆盖图谱构建、查询、分析、审计全流程，可嵌入 CI/CD 与脚本</p>
+                </div>
+                <div class="mcp-form-card">
+                    <h4><i class="fas fa-robot"></i> <span data-i18n="mcp.form.skills.title">Agent Skills</span></h4>
+                    <p data-i18n="mcp.form.skills.desc">基于 CLI 封装的 code-graph-analyzer · dependency-tracker ·
+                        code-search-assistant，符合 Agent Skills 规范</p>
+                </div>
+            </div>
+            <div class="mcp-categories">
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-search"></i> <span data-i18n="mcp.cat.search.title">搜索</span></h4>
+                    <p data-i18n="mcp.cat.search.desc">keyword_search · semantic_search · hybrid_search · rerank_results ·
+                        search_symbols</p>
+                </div>
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-diagram-project"></i> <span data-i18n="mcp.cat.graph.title">图谱</span></h4>
+                    <p data-i18n="mcp.cat.graph.desc">get_symbol · find_callers · find_callees · path · find_call_chain ·
+                        get_node_by_file</p>
+                </div>
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-chart-line"></i> <span data-i18n="mcp.cat.analysis.title">分析</span></h4>
+                    <p data-i18n="mcp.cat.analysis.desc">get_complexity · find_hotspots · find_dead_code · get_cochanges ·
+                        get_pagerank · list_communities</p>
+                </div>
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-compass"></i> <span data-i18n="mcp.cat.arch.title">架构</span></h4>
+                    <p data-i18n="mcp.cat.arch.desc">arch_check · get_modules · find_impact · list_processes · get_process
+                    </p>
+                </div>
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-terminal"></i> <span data-i18n="mcp.cat.exec.title">执行</span></h4>
+                    <p data-i18n="mcp.cat.exec.desc">read_file · write_file · run_command · get_source_code · list_files</p>
+                </div>
+                <div class="mcp-cat">
+                    <h4><i class="fas fa-brain"></i> <span data-i18n="mcp.cat.cce.title">上下文</span></h4>
+                    <p data-i18n="mcp.cat.cce.desc">get_context · list_context_templates（双模态向量 + 5 套场景模板）</p>
+                </div>
+            </div>
+            <div class="mcp-clients">
+                <p data-i18n="mcp.clients.title">已验证对接的主流 MCP 客户端：</p>
+                <div class="client-logos">
+                    <span class="client-logo">Claude Desktop</span>
+                    <span class="client-logo">Cursor</span>
+                    <span class="client-logo">Cline</span>
+                    <span class="client-logo">Continue</span>
+                    <span class="client-logo">Zed</span>
+                </div>
+                <p class="mcp-protocol-note" data-i18n="mcp.protocol.note">JSON-RPC 2.0 over HTTP · 符合 Model Context
+                    Protocol 标准规范</p>
+            </div>
+        </div>
+    </section>
     <!-- Scenarios Section -->
     <section id="scenarios" class="scenarios-section">
         <div class="container">
@@ -285,48 +509,64 @@
     <section id="pricing" class="pricing-section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title" data-i18n="pricing.title">选择版本</h2>
-                <p class="section-subtitle" data-i18n="pricing.subtitle">从个人开发到企业私有化，按需选择</p>
+                <h2 class="section-title" data-i18n="pricing.title">开源 + 商业双授权</h2>
+                <p class="section-subtitle" data-i18n="pricing.subtitle">核心引擎开源免费，企业增值功能按需订阅</p>
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <div class="pricing-tier" data-i18n="pricing.free.tier">免费社区版</div>
-                    <div class="pricing-price" data-i18n="pricing.free.price">免费</div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f1">基础代码生成</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f2">小型项目语法分析</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f3">个人非商用永久免费</span></li>
-                    </ul>
-                    <a href="#download" class="btn btn-outline" data-i18n="pricing.free.cta">免费下载</a>
-                </div>
-                <div class="pricing-card pricing-featured">
-                    <div class="pricing-badge" data-i18n="pricing.pro.badge">推荐</div>
-                    <div class="pricing-tier" data-i18n="pricing.pro.tier">专业开发者版</div>
+                    <div class="pricing-tier" data-i18n="pricing.free.tier">社区版</div>
                     <div class="pricing-price">
-                        <span data-i18n="pricing.pro.price">¥29/月</span>
-                        <span class="pricing-annual" data-i18n="pricing.pro.annual">年付特惠</span>
+                        <span data-i18n="pricing.free.price">免费</span>
+                        <span class="pricing-annual" data-i18n="pricing.free.license">Apache 2.0 开源</span>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f1">完整架构图谱</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f2">全语言分析</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f3">中大项目重构</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f4">高级Agent协作</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f5">增量图谱更新</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f1">完整三引擎：GCE / ACE / CCE</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f2">5 位内建 AI 专家 Agent</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f3">30+ MCP 工具全量</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f4">9 种语言全量支持</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f5">Desktop / Web / CLI / MCP 四形态</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f6">开源可商用，社区支持</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.free.f7">图谱增量更新</span></li>
                     </ul>
-                    <a href="#download" class="btn btn-primary" data-i18n="pricing.pro.cta">立即订阅</a>
+                    <a href="https://github.com/mengshi02/axons" target="_blank" class="btn btn-outline" data-i18n="pricing.free.cta">GitHub
+                        下载</a>
+                </div>
+                <div class="pricing-card pricing-featured">
+                    <div class="pricing-badge" data-i18n="pricing.pro.badge">团队推荐</div>
+                    <div class="pricing-tier" data-i18n="pricing.pro.tier">专业版</div>
+                    <div class="pricing-price">
+                        <span data-i18n="pricing.pro.price">¥99/月/席位</span>
+                        <span class="pricing-annual" data-i18n="pricing.pro.annual">年付 8 折</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.pro.f1">包含社区版全部能力</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f2">团队协作：多人共享图谱与 Agent</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f3">插件化视图面板集成</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f4">高级终端</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f5">高精尖图谱导航</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f6">知识库增量持续更新</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.pro.f7">工作日志</span></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" data-i18n="pricing.pro.cta">立即订阅</a>
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-tier" data-i18n="pricing.enterprise.tier">企业私有化版</div>
                     <div class="pricing-price" data-i18n="pricing.enterprise.price">定制报价</div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f1">内网离线部署</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f2">定制化功能适配</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f3">专属技术支持</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f4">商业授权</span></li>
+                        <li><i class="fas fa-check"></i> <span data-i18n="pricing.enterprise.f1">包含专业版全部能力</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.enterprise.f2">内网离线一键安装包</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.enterprise.f3">工具平台集成（SSO，DevOps，知识平台等）</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.enterprise.f4">操作审计与合规报表</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.enterprise.f5">代码智能集群</span></li>
+                        <li><i class="fas fa-plus"></i> <span data-i18n="pricing.enterprise.f6">SLA 保障 + 定制开发</span></li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline" data-i18n="pricing.enterprise.cta">联系我们</a>
+                    <a href="#contact" class="btn btn-outline" data-i18n="pricing.enterprise.cta">联系销售</a>
                 </div>
             </div>
+            <p class="pricing-note" data-i18n="pricing.note" data-i18n-html>
+                💡 社区版足够 95% 场景使用；专业版与企业版提供 SSO、审计、私有化部署等闭源增值功能。
+                详见 <a href="https://github.com/mengshi02/axons/blob/main/LICENSE" target="_blank">开源协议</a>。
+            </p>
         </div>
     </section>
 
@@ -573,19 +813,41 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question" data-i18n="faq.q1">代码是否会上传外网？</div>
-                    <div class="faq-answer" data-i18n="faq.a1">全部本地离线计算，源码仅留存本机，无云端收集，保障代码资产安全。</div>
+                    <div class="faq-answer" data-i18n="faq.a1">不会。代码、图谱、向量、对话记忆全部本地落盘。配合 Ollama 等本地 LLM，可实现完全离线运行。</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" data-i18n="faq.q2">支持多大规模项目？</div>
-                    <div class="faq-answer" data-i18n="faq.a2">原生支持十万～百万行级别中大型工程，适配复杂单体、微服务混合架构。</div>
+                    <div class="faq-answer" data-i18n="faq.a2">十万～百万行级别工程实测可用。增量图谱机制（Tier 0 Journal → Tier 1 mtime → Tier 2
+                        内容哈希）保证大项目秒级刷新，daemon 后台常驻内存占用 &lt; 200MB。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" data-i18n="faq.q3">必须联网调用 LLM 吗？</div>
+                        <div class="faq-answer" data-i18n="faq.a3">不必须。支持 OpenAI / Anthropic / Ollama（本地）/ 自定义 OpenAI 兼容端点。推荐离线部署搭配
+                            Qwen2.5-Coder、DeepSeek-Coder 等本地模型，实现真正全链路私有化。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" data-i18n="faq.q4">与 Cursor / Claude Desktop 是替代还是配合？</div>
+                        <div class="faq-answer" data-i18n="faq.a4">协同关系。Axons 通过 MCP 协议对外提供 30+ 代码图谱 / 架构分析 / 语义搜索工具，可作为这些 AI
+                            客户端的"代码知识大脑"——它们负责对话与生成，Axons 负责理解工程。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" data-i18n="faq.q5">是否支持 IDE 集成？</div>
+                        <div class="faq-answer" data-i18n="faq.a5">已通过 MCP 协议接入任何兼容客户端（Claude Desktop / Cursor / Cline / Continue / Zed
+                            等）。原生 VSCode / JetBrains 插件在路线图中。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" data-i18n="faq.q6">支持哪些部署方式？</div>
+                        <div class="faq-answer" data-i18n="faq.a6">二进制（macOS / Windows / Linux 三平台双架构）、Docker、Kubernetes、Systemd
+                            服务、企业内网离线安装包。详见部署文档。</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" data-i18n="faq.q3">是否支持IDE集成？</div>
-                    <div class="faq-answer" data-i18n="faq.a3">后续持续迭代 VSCode / IDEA 原生插件，无缝融入现有开发工作流。当前已支持 MCP 协议接入。</div>
+                    <div class="faq-question" data-i18n="faq.q7">开源协议与商业授权？</div>
+                    <div class="faq-answer" data-i18n="faq.a7">社区版采用 Apache 2.0，开源可商用。专业版与企业版的闭源增值功能（SSO、审计、团队协作、私有化运维等）需订阅或采购授权，互不干扰。</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" data-i18n="faq.q4">有无开源计划？</div>
-                    <div class="faq-answer" data-i18n="faq.a4">核心底层引擎自研闭源，基础框架部分逐步开源，共建开发者生态。</div>
+                    <div class="faq-question" data-i18n="faq.q8">如何添加新语言或自定义 Agent？</div>
+                    <div class="faq-answer" data-i18n="faq.a8">新语言通过实现 Tree-sitter Extractor 接口扩展（参考 internal/extractors/）；自定义 Agent 通过系统提示词
+                        + 工具白名单在 UI 即可创建并持久化，无需重新编译。</div>
                 </div>
             </div>
         </div>
@@ -606,26 +868,30 @@
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4 data-i18n="footer.product">Product</h4>
-                        <a href="#features" data-i18n="footer.features">Features</a>
-                        <a href="#download" data-i18n="footer.download">Download</a>
-                        <a href="https://github.com/mengshi02/axons/blob/main/CHANGELOG.md"
-                            data-i18n="footer.changelog">Changelog</a>
+                        <a href="#features" data-i18n="footer.features">核心能力</a>
+                        <a href="#agents" data-i18n="footer.agents">AI 专家</a>
+                        <a href="#mcp" data-i18n="footer.mcp">能力输出</a>
+                        <a href="#download" data-i18n="footer.download">下载</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CHANGELOG.md" target="_blank"
+                            data-i18n="footer.changelog">更新日志</a>
                     </div>
                     <div class="footer-column">
-                        <h4 data-i18n="footer.resources">Resources</h4>
-                        <a href="https://github.com/mengshi02/axons/blob/main/docs"
-                            data-i18n="footer.docs">Documentation</a>
-                        <a href="https://github.com/mengshi02/axons">GitHub</a>
-                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md" data-i18n="footer.api">API
-                            Reference</a>
+                        <h4 data-i18n="footer.resources">资源</h4>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/architecture.md" target="_blank"
+                            data-i18n="footer.architecture">架构文档</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/api.md" target="_blank" data-i18n="footer.api">API 参考</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/docs/deployment.md" target="_blank"
+                            data-i18n="footer.deployment">部署指南</a>
+                        <a href="https://github.com/mengshi02/axons" target="_blank">GitHub</a>
                     </div>
                     <div class="footer-column">
-                        <h4 data-i18n="footer.community">Community</h4>
-                        <a href="https://github.com/mengshi02/axons/issues" data-i18n="footer.issues">Issue Tracker</a>
-                        <a href="https://github.com/mengshi02/axons/discussions"
+                        <h4 data-i18n="footer.community">社区</h4>
+                        <a href="https://github.com/mengshi02/axons/issues" target="_blank" data-i18n="footer.issues">Issue Tracker</a>
+                        <a href="https://github.com/mengshi02/axons/discussions" target="_blank"
                             data-i18n="footer.discussions">Discussions</a>
-                        <a href="https://github.com/mengshi02/axons/blob/main/CONTRIBUTING.md"
-                            data-i18n="footer.contributing">Contributing</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/CONTRIBUTING.md" target="_blank"
+                            data-i18n="footer.contributing">贡献指南</a>
+                        <a href="https://github.com/mengshi02/axons/blob/main/SECURITY.md" target="_blank" data-i18n="footer.security">安全策略</a>
                     </div>
                 </div>
             </div>
