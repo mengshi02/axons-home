@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axons Admin</title>
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        /* ===== Login Page ===== */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .login-card .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-card .logo h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F97316, #FB923C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-card .logo p {
+            color: #94a3b8;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .login-box {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #334155;
+        }
+
+        /* ===== Admin Layout ===== */
+        .admin-layout {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-layout.active {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #1e293b;
+            border-right: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sidebar-brand h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #F97316, #FB923C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-brand i {
+            color: #F97316;
+            font-size: 1.25rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.7rem 1.5rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-size: 0.9rem;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: #e2e8f0;
+            background: rgba(249, 115, 22, 0.05);
+        }
+
+        .nav-item.active {
+            color: #F97316;
+            background: rgba(249, 115, 22, 0.1);
+            border-left-color: #F97316;
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .sidebar-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #334155;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            height: 56px;
+            background: #1e293b;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .topbar-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .user-badge i {
+            color: #F97316;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid #475569;
+            color: #94a3b8;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        /* ===== Warning Banner ===== */
+        .warning-banner {
+            background: #78350f;
+            border: 1px solid #92400e;
+            color: #fcd34d;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ===== Stat Cards ===== */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .stat-card .label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #F97316;
+            font-family: 'Courier New', monospace;
+        }
+
+        .stat-card .sub {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        /* ===== Sections ===== */
+        .section {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #334155;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: #F97316;
+        }
+
+        /* ===== Form Elements ===== */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.6rem 0.8rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #F97316;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #F97316, #FB923C);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #334155;
+            color: #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .btn-danger {
+            background: #7f1d1d;
+            color: #fca5a5;
+        }
+
+        .btn-danger:hover {
+            background: #991b1b;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+        }
+
+        .btn-ghost {
+            background: none;
+            border: 1px solid #475569;
+            color: #94a3b8;
+        }
+
+        .btn-ghost:hover {
+            border-color: #F97316;
+            color: #F97316;
+        }
+
+        /* ===== Version Display ===== */
+        .version-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .version-badge {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #F97316;
+            font-family: 'Courier New', monospace;
+        }
+
+        .version-edit-row {
+            display: none;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 0.75rem;
+        }
+
+        .version-edit-row.active {
+            display: flex;
+        }
+
+        .version-edit-row input {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .version-edit-row input:focus {
+            border-color: #F97316;
+        }
+
+        /* ===== Table ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 0.6rem 0.8rem;
+            color: #94a3b8;
+            border-bottom: 1px solid #334155;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-table td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(249, 115, 22, 0.03);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-published {
+            background: #14532d;
+            color: #86efac;
+        }
+
+        .status-draft {
+            background: #78350f;
+            color: #fcd34d;
+        }
+
+        .status-unlisted {
+            background: #334155;
+            color: #94a3b8;
+        }
+
+        /* ===== Alerts ===== */
+        .alert {
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            margin-bottom: 0.75rem;
+            display: none;
+        }
+
+        .alert-error {
+            background: #7f1d1d;
+            color: #fca5a5;
+            border: 1px solid #991b1b;
+        }
+
+        .alert-success {
+            background: #14532d;
+            color: #86efac;
+            border: 1px solid #166534;
+        }
+
+        .alert-info {
+            background: #1e3a5f;
+            color: #93c5fd;
+            border: 1px solid #1e40af;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        /* ===== Empty State ===== */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #64748b;
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: #334155;
+        }
+
+        .empty-state p {
+            font-size: 0.9rem;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+
+            .sidebar .nav-item span,
+            .sidebar-brand h1,
+            .sidebar-footer {
+                display: none;
+            }
+
+            .sidebar-brand {
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 0.7rem;
+            }
+
+            .nav-item i {
+                width: auto;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ========== Login Page ========== -->
+    <div class="login-page" id="loginPage">
+        <div class="login-card">
+            <div class="logo">
+                <h1><i class="fas fa-shield-halved"></i> Axons Admin</h1>
+                <p>Super Admin Console</p>
+            </div>
+            <div class="login-box">
+                <div class="alert alert-error" id="loginError"></div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" value="admin" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+                </div>
+                <button class="btn btn-primary" style="width:100%" id="loginBtn" onclick="doLogin()">
+                    <i class="fas fa-right-to-bracket"></i> Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== Admin Layout ========== -->
+    <div class="admin-layout" id="adminLayout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-shield-halved"></i>
+                <h1>Axons</h1>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item active" data-page="overview" onclick="switchPage('overview')">
+                    <i class="fas fa-chart-pie"></i> <span>Overview</span>
+                </div>
+                <div class="nav-item" data-page="releases" onclick="switchPage('releases')">
+                    <i class="fas fa-tag"></i> <span>Releases</span>
+                </div>
+                <div class="nav-item" data-page="plugins" onclick="switchPage('plugins')">
+                    <i class="fas fa-puzzle-piece"></i> <span>Plugins</span>
+                </div>
+                <div class="nav-item" data-page="security" onclick="switchPage('security')">
+                    <i class="fas fa-key"></i> <span>Security</span>
+                </div>
+            </div>
+            <div class="sidebar-footer">axons.chat/admin</div>
+        </div>
+
+        <!-- Main -->
+        <div class="main-content">
+            <div class="topbar">
+                <div class="topbar-title" id="pageTitle">Overview</div>
+                <div class="topbar-actions">
+                    <div class="user-badge">
+                        <i class="fas fa-user-shield"></i>
+                        <span id="adminName">admin</span>
+                    </div>
+                    <button class="logout-btn" onclick="doLogout()">
+                        <i class="fas fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Warning Banner -->
+                <div class="warning-banner" id="mustChangeBanner" style="display:none">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <span>Default password detected. Please change your password immediately.</span>
+                    <button class="btn btn-sm btn-secondary" onclick="switchPage('security')"
+                        style="margin-left:auto">Change Now</button>
+                </div>
+
+                <!-- ===== Overview Page ===== -->
+                <div class="page" id="page-overview">
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="label">Latest Version</div>
+                            <div class="value" id="statVersion">--</div>
+                            <div class="sub">Desktop & Web</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Total Visits</div>
+                            <div class="value" id="statPV">--</div>
+                            <div class="sub">Page views</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Unique Visitors</div>
+                            <div class="value" id="statUV">--</div>
+                            <div class="sub">Distinct IPs</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="label">Today</div>
+                            <div class="value" id="statToday">--</div>
+                            <div class="sub">PV / UV</div>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-clock-rotate-left"></i> Quick Actions</div>
+                        <div style="display:flex; gap:0.75rem; flex-wrap:wrap">
+                            <button class="btn btn-primary" onclick="switchPage('releases')">
+                                <i class="fas fa-tag"></i> Update Version
+                            </button>
+                            <button class="btn btn-secondary" onclick="switchPage('plugins')">
+                                <i class="fas fa-puzzle-piece"></i> Manage Plugins
+                            </button>
+                            <button class="btn btn-ghost" onclick="switchPage('security')">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Releases Page ===== -->
+                <div class="page" id="page-releases" style="display:none">
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-tag"></i> Latest Version</div>
+                        <div class="version-row">
+                            <span class="version-badge" id="versionBadge">--</span>
+                            <button class="btn btn-sm btn-ghost" onclick="editVersion()">
+                                <i class="fas fa-pen"></i> Edit
+                            </button>
+                        </div>
+                        <div class="version-edit-row" id="versionEdit">
+                            <input type="text" id="versionInput" placeholder="e.g. 1.2.0">
+                            <button class="btn btn-primary btn-sm" onclick="saveVersion()">Save</button>
+                            <button class="btn btn-secondary btn-sm" onclick="cancelEditVersion()">Cancel</button>
+                        </div>
+                        <div class="alert alert-error" id="versionError" style="margin-top:0.75rem"></div>
+                        <div class="alert alert-success" id="versionSuccess" style="margin-top:0.75rem"></div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-link"></i> Download URL Template</div>
+                        <div
+                            style="font-family:'Courier New',monospace; font-size:0.82rem; color:#94a3b8; background:#0f172a; padding:1rem; border-radius:8px; word-break:break-all; line-height:1.8">
+                            https://github.com/mengshi02/axons/releases/download/v<span
+                                style="color:#F97316;font-weight:700">{version}</span>/axons-<span
+                                style="color:#F97316;font-weight:700">{product}</span>-<span
+                                style="color:#F97316;font-weight:700">{os}</span>-<span
+                                style="color:#F97316;font-weight:700">{arch}</span>.<span
+                                style="color:#F97316;font-weight:700">{ext}</span>
+                        </div>
+                        <div style="margin-top:0.75rem; font-size:0.8rem; color:#64748b">
+                            product: desktop | web &nbsp;&middot;&nbsp; os: darwin | windows | linux
+                            &nbsp;&middot;&nbsp; arch: arm64 | amd64 &nbsp;&middot;&nbsp; ext: dmg | zip | AppImage
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Plugins Page ===== -->
+                <div class="page" id="page-plugins" style="display:none">
+                    <div class="section">
+                        <div class="section-title" style="justify-content:space-between">
+                            <span><i class="fas fa-puzzle-piece"></i> Plugin Market</span>
+                            <button class="btn btn-primary btn-sm" onclick="showPluginForm()">
+                                <i class="fas fa-plus"></i> Add Plugin
+                            </button>
+                        </div>
+                        <div class="alert alert-error" id="pluginListError"></div>
+                        <table class="data-table" id="pluginTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Status</th>
+                                    <th>Featured</th>
+                                    <th>Version</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pluginTableBody"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Plugin Create/Edit Form (hidden by default) -->
+                    <div class="section" id="pluginFormSection" style="display:none">
+                        <div class="section-title"><i class="fas fa-edit"></i> <span id="pluginFormTitle">Add
+                                Plugin</span></div>
+                        <div class="alert alert-error" id="pluginFormError"></div>
+                        <div class="form-group">
+                            <label>Plugin ID (e.g. chat.axons.huggingface)</label>
+                            <input type="text" id="pf_id" placeholder="chat.axons.huggingface">
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="pf_name" placeholder="HuggingFace">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" id="pf_desc" placeholder="Short description">
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="pf_category">
+                                    <option value="">None</option>
+                                    <option value="productivity">Productivity</option>
+                                    <option value="ai">AI</option>
+                                    <option value="language">Language</option>
+                                    <option value="devops">DevOps</option>
+                                    <option value="theme">Theme</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Description (Chinese, HTML)</label>
+                                <input type="text" id="pf_desc_zh" placeholder="中文描述">
+                            </div>
+                            <div class="form-group">
+                                <label>Description (English, HTML)</label>
+                                <input type="text" id="pf_desc_en" placeholder="English description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tags (comma-separated)</label>
+                            <input type="text" id="pf_tags" placeholder="llm, local-model, chinese">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="pf_status">
+                                    <option value="draft">Draft</option>
+                                    <option value="unlisted">Unlisted</option>
+                                    <option value="published">Published</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Featured</label>
+                                <select id="pf_featured">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:0.75rem">
+                            <button class="btn btn-primary" onclick="savePlugin()"><i class="fas fa-check"></i>
+                                Save</button>
+                            <button class="btn btn-secondary" onclick="hidePluginForm()">Cancel</button>
+                        </div>
+                    </div>
+
+                    <!-- Version Management (per plugin) -->
+                    <div class="section" id="versionSection" style="display:none">
+                        <div class="section-title"><i class="fas fa-code-branch"></i> Versions for <span
+                                id="verPluginId"></span></div>
+                        <div class="alert alert-error" id="verError"></div>
+                        <table class="data-table" id="verTable">
+                            <thead>
+                                <tr>
+                                    <th>Version</th>
+                                    <th>Min Axons</th>
+                                    <th>SHA256</th>
+                                    <th>Changelog</th>
+                                    <th>Size</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="verTableBody"></tbody>
+                        </table>
+                        <div style="margin-top:1rem">
+                            <div class="section-title"><i class="fas fa-plus"></i> Add Version</div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Version</label><input type="text" id="vf_version"
+                                        placeholder="1.0.0"></div>
+                                <div class="form-group"><label>Min Axons Version</label><input type="text"
+                                        id="vf_min_ver" placeholder="0.8.0"></div>
+                            </div>
+                            <div class="form-group"><label>Download URL</label><input type="text" id="vf_url"
+                                    placeholder="https://github.com/mengshi02/axons-extension-packages/releases/download/...">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label>SHA-256</label><input type="text" id="vf_sha"
+                                        placeholder="Optional checksum"></div>
+                                <div class="form-group"><label>File Size (bytes)</label><input type="number"
+                                        id="vf_size" placeholder="0"></div>
+                            </div>
+                            <div class="form-group"><label>Changelog</label><input type="text" id="vf_changelog"
+                                    placeholder="Initial release"></div>
+                            <button class="btn btn-primary" onclick="addVersion()"><i class="fas fa-plus"></i> Add
+                                Version</button>
+                        </div>
+                    </div>
+
+                    <!-- Icon Upload -->
+                    <div class="section" id="iconSection" style="display:none">
+                        <div class="section-title"><i class="fas fa-image"></i> Upload Icon for <span
+                                id="iconPluginId"></span></div>
+                        <div class="alert alert-error" id="iconError"></div>
+                        <input type="file" id="iconFile" accept="image/*" style="margin-bottom:0.75rem">
+                        <button class="btn btn-primary btn-sm" onclick="uploadIcon()"><i class="fas fa-upload"></i>
+                            Upload</button>
+                    </div>
+                </div>
+
+                <!-- ===== Security Page ===== -->
+                <div class="page" id="page-security" style="display:none">
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-key"></i> Change Password</div>
+                        <div class="alert alert-info" id="pwdHint" style="display:none">
+                            <i class="fas fa-info-circle"></i> You can optionally change your password here.
+                        </div>
+                        <div class="alert alert-error" id="pwdError"></div>
+                        <div class="alert alert-success" id="pwdSuccess"></div>
+                        <div style="max-width:400px">
+                            <div class="form-group">
+                                <label>Current Password</label>
+                                <input type="password" id="oldPwd" autocomplete="current-password">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password (min 6 chars)</label>
+                                <input type="password" id="newPwd" autocomplete="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" id="confirmPwd" autocomplete="new-password">
+                            </div>
+                            <button class="btn btn-primary" onclick="changePassword()">
+                                <i class="fas fa-check"></i> Update Password
+                            </button>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-shield-halved"></i> Session Info</div>
+                        <div style="font-size:0.85rem; color:#94a3b8">
+                            <div style="display:flex; gap:2rem; flex-wrap:wrap">
+                                <div><strong style="color:#e2e8f0">User:</strong> admin (super admin)</div>
+                                <div><strong style="color:#e2e8f0">Token TTL:</strong> 24 hours</div>
+                                <div><strong style="color:#e2e8f0">Cookie:</strong> HttpOnly, SameSite=Lax</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== API Helpers ====================
+        async function api(path, options = {}) {
+            const res = await fetch(path, {
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                ...options
+            });
+            if (res.status === 401) {
+                showLogin();
+                throw new Error('unauthorized');
+            }
+            if (!res.ok) {
+                let msg = res.statusText;
+                try {
+                    const text = await res.text();
+                    try { msg = JSON.parse(text).error || text; } catch { msg = text; }
+                } catch { }
+                throw new Error(msg);
+            }
+            return res.json();
+        }
+
+        function showAlert(id, msg) {
+            const el = document.getElementById(id);
+            el.textContent = msg;
+            el.classList.add('show');
+            setTimeout(() => el.classList.remove('show'), 5000);
+        }
+
+        // ==================== Page Navigation ====================
+        function switchPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            const pageEl = document.getElementById('page-' + page);
+            const navEl = document.querySelector(`.nav-item[data-page="${page}"]`);
+            if (pageEl) pageEl.style.display = 'block';
+            if (navEl) navEl.classList.add('active');
+            const titles = { overview: 'Overview', releases: 'Releases', plugins: 'Plugins', security: 'Security' };
+            document.getElementById('pageTitle').textContent = titles[page] || page;
+            // Refresh data when switching pages
+            if (page === 'overview') loadOverview();
+            if (page === 'releases') loadVersion();
+            if (page === 'plugins') { loadPlugins(); hidePluginForm(); document.getElementById('versionSection').style.display = 'none'; document.getElementById('iconSection').style.display = 'none'; }
+        }
+
+        // ==================== Auth ====================
+        async function doLogin() {
+            const btn = document.getElementById('loginBtn');
+            btn.disabled = true;
+            try {
+                const data = await api('/api/admin/login', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        username: document.getElementById('username').value,
+                        password: document.getElementById('password').value
+                    })
+                });
+                onAuthSuccess(data);
+            } catch (e) {
+                showAlert('loginError', e.message || 'Login failed');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        function onAuthSuccess(data) {
+            document.getElementById('adminName').textContent = data.username;
+            const banner = document.getElementById('mustChangeBanner');
+            const pwdHint = document.getElementById('pwdHint');
+            if (data.must_change_pwd) {
+                banner.style.display = 'flex';
+                pwdHint.style.display = 'none';
+            } else {
+                banner.style.display = 'none';
+                pwdHint.style.display = 'flex';
+            }
+            showAdmin();
+            switchPage('overview');
+        }
+
+        function showAdmin() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminLayout').classList.add('active');
+        }
+
+        function showLogin() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('adminLayout').classList.remove('active');
+        }
+
+        async function doLogout() {
+            try { await api('/api/admin/logout', { method: 'POST' }); } catch { }
+            showLogin();
+        }
+
+        // ==================== Overview Data ====================
+        async function loadOverview() {
+            try {
+                const [versionData, statsData] = await Promise.all([
+                    api('/api/releases/latest'),
+                    api('/api/stats')
+                ]);
+                document.getElementById('statVersion').textContent = versionData.version || '--';
+                document.getElementById('statPV').textContent = (statsData.pv || 0).toLocaleString();
+                document.getElementById('statUV').textContent = (statsData.uv || 0).toLocaleString();
+                document.getElementById('statToday').textContent =
+                    (statsData.today_pv || 0) + ' / ' + (statsData.today_uv || 0);
+            } catch (e) {
+                console.error('Failed to load overview:', e);
+            }
+        }
+
+        // ==================== Version ====================
+        async function loadVersion() {
+            try {
+                const data = await api('/api/releases/latest');
+                document.getElementById('versionBadge').textContent = data.version || '--';
+            } catch (e) {
+                console.error('Failed to load version:', e);
+            }
+        }
+
+        function editVersion() {
+            const current = document.getElementById('versionBadge').textContent;
+            document.getElementById('versionInput').value = current === '--' ? '' : current;
+            document.getElementById('versionEdit').classList.add('active');
+        }
+
+        function cancelEditVersion() {
+            document.getElementById('versionEdit').classList.remove('active');
+        }
+
+        async function saveVersion() {
+            const version = document.getElementById('versionInput').value.trim();
+            if (!version) { showAlert('versionError', 'Version cannot be empty'); return; }
+            try {
+                await api('/api/admin/config/version', {
+                    method: 'PUT',
+                    body: JSON.stringify({ version })
+                });
+                document.getElementById('versionBadge').textContent = version;
+                document.getElementById('statVersion').textContent = version;
+                cancelEditVersion();
+                showAlert('versionSuccess', 'Version updated to ' + version);
+            } catch (e) {
+                showAlert('versionError', e.message || 'Update failed');
+            }
+        }
+
+        // ==================== Change Password ====================
+        async function changePassword() {
+            const oldPwd = document.getElementById('oldPwd').value;
+            const newPwd = document.getElementById('newPwd').value;
+            const confirmPwd = document.getElementById('confirmPwd').value;
+            if (!oldPwd || !newPwd) { showAlert('pwdError', 'All fields are required'); return; }
+            if (newPwd !== confirmPwd) { showAlert('pwdError', 'New passwords do not match'); return; }
+            if (newPwd.length < 6) { showAlert('pwdError', 'New password must be at least 6 characters'); return; }
+            try {
+                await api('/api/admin/change-password', {
+                    method: 'POST',
+                    body: JSON.stringify({ old_password: oldPwd, new_password: newPwd })
+                });
+                showAlert('pwdSuccess', 'Password changed successfully');
+                document.getElementById('oldPwd').value = '';
+                document.getElementById('newPwd').value = '';
+                document.getElementById('confirmPwd').value = '';
+                try {
+                    const me = await api('/api/admin/me');
+                    onAuthSuccess(me);
+                } catch { }
+            } catch (e) {
+                showAlert('pwdError', e.message || 'Change failed');
+            }
+        }
+
+        // ==================== Init ====================
+        (async function init() {
+            try {
+                const data = await api('/api/admin/me');
+                onAuthSuccess(data);
+            } catch {
+                showLogin();
+            }
+        })();
+
+        document.getElementById('password').addEventListener('keydown', e => {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        // ==================== Plugin Management ====================
+        let editingPluginId = null;
+        let currentVerPluginId = null;
+
+        async function loadPlugins() {
+            try {
+                const data = await api('/api/admin/plugins');
+                const plugins = data.plugins || [];
+                const tbody = document.getElementById('pluginTableBody');
+                tbody.innerHTML = plugins.map(p => `
+                    <tr>
+                        <td style="font-family:monospace;font-size:0.8rem">${esc(p.plugin_id)}</td>
+                        <td><strong>${esc(p.name)}</strong></td>
+                        <td>${esc(p.category)}</td>
+                        <td><span class="status-badge status-${p.status}">${p.status}</span></td>
+                        <td>${p.featured ? '<i class="fas fa-star" style="color:#F97316"></i>' : ''}</td>
+                        <td style="color:#64748b">--</td>
+                        <td>
+                            <button class="btn btn-sm btn-ghost" onclick="editPlugin('${esc(p.plugin_id)}')"><i class="fas fa-pen"></i></button>
+                            <button class="btn btn-sm btn-ghost" onclick="manageVersions('${esc(p.plugin_id)}')"><i class="fas fa-code-branch"></i></button>
+                            <button class="btn btn-sm btn-ghost" onclick="uploadIconFor('${esc(p.plugin_id)}')"><i class="fas fa-image"></i></button>
+                            <button class="btn btn-sm btn-danger" onclick="deletePlugin('${esc(p.plugin_id)}')"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                showAlert('pluginListError', 'Failed to load plugins: ' + e.message);
+            }
+        }
+
+        function showPluginForm(plugin) {
+            editingPluginId = plugin ? plugin.plugin_id : null;
+            document.getElementById('pluginFormTitle').textContent = plugin ? 'Edit Plugin' : 'Add Plugin';
+            document.getElementById('pf_id').value = plugin ? plugin.plugin_id : '';
+            document.getElementById('pf_id').disabled = !!plugin;
+            document.getElementById('pf_name').value = plugin ? plugin.name : '';
+            document.getElementById('pf_desc').value = plugin ? plugin.description : '';
+            document.getElementById('pf_desc_zh').value = plugin ? plugin.description_zh : '';
+            document.getElementById('pf_desc_en').value = plugin ? plugin.description_en : '';
+            document.getElementById('pf_category').value = plugin ? plugin.category : '';
+            document.getElementById('pf_tags').value = plugin ? JSON.parse(plugin.tags || '[]').join(', ') : '';
+            document.getElementById('pf_status').value = plugin ? plugin.status : 'draft';
+            document.getElementById('pf_featured').value = plugin ? plugin.featured : '0';
+            document.getElementById('pluginFormSection').style.display = 'block';
+        }
+
+        function hidePluginForm() {
+            document.getElementById('pluginFormSection').style.display = 'none';
+            editingPluginId = null;
+        }
+
+        async function editPlugin(id) {
+            try {
+                const p = await api('/api/admin/plugins/' + encodeURIComponent(id));
+                showPluginForm(p);
+            } catch (e) {
+                showAlert('pluginFormError', e.message);
+            }
+        }
+
+        async function savePlugin() {
+            const tags = document.getElementById('pf_tags').value
+                .split(',').map(t => t.trim()).filter(Boolean);
+            const payload = {
+                plugin_id: document.getElementById('pf_id').value.trim(),
+                name: document.getElementById('pf_name').value.trim(),
+                description: document.getElementById('pf_desc').value.trim(),
+                description_zh: document.getElementById('pf_desc_zh').value.trim(),
+                description_en: document.getElementById('pf_desc_en').value.trim(),
+                category: document.getElementById('pf_category').value,
+                tags: JSON.stringify(tags),
+                status: document.getElementById('pf_status').value,
+                featured: parseInt(document.getElementById('pf_featured').value),
+            };
+            try {
+                if (editingPluginId) {
+                    await api('/api/admin/plugins/' + encodeURIComponent(editingPluginId), {
+                        method: 'PUT', body: JSON.stringify(payload)
+                    });
+                } else {
+                    await api('/api/admin/plugins', {
+                        method: 'POST', body: JSON.stringify(payload)
+                    });
+                }
+                hidePluginForm();
+                loadPlugins();
+            } catch (e) {
+                showAlert('pluginFormError', e.message);
+            }
+        }
+
+        async function deletePlugin(id) {
+            if (!confirm('Delete plugin "' + id + '" and all its versions?')) return;
+            try {
+                await api('/api/admin/plugins/' + encodeURIComponent(id), { method: 'DELETE' });
+                loadPlugins();
+            } catch (e) {
+                showAlert('pluginListError', e.message);
+            }
+        }
+
+        // Version management
+        async function manageVersions(id) {
+            currentVerPluginId = id;
+            document.getElementById('verPluginId').textContent = id;
+            document.getElementById('versionSection').style.display = 'block';
+            document.getElementById('iconSection').style.display = 'none';
+            try {
+                const data = await api('/api/plugins/' + encodeURIComponent(id) + '/versions');
+                const versions = data.versions || [];
+                document.getElementById('verTableBody').innerHTML = versions.map(v => `
+                    <tr>
+                        <td><strong>${esc(v.version)}</strong></td>
+                        <td>${esc(v.min_axons_version || '-')}</td>
+                        <td style="font-family:monospace;font-size:0.7rem">${v.sha256 ? esc(v.sha256.substring(0, 12)) + '...' : '-'}</td>
+                        <td>${esc(v.changelog || '-')}</td>
+                        <td>${v.file_size > 0 ? (v.file_size / 1024 / 1024).toFixed(1) + 'MB' : '-'}</td>
+                        <td><button class="btn btn-sm btn-danger" onclick="deleteVersion('${esc(id)}','${esc(v.version)}')"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                `).join('');
+            } catch (e) {
+                showAlert('verError', e.message);
+            }
+        }
+
+        async function addVersion() {
+            if (!currentVerPluginId) return;
+            const payload = {
+                version: document.getElementById('vf_version').value.trim(),
+                min_axons_version: document.getElementById('vf_min_ver').value.trim(),
+                download_url: document.getElementById('vf_url').value.trim(),
+                sha256: document.getElementById('vf_sha').value.trim(),
+                file_size: parseInt(document.getElementById('vf_size').value) || 0,
+                changelog: document.getElementById('vf_changelog').value.trim(),
+            };
+            try {
+                await api('/api/admin/plugins/' + encodeURIComponent(currentVerPluginId) + '/versions', {
+                    method: 'POST', body: JSON.stringify(payload)
+                });
+                manageVersions(currentVerPluginId);
+                document.getElementById('vf_version').value = '';
+                document.getElementById('vf_min_ver').value = '';
+                document.getElementById('vf_url').value = '';
+                document.getElementById('vf_sha').value = '';
+                document.getElementById('vf_size').value = '';
+                document.getElementById('vf_changelog').value = '';
+            } catch (e) {
+                showAlert('verError', e.message);
+            }
+        }
+
+        async function deleteVersion(pluginId, version) {
+            if (!confirm('Delete version ' + version + '?')) return;
+            try {
+                await api('/api/admin/plugins/' + encodeURIComponent(pluginId) + '/versions/' + encodeURIComponent(version), {
+                    method: 'DELETE'
+                });
+                manageVersions(pluginId);
+            } catch (e) {
+                showAlert('verError', e.message);
+            }
+        }
+
+        // Icon upload
+        function uploadIconFor(id) {
+            currentVerPluginId = id;
+            document.getElementById('iconPluginId').textContent = id;
+            document.getElementById('iconSection').style.display = 'block';
+            document.getElementById('versionSection').style.display = 'none';
+        }
+
+        async function uploadIcon() {
+            const file = document.getElementById('iconFile').files[0];
+            if (!file) { showAlert('iconError', 'Select a file'); return; }
+            const formData = new FormData();
+            formData.append('file', file);
+            try {
+                const res = await fetch('/api/admin/plugins/' + encodeURIComponent(currentVerPluginId) + '/icon', {
+                    method: 'POST', credentials: 'include', body: formData
+                });
+                if (!res.ok) throw new Error('Upload failed');
+                document.getElementById('iconSection').style.display = 'none';
+                loadPlugins();
+            } catch (e) {
+                showAlert('iconError', e.message);
+            }
+        }
+
+        function esc(s) {
+            if (!s) return '';
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
+        }
+    </script>
+</body>
+
+</html>

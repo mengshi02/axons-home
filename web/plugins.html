@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axons — 扩展市场</title>
+    <meta name="description" content="浏览和安装 Axons 扩展插件，打造你的专属开发工作台。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+    <style>
+        /* ===== Page-specific overrides for plugins page ===== */
+        body {
+            padding-top: 80px;
+        }
+
+        /* Hero */
+        .plugins-hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .plugins-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .plugins-hero h1 i {
+            -webkit-text-fill-color: var(--primary-color);
+        }
+
+        .plugins-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Search & Filter */
+        .toolbar {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition-base);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+        }
+
+        .filter-btns {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(249, 115, 22, 0.06);
+        }
+
+        /* Grid */
+        .plugins-grid {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Card */
+        .plugin-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.25rem;
+            transition: var(--transition-base);
+            cursor: pointer;
+        }
+
+        .plugin-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(249, 115, 22, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .card-icon .fallback {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .card-title {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-title h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-title .card-id {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.75rem;
+            min-height: 2.5rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .tag {
+            padding: 0.15rem 0.5rem;
+            background: var(--bg-darker);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 0.75rem;
+            flex-shrink: 0;
+            margin-left: 0.5rem;
+        }
+
+        .featured-badge {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        /* Detail Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            width: 90%;
+            max-width: 640px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 2rem;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .modal-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-icon .fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--primary-color);
+        }
+
+        .modal-title h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-title .modal-id {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .modal-section {
+            margin-bottom: 1rem;
+        }
+
+        .modal-section h4 {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .ver-table {
+            width: 100%;
+            font-size: 0.82rem;
+            border-collapse: collapse;
+        }
+
+        .ver-table th {
+            text-align: left;
+            color: var(--text-muted);
+            padding: 0.4rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.75rem;
+        }
+
+        .ver-table td {
+            padding: 0.4rem;
+            border-bottom: 1px solid var(--bg-darker);
+            color: var(--text-secondary);
+        }
+
+        .dl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.25rem 0.6rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+
+        .dl-btn:hover {
+            opacity: 0.85;
+        }
+
+        /* Empty */
+        .empty {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--border-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation bar (same structure as index.html) -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                <span class="logo-text">Axons</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" data-i18n="nav.features">产品</a></li>
+                <li><a href="/#users" data-i18n="nav.compare">场景</a></li>
+                <li><a href="/#demo" data-i18n="nav.demo">演示</a></li>
+                <li><a href="/docs" data-i18n="nav.docs">文档</a></li>
+                <li><a href="/plugins" class="active" data-i18n="nav.plugins">扩展</a></li>
+                <li><a href="/#download" data-i18n="nav.download">下载</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/mengshi02/axons" target="_blank" rel="noopener" class="nav-github-link"
+                    title="Star on GitHub">
+                    <i class="fab fa-github"></i>
+                    <span class="github-star-count" id="nav-github-stars">★ ...</span>
+                </a>
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="plugins-hero">
+        <h1><i class="fas fa-puzzle-piece"></i> <span data-i18n="plugins.hero.title">扩展市场</span></h1>
+        <p data-i18n="plugins.hero.subtitle">浏览和安装扩展插件，打造你的专属开发工作台</p>
+    </div>
+
+    <div class="toolbar">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" data-i18n-placeholder="plugins.search.placeholder" placeholder="搜索插件..."
+                oninput="loadPlugins()">
+        </div>
+        <div class="filter-btns" id="categoryFilters">
+            <button class="filter-btn active" data-cat="" onclick="setCategory(this,'')"
+                data-i18n="plugins.cat.all">全部</button>
+            <button class="filter-btn" data-cat="productivity" onclick="setCategory(this,'productivity')"
+                data-i18n="plugins.cat.productivity">效率</button>
+            <button class="filter-btn" data-cat="ai" onclick="setCategory(this,'ai')"
+                data-i18n="plugins.cat.ai">AI</button>
+            <button class="filter-btn" data-cat="language" onclick="setCategory(this,'language')"
+                data-i18n="plugins.cat.language">语言</button>
+            <button class="filter-btn" data-cat="devops" onclick="setCategory(this,'devops')"
+                data-i18n="plugins.cat.devops">DevOps</button>
+            <button class="filter-btn" data-cat="theme" onclick="setCategory(this,'theme')"
+                data-i18n="plugins.cat.theme">主题</button>
+        </div>
+    </div>
+
+    <div class="plugins-grid" id="pluginsGrid"></div>
+    <div class="empty" id="emptyState" style="display:none">
+        <i class="fas fa-puzzle-piece"></i>
+        <p data-i18n="plugins.empty">暂无插件，敬请期待！</p>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal-overlay" id="detailModal" onclick="if(event.target===this)closeModal()">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer (same structure as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                        <span class="logo-text">Axons</span>
+                    </div>
+                    <p data-i18n="footer.tagline">极致轻量的 AI-First 代码工作台</p>
+                    <p class="footer-mission" data-i18n="footer.mission">由独立开发者维护的开源项目 · 靠你的 Star 持续运转</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.product">产品</h4>
+                        <a href="/#features" data-i18n="footer.features">核心能力</a>
+                        <a href="/#demo" data-i18n="footer.demo">演示</a>
+                        <a href="/#download" data-i18n="footer.download">下载</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.resources">资源</h4>
+                        <a href="/docs" data-i18n="footer.docs">文档</a>
+                        <a href="https://github.com/mengshi02/axons" target="_blank">GitHub</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4 data-i18n="footer.community">社区</h4>
+                        <a href="https://github.com/mengshi02/axons/issues" target="_blank"
+                            data-i18n="footer.issues">Issue Tracker</a>
+                        <a href="https://github.com/mengshi02/axons/discussions" target="_blank"
+                            data-i18n="footer.discussions">Discussions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Axons. <span data-i18n="footer.indie">Built with ❤ by an indie developer, sustained by
+                        your Stars.</span></p>
+                <p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank"
+                        rel="noopener">京ICP备2026025642号-1</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ==================== i18n for plugins page ====================
+        const pluginTranslations = {
+            en: {
+                // Navigation
+                'nav.features': 'Product',
+                'nav.compare': 'Scenarios',
+                'nav.demo': 'Demo',
+                'nav.docs': 'Docs',
+                'nav.plugins': 'Extensions',
+                'nav.download': 'Download',
+
+                // Footer
+                'footer.tagline': 'The Ultra-Lightweight AI-First Code Workbench',
+                'footer.mission': 'Axons — Lightweight by design, extensible by nature',
+                'footer.product': 'Product',
+                'footer.features': 'Capabilities',
+                'footer.demo': 'Demo',
+                'footer.download': 'Download',
+                'footer.resources': 'Resources',
+                'footer.docs': 'Documentation',
+                'footer.community': 'Community',
+                'footer.issues': 'Issue Tracker',
+                'footer.discussions': 'Discussions',
+                'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+
+                // Plugins page
+                'plugins.hero.title': 'Extensions',
+                'plugins.hero.subtitle': 'Browse and install extensions to build your perfect development workspace',
+                'plugins.search.placeholder': 'Search plugins...',
+                'plugins.cat.all': 'All',
+                'plugins.cat.productivity': 'Productivity',
+                'plugins.cat.ai': 'AI',
+                'plugins.cat.language': 'Language',
+                'plugins.cat.devops': 'DevOps',
+                'plugins.cat.theme': 'Theme',
+                'plugins.empty': 'No plugins found. Check back soon!',
+                'plugins.versions': 'Versions',
+                'plugins.no_versions': 'No versions available yet.',
+                'plugins.download': 'Download',
+                'plugins.featured': 'Featured',
+                'plugins.version': 'Version',
+                'plugins.min_axons': 'Min Axons',
+                'plugins.changelog': 'Changelog'
+            },
+            zh: {
+                // Navigation
+                'nav.features': '产品',
+                'nav.compare': '场景',
+                'nav.demo': '演示',
+                'nav.docs': '文档',
+                'nav.plugins': '扩展',
+                'nav.download': '下载',
+
+                // Footer
+                'footer.tagline': '极致轻量的 AI-First 代码工作台',
+                'footer.mission': 'Axons — 轻量为基，扩展为魂',
+                'footer.product': '产品',
+                'footer.features': '核心能力',
+                'footer.demo': '演示',
+                'footer.download': '下载',
+                'footer.resources': '资源',
+                'footer.docs': '文档',
+                'footer.community': '社区',
+                'footer.issues': '问题反馈',
+                'footer.discussions': '讨论区',
+                'footer.indie': '由独立开发者维护的开源项目 · 靠你的 Star 持续运转',
+
+                // Plugins page
+                'plugins.hero.title': '扩展市场',
+                'plugins.hero.subtitle': '浏览和安装扩展插件，打造你的专属开发工作台',
+                'plugins.search.placeholder': '搜索插件...',
+                'plugins.cat.all': '全部',
+                'plugins.cat.productivity': '效率',
+                'plugins.cat.ai': 'AI',
+                'plugins.cat.language': '语言',
+                'plugins.cat.devops': 'DevOps',
+                'plugins.cat.theme': '主题',
+                'plugins.empty': '暂无插件，敬请期待！',
+                'plugins.versions': '版本历史',
+                'plugins.no_versions': '暂无可用版本',
+                'plugins.download': '下载',
+                'plugins.featured': '推荐',
+                'plugins.version': '版本',
+                'plugins.min_axons': '最低版本',
+                'plugins.changelog': '更新说明'
+            }
+        };
+
+        // Detect language from localStorage or browser
+        let currentLang = localStorage.getItem('axons-lang') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+
+        function t(key) {
+            return (pluginTranslations[currentLang] && pluginTranslations[currentLang][key]) || key;
+        }
+
+        function applyPluginI18n() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const val = t(key);
+                if (val && val !== key) el.textContent = val;
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                const val = t(key);
+                if (val && val !== key) el.placeholder = val;
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('axons-lang', lang);
+            applyPluginI18n();
+        }
+
+        // ==================== Language switch ====================
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                setLang(btn.dataset.lang);
+                loadPlugins(); // re-render with new language
+            });
+            if (btn.dataset.lang === currentLang) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+
+        // ==================== Mobile menu ====================
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // ==================== Navbar scroll effect ====================
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // ==================== GitHub stars ====================
+        fetch('https://api.github.com/repos/mengshi02/axons')
+            .then(r => r.json())
+            .then(data => {
+                if (data.stargazers_count !== undefined) {
+                    document.getElementById('nav-github-stars').textContent = '★ ' + data.stargazers_count;
+                }
+            })
+            .catch(() => { });
+
+        // ==================== Plugins logic ====================
+        let currentCategory = '';
+
+        function setCategory(btn, cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadPlugins();
+        }
+
+        async function loadPlugins() {
+            const search = document.getElementById('searchInput').value.trim();
+            let url = '/api/plugins?';
+            if (currentCategory) url += 'category=' + encodeURIComponent(currentCategory) + '&';
+            if (search) url += 'search=' + encodeURIComponent(search);
+
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                renderPlugins(data.plugins || []);
+            } catch (e) {
+                console.error('Failed to load plugins:', e);
+                renderPlugins([]);
+            }
+        }
+
+        function renderPlugins(plugins) {
+            const grid = document.getElementById('pluginsGrid');
+            const empty = document.getElementById('emptyState');
+            if (plugins.length === 0) {
+                grid.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+            grid.innerHTML = plugins.map(p => `
+        <div class="plugin-card" onclick="showDetail('${esc(p.id)}')">
+            <div class="card-header">
+                <div class="card-icon">
+                    ${p.icon_url ? `<img src="${p.icon_url}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-puzzle-piece fallback\\'></i>'">` : '<i class="fas fa-puzzle-piece fallback"></i>'}
+                </div>
+                <div class="card-title">
+                    <h3>${esc(p.name)} ${p.featured ? '<span class="featured-badge">' + t('plugins.featured') + '</span>' : ''}</h3>
+                    <div class="card-id">${esc(p.id)}</div>
+                </div>
+            </div>
+            <div class="card-desc">${esc(p.description)}</div>
+            <div class="card-footer">
+                <div class="card-tags">${(p.tags || []).slice(0, 3).map(tg => `<span class="tag">${esc(tg)}</span>`).join('')}</div>
+                <div class="card-meta">
+                    ${p.latest_version ? `<span><i class="fas fa-tag"></i> ${esc(p.latest_version)}</span>` : ''}
+                    <span><i class="fas fa-download"></i> ${p.downloads}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+        }
+
+        async function showDetail(id) {
+            try {
+                const res = await fetch('/api/plugins/' + encodeURIComponent(id));
+                const p = await res.json();
+                const tags = (p.tags || []).map(tg => `<span class="tag">${esc(tg)}</span>`).join('');
+                const versions = (p.versions || []).map(v => `
+            <tr>
+                <td><strong>${esc(v.version)}</strong></td>
+                <td>${esc(v.min_axons_version || '-')}</td>
+                <td>${esc(v.changelog || '-')}</td>
+                <td><a class="dl-btn" href="/api/plugins/${encodeURIComponent(id)}/download/${encodeURIComponent(v.version)}"><i class="fas fa-download"></i> ${t('plugins.download')}</a></td>
+            </tr>
+        `).join('');
+
+                document.getElementById('modalContent').innerHTML = `
+            <div class="modal-header">
+                <div class="modal-icon">
+                    ${p.icon_url ? `<img src="${p.icon_url}" onerror="this.parentElement.innerHTML='<i class=\\'fas fa-puzzle-piece fallback\\'></i>'">` : '<i class="fas fa-puzzle-piece fallback"></i>'}
+                </div>
+                <div class="modal-title">
+                    <h2>${esc(p.name)}</h2>
+                    <div class="modal-id">${esc(p.id)}</div>
+                </div>
+            </div>
+            <div class="card-tags" style="margin-bottom:1rem">${tags}</div>
+            <div class="modal-desc">${esc(p.description)}</div>
+            <div class="modal-section">
+                <h4><i class="fas fa-code-branch"></i> ${t('plugins.versions')}</h4>
+                ${versions ? `<table class="ver-table"><thead><tr><th>${t('plugins.version')}</th><th>${t('plugins.min_axons')}</th><th>${t('plugins.changelog')}</th><th></th></tr></thead><tbody>${versions}</tbody></table>` : `<p style="color:var(--text-muted)">${t('plugins.no_versions')}</p>`}
+            </div>
+        `;
+                document.getElementById('detailModal').classList.add('active');
+            } catch (e) {
+                console.error('Failed to load plugin detail:', e);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        function esc(s) {
+            if (!s) return '';
+            const d = document.createElement('div');
+            d.textContent = s;
+            return d.innerHTML;
+        }
+
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        // Init
+        applyPluginI18n();
+        loadPlugins();
+    </script>
+</body>
+
+</html>

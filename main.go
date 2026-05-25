@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"embed"
 	"flag"
 	"fmt"
@@ -10,6 +11,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"syscall"
 
@@ -69,6 +71,8 @@ func main() {
 
 	// Initialize handler
 	statsHandler := handler.New(store)
+	adminHandler := handler.NewAdminHandler(store)
+	pluginHandler := handler.NewPluginHandler(store, filepath.Dir(*dbPath))
 
 	// Static file system
 	webContent, err := fs.Sub(webFS, "web")
@@ -84,6 +88,59 @@ func main() {
 		// API routes
 		if strings.HasPrefix(path, "/api/") {
 			switch {
+			// Public release API (no auth required)
+			case path == "/api/releases/latest" && r.Method == http.MethodGet:
+				adminHandler.GetLatestVersion(w, r)
+
+			// Public plugin APIs (no auth required)
+			case path == "/api/plugins" && r.Method == http.MethodGet:
+				pluginHandler.ListPlugins(w, r)
+			case strings.HasPrefix(path, "/api/plugins/") && pluginPublicRoute(w, r, path, pluginHandler):
+				// handled inside helper
+
+			// Admin login (no auth required)
+			case path == "/api/admin/login" && r.Method == http.MethodPost:
+				adminHandler.Login(w, r)
+
+			// Protected admin routes (auth required)
+			case strings.HasPrefix(path, "/api/admin/"):
+				// Authenticate via JWT cookie
+				cookie, err := r.Cookie("axons_admin_token")
+				if err != nil {
+					http.Error(w, "unauthorized", http.StatusUnauthorized)
+					return
+				}
+				claims, err := handler.ValidateToken(cookie.Value)
+				if err != nil {
+					http.Error(w, "unauthorized", http.StatusUnauthorized)
+					return
+				}
+				// Inject claims into context
+				ctx := context.WithValue(r.Context(), handler.ClaimsContextKey(), claims)
+				r = r.WithContext(ctx)
+
+				// Dispatch protected admin routes
+				switch {
+				case path == "/api/admin/logout" && r.Method == http.MethodPost:
+					adminHandler.Logout(w, r)
+				case path == "/api/admin/me" && r.Method == http.MethodGet:
+					adminHandler.Me(w, r)
+				case path == "/api/admin/change-password" && r.Method == http.MethodPost:
+					adminHandler.ChangePassword(w, r)
+				case path == "/api/admin/config/version" && r.Method == http.MethodPut:
+					adminHandler.UpdateVersion(w, r)
+				// Admin plugin management
+				case path == "/api/admin/plugins" && r.Method == http.MethodGet:
+					pluginHandler.AdminListPlugins(w, r)
+				case path == "/api/admin/plugins" && r.Method == http.MethodPost:
+					pluginHandler.AdminCreatePlugin(w, r)
+				case strings.HasPrefix(path, "/api/admin/plugins/"):
+					adminPluginRoute(w, r, path, pluginHandler)
+				default:
+					http.NotFound(w, r)
+				}
+
+			// Stats API (existing)
 			case path == "/api/stats/visit" && r.Method == http.MethodPost:
 				statsHandler.RecordVisit(w, r)
 			case path == "/api/stats/health" && r.Method == http.MethodGet:
@@ -98,11 +155,35 @@ func main() {
 			return
 		}
 
+		// Plugin marketplace page route
+		if path == "/plugins" || path == "/plugins/" {
+			data, err := fs.ReadFile(webContent, "plugins.html")
+			if err != nil {
+				http.Error(w, "plugins.html not found", http.StatusInternalServerError)
+				return
+			}
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Write(data)
+			return
+		}
+
 		// Docs page route
 		if path == "/docs" || path == "/docs/" {
 			data, err := fs.ReadFile(webContent, "docs.html")
 			if err != nil {
 				http.Error(w, "docs.html not found", http.StatusInternalServerError)
+				return
+			}
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Write(data)
+			return
+		}
+
+		// Admin page route
+		if path == "/admin" || path == "/admin/" {
+			data, err := fs.ReadFile(webContent, "admin.html")
+			if err != nil {
+				http.Error(w, "admin.html not found", http.StatusInternalServerError)
 				return
 			}
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -188,7 +269,7 @@ func withMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// CORS
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 		if r.Method == "OPTIONS" {
@@ -266,4 +347,81 @@ func handleDocsAPI(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
 	w.Write(data)
+}
+
+// pluginPublicRoute handles public plugin API routing
+// Returns true if the route was matched
+func pluginPublicRoute(w http.ResponseWriter, r *http.Request, path string, h *handler.PluginHandler) bool {
+	// /api/plugins/{id}/versions
+	// /api/plugins/{id}/download/{ver}
+	// /api/plugins/{id}/icon
+	// /api/plugins/{id}/screenshots/{n}
+	// /api/plugins/{id}
+
+	parts := strings.Split(strings.TrimPrefix(path, "/api/plugins/"), "/")
+	if len(parts) == 0 || parts[0] == "" {
+		return false
+	}
+	pluginID := parts[0]
+
+	switch {
+	case len(parts) == 1:
+		h.GetPluginDetail(w, r, pluginID)
+		return true
+	case len(parts) == 2 && parts[1] == "versions":
+		h.GetPluginVersions(w, r, pluginID)
+		return true
+	case len(parts) == 2 && parts[1] == "icon":
+		h.ServePluginIcon(w, r, pluginID)
+		return true
+	case len(parts) == 3 && parts[1] == "download":
+		h.DownloadPlugin(w, r, pluginID, parts[2])
+		return true
+	case len(parts) == 3 && parts[1] == "screenshots":
+		n, err := strconv.Atoi(parts[2])
+		if err != nil {
+			http.Error(w, "invalid screenshot index", http.StatusBadRequest)
+			return true
+		}
+		h.ServePluginScreenshot(w, r, pluginID, n)
+		return true
+	}
+	return false
+}
+
+// adminPluginRoute handles admin plugin management routing
+func adminPluginRoute(w http.ResponseWriter, r *http.Request, path string, h *handler.PluginHandler) {
+	// /api/admin/plugins/{id}/versions  (POST)
+	// /api/admin/plugins/{id}/versions/{ver} (DELETE)
+	// /api/admin/plugins/{id}/icon (POST multipart)
+	// /api/admin/plugins/{id} (GET/PUT/DELETE)
+
+	parts := strings.Split(strings.TrimPrefix(path, "/api/admin/plugins/"), "/")
+	if len(parts) == 0 || parts[0] == "" {
+		http.NotFound(w, r)
+		return
+	}
+	pluginID := parts[0]
+
+	switch {
+	case len(parts) == 1:
+		switch r.Method {
+		case http.MethodGet:
+			h.AdminGetPlugin(w, r, pluginID)
+		case http.MethodPut:
+			h.AdminUpdatePlugin(w, r, pluginID)
+		case http.MethodDelete:
+			h.AdminDeletePlugin(w, r, pluginID)
+		default:
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		}
+	case len(parts) == 2 && parts[1] == "versions" && r.Method == http.MethodPost:
+		h.AdminCreateVersion(w, r, pluginID)
+	case len(parts) == 3 && parts[1] == "versions" && r.Method == http.MethodDelete:
+		h.AdminDeleteVersion(w, r, pluginID, parts[2])
+	case len(parts) == 2 && parts[1] == "icon" && r.Method == http.MethodPost:
+		h.AdminUploadIcon(w, r, pluginID)
+	default:
+		http.NotFound(w, r)
+	}
 }

@@ -8,6 +8,7 @@ const translations = {
         // Navigation
         'nav.features': 'Product',
         'nav.compare': 'Scenarios',
+        'nav.plugins': 'Extensions',
         'nav.download': 'Download',
         'nav.docs': 'Docs',
         'nav.demo': 'Demo',
@@ -338,6 +339,7 @@ const translations = {
         // Navigation
         'nav.features': '产品',
         'nav.compare': '场景',
+        'nav.plugins': '扩展',
         'nav.download': '下载',
         'nav.docs': '文档',
         'nav.demo': '演示',
