@@ -12,9 +12,10 @@ FROM scratch
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /app/axons-home /axons-home
+COPY --from=builder /app/crt /crt
 
-EXPOSE 8080
+EXPOSE 443
 VOLUME ["/data"]
 
 ENTRYPOINT ["/axons-home"]
-CMD ["-port", "8080", "-db", "/data/stats.db"]
+CMD ["-port", "443", "-db", "/data/stats.db", "-tls"]

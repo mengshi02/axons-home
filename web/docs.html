@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axons Docs | 文档中心</title>
+    <meta name="description" content="Axons 文档中心 - 架构概览、使用手册、配置指南、API 参考与部署指南">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="public/fontawesome/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+</head>
+
+<body>
+    <!-- Navigation bar (simplified for docs page) -->
+    <nav class="navbar docs-navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="public/favicon.svg" alt="Axons Logo" class="logo-img">
+                    <span class="logo-text">Axons</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/" data-i18n="nav.home">首页</a></li>
+                <li><a href="/#features" data-i18n="nav.features">产品</a></li>
+                <li><a href="/#users" data-i18n="nav.compare">场景</a></li>
+                <li><a href="/docs" class="active" data-i18n="nav.docs">文档</a></li>
+                <li><a href="/#download" data-i18n="nav.download">下载</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/mengshi02/axons" target="_blank" rel="noopener" class="nav-github-link"
+                    title="Star on GitHub">
+                    <i class="fab fa-github"></i>
+                    <span class="github-star-count" id="nav-github-stars">★ ...</span>
+                </a>
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Documentation Layout -->
+    <div class="docs-page">
+        <!-- Sidebar -->
+        <aside class="docs-sidebar" id="docs-sidebar">
+            <div class="docs-sidebar-header">
+                <h3 data-i18n="docs.sidebar.title">文档导航</h3>
+            </div>
+            <nav class="docs-nav">
+                <div class="docs-nav-section">
+                    <div class="docs-nav-section-title" data-i18n="docs.nav.getting-started">入门</div>
+                    <div class="docs-nav-item active" data-doc="architecture">
+                        <i class="fas fa-sitemap"></i>
+                        <span data-i18n="docs.nav.architecture">架构概览</span>
+                    </div>
+                    <div class="docs-nav-item" data-doc="manual">
+                        <i class="fas fa-book-open"></i>
+                        <span data-i18n="docs.nav.manual">使用手册</span>
+                    </div>
+                </div>
+                <div class="docs-nav-section">
+                    <div class="docs-nav-section-title" data-i18n="docs.nav.reference">参考</div>
+                    <div class="docs-nav-item" data-doc="configuration">
+                        <i class="fas fa-cog"></i>
+                        <span data-i18n="docs.nav.configuration">配置指南</span>
+                    </div>
+                    <div class="docs-nav-item" data-doc="api">
+                        <i class="fas fa-plug"></i>
+                        <span data-i18n="docs.nav.api">API 参考</span>
+                    </div>
+                </div>
+                <div class="docs-nav-section">
+                    <div class="docs-nav-section-title" data-i18n="docs.nav.operations">运维</div>
+                    <div class="docs-nav-item" data-doc="deployment">
+                        <i class="fas fa-rocket"></i>
+                        <span data-i18n="docs.nav.deployment">部署指南</span>
+                    </div>
+                </div>
+                <div class="docs-nav-section">
+                    <div class="docs-nav-section-title" data-i18n="docs.nav.extensions">扩展</div>
+                    <div class="docs-nav-item" data-doc="plugin-developer-guide">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <span data-i18n="docs.nav.plugin-developer-guide">插件开发</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="docs-sidebar-footer">
+                <a id="docs-sidebar-edit-link" href="https://github.com/mengshi02/axons/tree/main/docs" target="_blank"
+                    rel="noopener">
+                    <i class="fab fa-github"></i>
+                    <span data-i18n="docs.nav.edit-on-github">在 GitHub 上编辑</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content area -->
+        <main class="docs-main">
+            <div class="docs-toolbar">
+                <button class="docs-sidebar-toggle" id="docs-sidebar-toggle" title="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="docs-breadcrumb" id="docs-breadcrumb">
+                    <a href="/" data-i18n="docs.breadcrumb.home">首页</a>
+                    <span class="docs-breadcrumb-sep">/</span>
+                    <span class="docs-breadcrumb-current" data-i18n="docs.breadcrumb.docs">文档</span>
+                    <span class="docs-breadcrumb-sep">/</span>
+                    <span class="docs-breadcrumb-page" id="docs-breadcrumb-page"
+                        data-i18n="docs.nav.architecture">架构概览</span>
+                </div>
+                <div class="docs-toolbar-actions">
+                    <a href="#" id="docs-edit-link" target="_blank" rel="noopener" class="docs-toolbar-btn"
+                        title="Edit on GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="docs-content-wrapper">
+                <div class="docs-loading" id="docs-loading">
+                    <div class="docs-loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <p data-i18n="docs.loading">加载中...</p>
+                </div>
+                <div class="docs-error" id="docs-error" style="display:none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p data-i18n="docs.error">文档加载失败，请稍后重试</p>
+                    <button class="docs-retry-btn" id="docs-retry-btn">
+                        <i class="fas fa-redo"></i> <span data-i18n="docs.retry">重试</span>
+                    </button>
+                </div>
+                <article class="docs-article markdown-body" id="docs-article"></article>
+                <nav class="docs-pagination" id="docs-pagination"></nav>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer docs-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Axons. <span data-i18n="footer.indie">Built with ❤ by an indie developer, sustained by
+                        your Stars.</span></p>
+                <p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank"
+                        rel="noopener">京ICP备2026025642号-1</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="docs.js"></script>
+</body>
+
+</html>

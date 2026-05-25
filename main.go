@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 
@@ -16,14 +17,48 @@ import (
 	"github.com/mengshi02/axons-home/internal/store"
 )
 
+// TLS certificate paths
+const (
+	defaultCertFile = "crt/www.axons.chat.pem"
+	defaultKeyFile  = "crt/www.axons.chat.key"
+)
+
 //go:embed web
 var webFS embed.FS
+
+// DocsDir is the path to the axons docs directory
+var docsDir string
 
 func main() {
 	// Command line flags
 	port := flag.Int("port", 8080, "HTTP server port")
 	dbPath := flag.String("db", "data/stats.db", "SQLite database path")
+	tls := flag.Bool("tls", false, "Enable HTTPS (TLS) mode")
+	certFile := flag.String("cert", defaultCertFile, "TLS certificate file path")
+	keyFile := flag.String("key", defaultKeyFile, "TLS private key file path")
+	flag.StringVar(&docsDir, "docs-dir", "", "Path to axons docs directory")
 	flag.Parse()
+
+	// Auto-detect docs directory if not specified
+	if docsDir == "" {
+		candidates := []string{
+			filepath.Join("..", "axons", "docs"),
+			filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "mengshi02", "axons", "docs"),
+			"/opt/axons/docs",
+		}
+		homeDir, _ := os.UserHomeDir()
+		if homeDir != "" {
+			candidates = append(candidates,
+				filepath.Join(homeDir, "go", "src", "github.com", "mengshi02", "axons", "docs"),
+			)
+		}
+		for _, dir := range candidates {
+			if _, err := os.Stat(dir); err == nil {
+				docsDir = dir
+				break
+			}
+		}
+	}
 
 	// Initialize storage layer
 	store, err := store.New(*dbPath)
@@ -55,9 +90,23 @@ func main() {
 				statsHandler.Health(w, r)
 			case path == "/api/stats" && r.Method == http.MethodGet:
 				statsHandler.GetStats(w, r)
+			case strings.HasPrefix(path, "/api/docs/") && (r.Method == http.MethodGet || r.Method == http.MethodHead):
+				handleDocsAPI(w, r)
 			default:
 				http.NotFound(w, r)
 			}
+			return
+		}
+
+		// Docs page route
+		if path == "/docs" || path == "/docs/" {
+			data, err := fs.ReadFile(webContent, "docs.html")
+			if err != nil {
+				http.Error(w, "docs.html not found", http.StatusInternalServerError)
+				return
+			}
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Write(data)
 			return
 		}
 
@@ -87,7 +136,7 @@ func main() {
 	// Middleware
 	finalHandler := withMiddleware(rootHandler)
 
-	// Start HTTP server
+	// Start server
 	addr := fmt.Sprintf(":%d", *port)
 	server := &http.Server{
 		Addr:    addr,
@@ -103,10 +152,34 @@ func main() {
 		server.Close()
 	}()
 
-	log.Printf("Axons Home server starting on http://localhost%s", addr)
+	// Determine protocol scheme
+	scheme := "http"
+	if *tls {
+		scheme = "https"
+	}
+
+	log.Printf("Axons Home server starting on %s://localhost%s", scheme, addr)
 	log.Printf("Database: %s", *dbPath)
-	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-		log.Fatalf("Server error: %v", err)
+	if *tls {
+		log.Printf("TLS: enabled (cert: %s, key: %s)", *certFile, *keyFile)
+	} else {
+		log.Printf("TLS: disabled (use -tls to enable)")
+	}
+	if docsDir != "" {
+		log.Printf("Docs directory: %s", docsDir)
+	} else {
+		log.Printf("Docs directory: not found (docs API will return 404)")
+	}
+
+	// Start server with HTTP or HTTPS
+	if *tls {
+		if err := server.ListenAndServeTLS(*certFile, *keyFile); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("Server error: %v", err)
+		}
+	} else {
+		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+			log.Fatalf("Server error: %v", err)
+		}
 	}
 }
 
@@ -132,4 +205,65 @@ func withMiddleware(next http.Handler) http.Handler {
 
 		next.ServeHTTP(w, r)
 	})
+}
+
+// handleDocsAPI serves markdown documentation files from the local docs directory
+func handleDocsAPI(w http.ResponseWriter, r *http.Request) {
+	if docsDir == "" {
+		http.Error(w, "Docs directory not configured", http.StatusNotFound)
+		return
+	}
+
+	// Extract doc name from path: /api/docs/{name}
+	docName := strings.TrimPrefix(r.URL.Path, "/api/docs/")
+	if docName == "" {
+		http.Error(w, "Doc name required", http.StatusBadRequest)
+		return
+	}
+
+	// Only allow known doc names to prevent directory traversal
+	allowedDocs := map[string]bool{
+		"architecture":            true,
+		"manual":                  true,
+		"configuration":           true,
+		"api":                     true,
+		"deployment":              true,
+		"plugin-developer-guide":  true,
+	}
+
+	if !allowedDocs[docName] {
+		http.Error(w, "Unknown document", http.StatusNotFound)
+		return
+	}
+
+	// Get language preference from query parameter or Accept-Language header
+	lang := r.URL.Query().Get("lang")
+	if lang == "" {
+		lang = "zh" // default to Chinese
+	}
+
+	// Determine file path based on language
+	var filePath string
+	if lang == "en" {
+		filePath = filepath.Join(docsDir, docName+".md")
+	} else {
+		// For Chinese, look in zh subdirectory
+		filePath = filepath.Join(docsDir, "zh", docName+".md")
+	}
+
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		// Fallback to English if Chinese file doesn't exist
+		if lang != "en" {
+			filePath = filepath.Join(docsDir, docName+".md")
+			data, err = os.ReadFile(filePath)
+		}
+		if err != nil {
+			http.Error(w, "Document not found", http.StatusNotFound)
+			return
+		}
+	}
+
+	w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+	w.Write(data)
 }

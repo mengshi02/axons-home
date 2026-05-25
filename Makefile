@@ -10,13 +10,15 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  all              - Build for current platform (default)"
-	@echo "  dev              - Run in development mode (go run)"
+	@echo "  dev              - Run in development mode (HTTP, go run)"
+	@echo "  prod             - Run in production mode (HTTPS, go run)"
 	@echo "  build            - Build for current platform"
 	@echo "  build-linux      - Build for Linux amd64"
 	@echo "  build-linux-arm64- Build for Linux arm64"
 	@echo "  build-darwin     - Build for macOS arm64"
 	@echo "  build-all        - Build for all platforms"
-	@echo "  run              - Build and run locally"
+	@echo "  run              - Build and run locally (HTTP)"
+	@echo "  run-tls          - Build and run locally with HTTPS"
 	@echo "  docker           - Docker build"
 	@echo "  clean            - Clean build artifacts and data"
 	@echo "  tidy             - Tidy Go dependencies"
@@ -25,9 +27,13 @@ help:
 # Default: build for current platform
 all: build
 
-# Run in development mode
+# Run in development mode (HTTP)
 dev:
 	go run . -port 8080 -db data/stats.db
+
+# Run in production mode (HTTPS)
+prod:
+	go run . -port 443 -db data/stats.db -tls
 
 # Build for current platform
 build:
@@ -48,9 +54,13 @@ build-darwin:
 # Build for all platforms
 build-all: build-linux build-linux-arm64 build-darwin
 
-# Run locally
+# Run locally (HTTP)
 run: build
 	./$(BINARY) -port 8080 -db data/stats.db
+
+# Run locally with HTTPS
+run-tls: build
+	./$(BINARY) -port 443 -db data/stats.db -tls
 
 # Docker build
 docker:

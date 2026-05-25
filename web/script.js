@@ -2,105 +2,118 @@
 const translations = {
     en: {
         // Page meta info
-        'page.title': 'Axons AI | Code Intelligence Engine',
-        'page.description': 'Code graph analysis, intelligent refactoring, and private deployment for complex engineering. Runs fully offline, your code never leaves your machine.',
+        'page.title': 'Axons — AI-First Code Workbench',
+        'page.description': 'Ultra-lightweight AI-First code workbench. Instant startup, native AI intelligence, goodbye bloated IDEs. Open source, free forever for commercial use.',
 
         // Navigation
-        'nav.home': 'Home',
-        'nav.features': 'Capabilities',
-        'nav.agents': 'AI Experts',
-        'nav.mcp': 'Provider',
-        'nav.pricing': 'Pricing',
+        'nav.features': 'Product',
+        'nav.compare': 'Scenarios',
         'nav.download': 'Download',
-        'nav.contact': 'Contact',
+        'nav.docs': 'Docs',
+        'nav.demo': 'Demo',
 
         // Hero section
-        'hero.title': 'Axons AI',
-        'hero.positioning': 'Code Intelligence Engine',
-        'hero.subtitle': 'Code Graph · Multi-Agent · Provider (MCP/CLI/Skills) · End-to-End Private',
-        'hero.declaration': 'Three-engine architecture, four product forms, enterprise-grade code intelligence infrastructure',
-        'hero.description': 'General AI coding tools stop at line-by-line completion and snippet generation, struggling with million-line projects. Axons builds three proprietary engines — Graph Computing Engine (GCE), Analysis Engine (ACE), and Conversation Context Engine (CCE) — constructing an engineering knowledge network from source. With 5 built-in AI expert agents collaborating, and exposing 30+ tools via MCP to empower Cursor, Claude Desktop and other mainstream AI clients. Focused on: architecture governance, technical debt cleanup, legacy system iteration, change risk assessment.',
-        'hero.sp1': '🕸️ Three Proprietary Engines: Graph · Analysis · Context',
-        'hero.sp2': '🤖 5 Built-in AI Expert Agents, Ready Out-of-the-Box',
-        'hero.sp3': '🔌 MCP Upstream Provider, 30+ Tools Empowering AI Clients',
-        'hero.sp4': '🔒 End-to-End Private, Your Code Never Leaves Your Machine',
-        'hero.download': 'Download Now',
+        'hero.title': 'Axons',
+        'hero.positioning': '🔓 Open Source · MIT License · Free Forever for Commercial Use',
+        'hero.subtitle': 'The Ultra-Lightweight AI-First Code Workbench',
+        'hero.declaration': 'Lightweight by design, extensible by nature — Instant startup, native AI intelligence, goodbye bloated IDEs',
+        'hero.description': 'Ditch bloated traditional IDEs. Self-built four-dimensional intelligent engine core, AI capabilities natively embedded — not bolted on. 5 AI expert agents ready out-of-the-box, covering architecture governance, tech debt cleanup, and legacy system iteration. Your code never leaves your machine, fully private end-to-end.',
+        'hero.sp1': '⚡ Ultra-Lightweight — Instant startup, minimal memory',
+        'hero.sp2': '🧠 AI Native — Self-built intelligent engine, not an IDE wrapper',
+        'hero.sp3': '🔌 Open Extension — Plugins / MCP / Skills assembled on demand',
+        'hero.sp4': '🔓 Free Forever — MIT open source, commercial-friendly, customizable',
+        'hero.download': 'Free Download',
+        'hero.star': 'Star on GitHub',
         'hero.demo': 'Watch Demo',
 
         // Language support
         'languages.title': 'Supported Languages',
 
         // Floating cards
-        'floating.archgraph': 'Architecture Graph',
-        'floating.incremental': 'Incremental Update',
-        'floating.refactor': 'Smart Refactor',
+        'floating.lightweight': 'Instant Startup',
+        'floating.ai-native': 'AI Native',
+        'floating.extensible': 'Extensible',
         'floating.private': 'Private Deploy',
 
-        // Features
-        'features.title': 'Core Capabilities',
-        'features.subtitle': 'Understand Architecture → Unravel Dependencies → Controlled Modification → Safe Rollback',
+        // Why Axons
+        'why.title': 'Why Axons?',
+        'why.subtitle': 'You\'ve probably encountered these pain points too',
+        'why.p1.q': 'IDE takes half a minute to start?',
+        'why.p1.a': 'Axons starts instantly, goodbye bloat and lag',
+        'why.p2.q': 'Change one line, unsure of the impact?',
+        'why.p2.a': 'Code graph precisely locates, change impact at a glance',
+        'why.p3.q': 'AI is just a completion tool?',
+        'why.p3.a': '5 AI experts collaborate, full-flow empowerment from architecture to coding',
+        'why.p4.q': 'Code must go to the cloud for AI?',
+        'why.p4.a': 'Full-stack local privatization, code never leaves your machine',
+        'why.p5.q': 'IDE eats 4GB+ of memory?',
+        'why.p5.a': 'Ultra-lightweight, even low-spec devices run smoothly',
 
-        // Core capabilities
-        'cf.graph.title': 'Full-Scope Code Architecture Graph',
-        'cf.graph.desc': 'Tree-sitter parsing + proprietary graph engine auto-reverses layering, dependencies, call chains, and package structure. Built-in PageRank, Louvain community detection, Tarjan cycle detection algorithms. Engineering architecture at a glance.',
-        'cf.lang.title': 'Cross-Language Deep Source Understanding',
-        'cf.lang.desc': 'Native support for 9 languages: Go / TypeScript / JavaScript / Python / Java / Rust / C/C++ / C#. Unified node (function/class/interface) and edge (CALLS/IMPORTS/IMPLEMENTS) model treats mixed tech stacks equally.',
-        'cf.agent.title': '5 AI Expert Agents',
-        'cf.agent.desc': 'Orchestrator + 4 specialist agents (Architect / Quality / Impact / Engineer), ReAct reasoning with anti-loop detection, complex tasks auto-decomposed for collaboration. Supports OpenAI / Anthropic / Ollama local models.',
-        'cf.cce.title': 'CCE Context Engine',
-        'cf.cce.desc': 'Bimodal embedding (description + code) + 5 scenario templates (understand function / change impact / debug trace / explore module / general), combined with FTS5 keyword and graph traversal, delivers token-budget-aware precise context for LLM.',
-        'cf.refactor.title': 'AI Coding Safety Trinity',
-        'cf.refactor.desc': 'Graph-dependency-based minimal modification scope · Instant syntax and dependency validation after each write · Every AI edit atomically recorded, supporting line-level precise rollback. Rejects destructive rewrites, prevents production incidents.',
-        'cf.private.title': 'End-to-End Local Privatization',
-        'cf.private.desc': 'Code, graph, vectors, and conversation memory all persist to locally. LLM can use Ollama for fully offline operation. Adapts to intranet-isolated environments, meeting government, finance, and classified project data security requirements.',
+        // Features
+        'features.title': 'Six Core Values',
+        'features.subtitle': 'Lightweight by design, extensible by nature — Natively built from kernel to experience',
+
+        // Core values
+        'cf.lightweight.title': 'Ultra-Lightweight & Efficient',
+        'cf.lightweight.desc': 'Ditch bloated traditional IDE features. Instant startup, minimal memory footprint, zero lag. Even low-spec devices run smoothly through the entire development cycle.',
+        'cf.engine.title': 'Self-Built 4D Intelligent Engine',
+        'cf.engine.desc': 'Graph Computing Engine (GCE), Analysis Engine (ACE), Cognitive Context Engine (CCE), and LLM — four engines deeply fused into a native AI code intelligence foundation, delivering full-dimension code perception and precise context understanding.',
+        'cf.aiagent.title': 'Native Expert-Level AI Coding',
+        'cf.aiagent.desc': '5 vertical-domain AI expert agents built-in, ready out-of-the-box with zero configuration. Covering code writing, bug fixing, architecture optimization, tech debt cleanup, and documentation generation. AI capabilities natively empowered, not simple plugin adaptations.',
+        'cf.ecosystem.title': 'Open Extension Ecosystem',
+        'cf.ecosystem.desc': 'Plugin system covering development languages, frameworks, tools, MCP protocol, custom Skills, and enterprise components. Highly customizable for individuals and teams. Assemble on demand, scale flexibly — zero resource usage when not enabled.',
+        'cf.remote.title': 'Full-Scenario Remote Development',
+        'cf.remote.desc': 'Native compatibility with Docker, WSL, and SSH remote development. Remote environment feels identical to local. The local side stays ultra-lightweight, perfectly adapting to cloud-native, distributed, and remote collaboration scenarios.',
+        'cf.opensource.title': 'Open Source Without Limits',
+        'cf.opensource.desc': 'MIT license, fully open source, no paywalls, no feature cuts, no commercial restrictions. Supports secondary development, custom modifications, and internal enterprise deployment. Break free from commercial tool restrictions.',
 
         // Incremental graph
-        'cf.incremental.badge': 'Core Performance Barrier',
-        'cf.incremental.title': 'Incremental Graph Dynamic Update',
-        'cf.incremental.desc': 'Only detects changed files, functions, and dependencies. Only recalculates the changed parts, without touching the entire engineering graph.',
+        'cf.incremental.badge': 'Performance Highlight',
+        'cf.incremental.title': 'Change one line, recalculate only that line — sub-second refresh',
+        'cf.incremental.desc': 'Only detects changed files and dependencies, only recalculates the changed part — no full project re-analysis needed.',
         'cf.incremental.b1': '⚡ Sub-second architecture graph refresh, million-line projects update seamlessly',
-        'cf.incremental.b2': '💾 Daemon resident background, memory footprint < 200MB',
-        'cf.incremental.b3': '🔄 Three-tier cascade detection: Tier 0 Journal (millisecond) → Tier 1 mtime (second) → Tier 2 content hash (accurate fallback)',
-        'cf.incremental.b4': '🗄️ Project isolation + embedding cache reuse',
+        'cf.incremental.b2': '💾 Background resident memory footprint ultra-low, virtually imperceptible',
+        'cf.incremental.b3': '🔄 Intelligent cascade detection: millisecond change感知 → second validation → accurate fallback',
+        'cf.incremental.b4': '🗄️ Multi-project isolated storage, cache auto-reuse',
         'cf.incremental.old.label': 'Traditional Tools',
         'cf.incremental.old.desc': 'Change one line → full project re-analysis → slow, laggy, memory-hungry',
         'cf.incremental.new.label': 'Axons',
         'cf.incremental.new.desc': 'Change one line → only recalculate changes → sub-second refresh',
 
         // Product Forms
-        'forms.title': 'One Engine, Four Forms',
-        'forms.subtitle': 'Freely combine by team and scenario, sharing the same core business logic',
+        'forms.title': 'One Workbench, Multiple Access Methods',
+        'forms.subtitle': 'Freely combine by team and scenario, sharing the same intelligent engine',
         'forms.desktop.title': 'Desktop Client',
-        'forms.desktop.desc': 'Adopts a daemon-first desktop architecture design, local view containers host the interactive interface, directly communicating with the local daemon service process, native performance experience without CORS hassles.',
+        'forms.desktop.desc': 'Ultra-lightweight native desktop experience. Instant startup, zero performance overhead, cross-platform ready.',
         'forms.desktop.tag': 'macOS · Windows · Linux',
         'forms.web.title': 'Web UI',
-        'forms.web.desc': 'Web platform features self-developed high-performance knowledge graph visualization and built-in online terminal capabilities, a powerful tool for efficient team R&D collaboration and sharing.',
+        'forms.web.desc': 'Browser-based, ready-to-use. High-performance graph visualization, team collaboration tool.',
         'forms.web.tag': 'Browser-based, ready-to-use',
         'forms.cli.title': 'Command-Line CLI',
-        'forms.cli.desc': '20+ commands directly call core, no daemon needed. Build / query / audit / watch — natively CI/CD friendly.',
+        'forms.cli.desc': 'Commands directly connected to the engine. CI/CD friendly, seamless script automation integration.',
         'forms.cli.tag': 'build · audit · watch · diff-impact …',
-        'forms.mcp.title': 'MCP Server',
-        'forms.mcp.desc': 'Exposes 30+ tools via JSON-RPC 2.0. Acts as a code knowledge source, empowering mainstream AI coding clients. Unique ecosystem positioning.',
+        'forms.mcp.title': 'MCP Capability Output',
+        'forms.mcp.desc': '30+ tools empowering mainstream AI coding clients as the upstream code knowledge provider.',
         'forms.mcp.tag': 'Claude Desktop · Cursor · Cline · Continue · Zed',
 
         // AI Agents
-        'agents.title': '5 AI Experts, Collaborating',
-        'agents.subtitle': 'Orchestrator coordinates → Experts analyze in parallel → Results synthesized into a final answer',
+        'agents.title': '5 AI Experts, Ready Out-of-the-Box',
+        'agents.subtitle': 'AI Orchestrator coordinates → Experts analyze in parallel → Results fused output',
         'agents.orch.title': 'AI Orchestrator',
-        'agents.orch.desc': 'Task decomposition and delegation, multi-agent orchestration hub, with anti-loop detection and termination conditions.',
+        'agents.orch.desc': 'Intelligent task decomposition and delegation, multi-expert coordination to ensure efficient goal achievement.',
         'agents.arch.title': 'Architect',
-        'agents.arch.desc': 'Module boundary identification, dependency analysis, architecture compliance rules (Deny / Allow Rules).',
+        'agents.arch.desc': 'Identifies module boundaries, analyzes dependencies, checks architecture compliance — keeping code structure clear and controllable.',
         'agents.quality.title': 'Quality Analyst',
-        'agents.quality.desc': 'Cyclomatic complexity, dead code, hotspot functions, coupling (fan-in / fan-out) detection.',
+        'agents.quality.desc': 'Detects code smells, dead code, hotspot functions, and excessive coupling — delivers actionable optimization suggestions.',
         'agents.impact.title': 'Impact Analyst',
-        'agents.impact.desc': 'Change impact scope, call chain traceback, blast radius assessment — aids PR review decisions.',
+        'agents.impact.desc': 'Evaluates change impact scope and blast radius, aiding Code Review decisions, reducing refactoring risks.',
         'agents.engineer.title': 'Code Engineer',
-        'agents.engineer.desc': 'Read/write files, execute commands, end-to-end completion of coding tasks, integrated native PTY terminal.',
+        'agents.engineer.desc': 'Read/write files, execute commands, end-to-end coding tasks, integrated native terminal.',
         'agents.custom.title': 'Custom Agent',
-        'agents.custom.desc': 'Create domain-specific agents with system prompt + tool whitelist. persistent, one-click creation.',
-        'agents.note': 'ReAct reasoning loop · Anti-loop detection · conversation memory · Supports OpenAI / Anthropic / Ollama / custom OpenAI-compatible endpoints',
+        'agents.custom.desc': 'Create domain-specific agents with one click. Persistent memory, build your personalized AI assistant.',
+        'agents.note': 'Multi-model support · Persistent conversation memory · Custom extensible',
 
-        // Provider (MCP / CLI / Skills)
+        // Provider (MCP / CLI / Skills) — keep unchanged
         'mcp.title': 'Three Access Forms — Upstream of AI Coding',
         'mcp.subtitle': 'MCP Server · CLI · Agent Skills — 30+ tools built once, reused everywhere',
         'mcp.form.mcp.title': 'MCP Server',
@@ -119,47 +132,52 @@ const translations = {
         'mcp.cat.arch.desc': 'arch_check · get_modules · find_impact · list_processes · get_process',
         'mcp.cat.exec.title': 'Execution',
         'mcp.cat.exec.desc': 'read_file · write_file · run_command · get_source_code · list_files',
-        'mcp.cat.cce.title': 'Context',
+        'mcp.cat.cce.title': 'Cognitive Context',
         'mcp.cat.cce.desc': 'get_context · list_context_templates (bimodal embedding + 5 scenario templates)',
         'mcp.clients.title': 'Verified MCP clients:',
         'mcp.protocol.note': 'JSON-RPC 2.0 over HTTP · Complies with Model Context Protocol specification',
 
         // Comparison (new table)
-        'compare.title': 'Capability Comparison',
-        'compare.subtitle': 'Not competing on completion — building code intelligence infrastructure',
-        'compare.col.dimension': 'Dimension',
-        'compare.col.ai': 'Cursor / Copilot',
-        'compare.col.audit': 'SonarQube / CodeQL',
-        'compare.partial': 'partial',
-        'compare.row.graph': 'Code Graph',
-        'compare.row.graph.axons': 'Full + Incremental',
-        'compare.row.agent': 'Multi-Agent',
-        'compare.row.agent.axons': '5 built-in + custom',
-        'compare.row.mcp': 'MCP Protocol Role',
-        'compare.row.mcp.client': 'Consumer (Client)',
-        'compare.row.mcp.axons': 'Provider (Server, 30+ tools)',
-        'compare.row.private': 'Private Offline',
-        'compare.row.private.axons': 'Full stack (incl. LLM)',
-        'compare.row.lang': 'Cross-Language',
-        'compare.row.lang.axons': '9 unified graph',
-        'compare.row.arch': 'Architecture Rules',
-        'compare.row.arch.axons': 'Deny / Allow Rules',
-        'compare.row.refactor': 'Refactor + Rollback',
-        'compare.row.refactor.axons': 'Line-level atomic rollback',
-        'compare.summary': 'Axons does not compete with Cursor / Copilot on "code completion", but serves as their <strong>upstream knowledge source</strong> — exposing code graph, architecture analysis, and impact assessment via MCP, so general AI tools truly "understand" enterprise code.',
+        'compare.title': 'AI-First Native Workbench vs IDE Wrapper Products',
+        'compare.subtitle': 'Not an AI shell on top of an IDE — natively built from the kernel',
+        'compare.col.dimension': 'Comparison Dimension',
+        'compare.col.shell': 'IDE AI Wrapper',
+        'compare.row.kernel': 'Core Architecture',
+        'compare.row.kernel.shell': 'Based on VS Code re-packaging, AI is an add-on feature',
+        'compare.row.kernel.axons': 'Self-built intelligent engine independent kernel, AI natively embedded',
+        'compare.row.logic': 'Product Logic',
+        'compare.row.logic.shell': 'Traditional IDE as main body, simple AI dialogue/completion overlay',
+        'compare.row.logic.axons': 'AI capability as core, tools built around the AI engine',
+        'compare.row.perf': 'Performance Experience',
+        'compare.row.perf.shell': 'Slow startup, high memory, frequent lag',
+        'compare.row.perf.axons': 'Instant startup, minimal memory, zero lag',
+        'compare.row.tech': 'Technical Autonomy',
+        'compare.row.tech.shell': 'Fully dependent on parent IDE, no deep customization possible',
+        'compare.row.tech.axons': 'Core engines all self-built, technology closed-loop, independently iteratable',
+        'compare.row.scene': 'Scenario Focus',
+        'compare.row.scene.shell': 'Only supports basic completion and simple Q&A',
+        'compare.row.scene.axons': 'Focused on architecture governance, tech debt cleanup, change risk assessment',
+        'compare.row.license': 'Open Source License',
+        'compare.row.license.shell': 'Mostly closed-source commercial, paid unlock, no secondary development',
+        'compare.row.license.axons': 'MIT open source, free forever for commercial use, supports private deployment',
+        'compare.row.extend': 'Extension Logic',
+        'compare.row.extend.shell': 'All features bundled and pre-installed, forced resource occupation',
+        'compare.row.extend.axons': 'Minimal kernel, load on demand, zero occupation when not enabled',
+        'compare.summary': 'Axons is a <strong>natively built</strong> AI-first code workbench from kernel to experience — intelligent by nature, lightweight core, open source, focused on enterprise-grade complex R&D scenarios; ordinary IDE wrappers are just traditional tools with an AI coat, fundamentally different in technical essence and product value.',
 
-        // Use cases
-        'scenarios.title': 'Use Cases',
-        'scenarios.s1.title': 'Large Legacy System Architecture Analysis',
-        'scenarios.s1.desc': 'Technical debt governance, automatic reverse architecture restoration',
-        'scenarios.s2.title': 'Multi-language Mixed Project Refactoring',
-        'scenarios.s2.desc': 'Code standardization, unified semantic analysis for mixed tech stacks',
-        'scenarios.s3.title': 'Intranet-Isolated Development',
-        'scenarios.s3.desc': 'Security compliance scenarios where code cannot be transmitted externally',
-        'scenarios.s4.title': 'Onboarding Unfamiliar Legacy Projects',
-        'scenarios.s4.desc': 'Quickly understand overall architecture, reduce onboarding costs',
-        'scenarios.s5.title': 'Long-term Enterprise Engineering Iteration',
-        'scenarios.s5.desc': 'Reduce refactoring risks and maintenance costs',
+        // Target Users
+        'users.title': 'Who Uses Axons?',
+        'users.subtitle': 'From students to enterprises, all types of developers',
+        'users.u1.title': 'Professional Full-Stack Developers',
+        'users.u1.desc': 'Break free from bloated IDEs, efficiently complete business development and architecture design',
+        'users.u2.title': 'Students',
+        'users.u2.desc': 'Zero barrier to entry, completely free with no payment pressure',
+        'users.u3.title': 'R&D Teams / Enterprises',
+        'users.u3.desc': 'Tech debt cleanup, architecture governance, change risk management',
+        'users.u4.title': 'DevOps / Cloud-Native Engineers',
+        'users.u4.desc': 'Docker/K8s/remote development all-in-one',
+        'users.u5.title': 'Security & Compliance Teams',
+        'users.u5.desc': 'Intranet isolated environments, code never leaves the machine',
 
         // Demo
         'demo.title': 'Product Demo',
@@ -205,11 +223,11 @@ const translations = {
         // FAQ
         'faq.title': 'FAQ',
         'faq.q1': 'Will my code be uploaded to the cloud?',
-        'faq.a1': 'No. Code, graphs, vectors, and conversation memory all persist locally. Combined with local LLMs like Ollama, fully offline operation is achievable.',
+        'faq.a1': 'No. Code, graphs, vectors, and conversation memory all persist locally. Combined with local LLMs like 本地推理引擎, fully offline operation is achievable.',
         'faq.q2': 'What project scale is supported?',
         'faq.a2': 'Tested on projects from 100K to million-line scale. Incremental graph mechanism (Tier 0 Journal → Tier 1 mtime → Tier 2 content hash) ensures sub-second refresh. Daemon resident memory < 200MB.',
         'faq.q3': 'Is online LLM access mandatory?',
-        'faq.a3': 'No. Supports OpenAI / Anthropic / Ollama (local) / custom OpenAI-compatible endpoints. Recommended offline deployment with Qwen2.5-Coder, DeepSeek-Coder local models for truly end-to-end privatization.',
+        'faq.a3': 'No. Supports OpenAI / Anthropic / 本地推理引擎 (local) / custom OpenAI-compatible endpoints. Recommended offline deployment with Qwen2.5-Coder, DeepSeek-Coder local models for truly end-to-end privatization.',
         'faq.q4': 'Replace or complement Cursor / Claude Desktop?',
         'faq.a4': 'Complementary. Axons exposes 30+ code graph / architecture analysis / semantic search tools via MCP, serving as a "code knowledge brain" for these AI clients — they handle conversation and generation, Axons understands engineering.',
         'faq.q5': 'Is IDE integration supported?',
@@ -247,7 +265,7 @@ const translations = {
 
         // System requirements
         'requirements.title': 'System Requirements',
-        'requirements.mac': 'macOS 10.15 (Catalina) or later',
+        'requirements.mac': 'macOS 13.0 (Ventura) or later',
         'requirements.windows': 'Windows 10 or later (64-bit)',
         'requirements.linux': 'Modern Linux distribution (glibc 2.31+)',
 
@@ -265,8 +283,8 @@ const translations = {
         'contact.opensource.repo': 'Visit Repository',
 
         // Footer
-        'footer.tagline': 'Making complex software engineering intelligently understandable',
-        'footer.mission': 'Axons AI focuses on enterprise-grade code intelligence infrastructure',
+        'footer.tagline': 'The Ultra-Lightweight AI-First Code Workbench',
+        'footer.mission': 'Axons — Lightweight by design, extensible by nature',
         'footer.visitors': 'Visitors',
         'footer.visitors.pv': 'Page Views',
         'footer.visitors.uv': 'Unique Visitors',
@@ -286,107 +304,144 @@ const translations = {
         'footer.issues': 'Issue Tracker',
         'footer.discussions': 'Discussions',
         'footer.contributing': 'Contributing',
-        'footer.security': 'Security Policy'
+        'footer.security': 'Security Policy',
+        'footer.demo': 'Demo',
+        'footer.opensource': 'Open Source',
+        'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+        'os.title': '🔓 Open Source · Free · Forever Free',
+        'os.subtitle': 'All features open-sourced under MIT license, commercial use allowed',
+        'os.stat.repo': 'GitHub Repo',
+        'os.stat.stars': 'Stars',
+        'os.stat.forks': 'Forks',
+        'os.stat.issues': 'Open Issues',
+        'os.star': 'Star on GitHub',
+        'os.fork': 'Fork',
+        'os.clone': 'Clone',
+        'os.license': 'Licensed under <a href="https://github.com/mengshi02/axons/blob/main/LICENSE" target="_blank">MIT</a> · Commercial-friendly · Modifiable · Redistributable',
+        'os.enterprise.divider': 'Enterprise Inquiry',
+        'os.enterprise.desc': 'Need private deployment, custom development, training, or SLA? Drop an email — case by case, custom quote.',
+        'bn.title': 'A Note from the Builder',
+        'bn.p1': 'Hi, I\u2019m the creator of Axons.',
+        'bn.p2': 'This is an open-source project maintained by a single indie developer. No funding, no marketing budget — it lives on your Stars and feedback. If it helps you, please give it a Star or drop me an email. I personally read every message.',
+        'bn.sig': '— Mengshi · 2026',
+        'bn.email': 'Email Me',
+        'bn.star': 'Star on GitHub',
+        'bn.follow': 'Follow Developer',
+        'faq.q9': 'Is Axons maintained by an indie developer? How stable is it?',
+        'faq.a9': 'Yes, Axons is currently maintained by a single indie developer under Apache 2.0 license, with all code public on GitHub. The core engine is battle-tested on real projects ranging from 100K to million lines. Every commit runs the full CI test suite; all AI edits are atomically tracked with line-level rollback. Issues get a personal reply from the author.'
     },
     zh: {
         // Page meta info
-        'page.title': 'Axons AI | 代码智能引擎',
-        'page.description': '代码图谱 · 多 Agent 协同 · 能力输出（MCP/CLI/Skills）· 全链路私有化的企业级代码智能基础设施。',
+        'page.title': 'Axons — 极致轻量的 AI-First 代码工作台',
+        'page.description': '轻量为基，扩展为魂。AI-First原生代码工作台，秒级启动，原生AI智能，告别臃肿IDE。开源免费，永久免费商用。',
 
         // Navigation
-        'nav.home': '首页',
-        'nav.features': '核心能力',
-        'nav.agents': 'AI 专家',
-        'nav.mcp': '能力输出',
-        'nav.pricing': '价格',
+        'nav.features': '产品',
+        'nav.compare': '场景',
         'nav.download': '下载',
-        'nav.contact': '联系',
+        'nav.docs': '文档',
+        'nav.demo': '演示',
 
         // Hero section
-        'hero.title': 'Axons AI',
-        'hero.positioning': '代码智能引擎',
-        'hero.subtitle': '代码图谱 · 多 Agent 协同 · 能力输出（MCP/CLI/Skills）· 全链路私有化',
-        'hero.declaration': '三引擎驱动，四形态产品，企业级代码智能基础设施',
-        'hero.description': '通用 AI 编程工具止步于单行补全与片段生成，难以驾驭百万行级工程。Axons 自研三大引擎——图计算引擎（GCE）、分析引擎（ACE）、对话上下文引擎（CCE），从源码底层构建工程知识网络，配合 5 位内建 AI 专家 Agent 协同作战，精准解析跨语言复杂项目，并通过 MCP 协议反向赋能 Cursor、Claude Desktop 等主流 AI 客户端。专攻：架构治理、技术债清理、遗留系统迭代、变更风险评估等企业级核心场景。',
-        'hero.sp1': '🕸️ 三引擎自研：图计算 · 分析 · 上下文',
-        'hero.sp2': '🤖 5 位 AI 专家 Agent 开箱即用',
-        'hero.sp3': '🔌 MCP 上游能力源，30+ 工具反向赋能',
-        'hero.sp4': '🔒 全链路本地私有化，代码不出机器',
-        'hero.download': '立即下载',
+        'hero.title': 'Axons',
+        'hero.positioning': '🔓 开源免费 · MIT 协议 · 永久免费商用',
+        'hero.subtitle': '极致轻量的 AI-First 代码工作台',
+        'hero.declaration': '轻量为基，扩展为魂 — 秒级启动，原生AI智能，告别臃肿IDE',
+        'hero.description': '摒弃传统IDE臃肿冗余，自研四维智能引擎内核，AI能力原生内嵌而非外接嫁接。5位AI专家开箱即用，覆盖架构治理、技术债清理、遗留系统迭代全流程。代码不出机器，数据全链路私有化。',
+        'hero.sp1': '⚡ 极致轻量 — 秒级启动，超低内存，低配也流畅',
+        'hero.sp2': '� AI 原生 — 自研智能引擎，绝非IDE套壳',
+        'hero.sp3': '🔌 开放扩展 — 插件 / MCP / Skill 按需组装',
+        'hero.sp4': '� 永久免费 — MIT开源，可商用可定制',
+        'hero.download': '免费下载',
+        'hero.star': 'Star on GitHub',
         'hero.demo': '观看演示',
 
         // Language support
         'languages.title': '支持的编程语言',
 
         // Floating cards
-        'floating.archgraph': '架构图谱',
-        'floating.incremental': '增量更新',
-        'floating.refactor': '智能重构',
+        'floating.lightweight': '秒级启动',
+        'floating.ai-native': 'AI原生',
+        'floating.extensible': '按需扩展',
         'floating.private': '私有化部署',
 
-        // Features
-        'features.title': '核心能力',
-        'features.subtitle': '读懂架构 → 梳理依赖 → 可控修改 → 安全回滚',
+        // Why Axons
+        'why.title': '为什么需要 Axons？',
+        'why.subtitle': '你一定也遇到过这些痛点',
+        'why.p1.q': 'IDE启动要等半分钟？',
+        'why.p1.a': 'Axons 秒级启动，告别臃肿卡顿',
+        'why.p2.q': '改一行代码，不知道影响范围？',
+        'why.p2.a': '代码图谱精准定位，变更影响一目了然',
+        'why.p3.q': 'AI只是个补全工具？',
+        'why.p3.a': '5位AI专家协同，从架构到编码全流程赋能',
+        'why.p4.q': '代码必须上云才智能？',
+        'why.p4.a': '全链路本地私有化，代码不出机器',
+        'why.p5.q': 'IDE动辄占4GB+内存？',
+        'why.p5.a': '极致轻量，低配设备也能流畅运行',
 
-        // Core capabilities (6 cards)
-        'cf.graph.title': '全域代码架构图谱',
-        'cf.graph.desc': '基于 Tree-sitter 解析 + 自研图计算引擎，自动逆向还原分层、模块依赖、调用链、包结构。内置 PageRank、Louvain 社区检测、Tarjan 环检测等图算法，工程架构一目了然。',
-        'cf.lang.title': '跨语言深度源码理解',
-        'cf.lang.desc': '原生支持 Go / TypeScript / JavaScript / Python / Java / Rust / C/C++ / C# 共 9 种语言。统一节点（function/class/interface 等）与边（CALLS/IMPORTS/IMPLEMENTS 等）模型，新旧混栈一视同仁。',
-        'cf.agent.title': '5 位 AI 专家协同',
-        'cf.agent.desc': 'Orchestrator 总控 + 架构师 / 质量分析师 / 影响分析师 / 代码工程师四位专家 Agent，基于 ReAct 推理与反循环检测，复杂任务自动拆解协作。支持 OpenAI / Anthropic / Ollama 本地模型。',
-        'cf.cce.title': 'CCE 上下文引擎',
-        'cf.cce.desc': '双模态向量化（描述 + 代码）+ 5 套场景模板（理解函数 / 影响评估 / 调试追踪 / 模块探索 / 通用），结合 FTS5 关键词与图谱遍历，给 LLM 端上 Token 预算友好的精准上下文。',
-        'cf.refactor.title': 'AI 编码安全三件套',
-        'cf.refactor.desc': '基于图谱依赖锁定最小修改范围 · 写入后即时校验语法与依赖结构 · 每次 AI 编辑原子记录，支持行级精准回滚。拒绝大范围破坏性改写，规避线上事故。',
-        'cf.private.title': '全链路本地私有化',
-        'cf.private.desc': '代码、图谱、向量、对话记忆全部本地落盘。LLM 可对接 Ollama 实现完全离线，适配内网隔离环境，满足政企、金融、涉密项目数据安全要求。',
+        // Features
+        'features.title': '六大核心价值',
+        'features.subtitle': '轻量为基，扩展为魂 — 从内核到体验，原生打造',
+
+        // Core values
+        'cf.lightweight.title': '极致轻量高效',
+        'cf.lightweight.desc': '摒弃传统IDE臃肿冗余功能，秒级启动、超低内存占用、无卡顿运行。低配设备也能流畅完成全流程开发任务，轻量化体验贯穿整个开发周期。',
+        'cf.engine.title': '自研四维智能引擎',
+        'cf.engine.desc': '图计算引擎GCE、分析引擎ACE、感知上下文引擎CCE、大模型LLM四大引擎深度融合，构建原生AI代码智能底座，实现全维度代码感知与精准上下文理解。',
+        'cf.aiagent.title': '原生专家级AI编码',
+        'cf.aiagent.desc': '内置5位垂直领域AI专家Agent，开箱即用无需额外配置。覆盖代码编写、缺陷修复、架构优化、技术债清理、文档生成全流程，AI能力原生赋能，而非外接插件式简易适配。',
+        'cf.ecosystem.title': '开放式扩展生态',
+        'cf.ecosystem.desc': '插件体系囊括开发语言、技术框架、效率工具、MCP协议、自定义Skill、企业级组件。支持个人与团队高度定制化搭建，按需组装、灵活扩容，不启用则零资源占用。',
+        'cf.remote.title': '全场景远程开发',
+        'cf.remote.desc': '原生兼容容器、WSL、SSH多模式远程开发，远程环境与本地操作体验完全一致。本地端保持极致轻量化，轻松适配云原生、分布式、远程协作研发场景。',
+        'cf.opensource.title': '开源开放无限制',
+        'cf.opensource.desc': 'MIT开源许可，源码完全开放，无付费壁垒、无功能阉割、无商用授权限制。支持二次开发、定制修改、企业内部部署，彻底打破商业化工具的权限枷锁。',
 
         // Incremental graph
-        'cf.incremental.badge': '核心性能壁垒',
-        'cf.incremental.title': '增量图谱动态更新',
-        'cf.incremental.desc': '只检测改动的文件、函数、依赖，只重新计算变化部分，不动整个工程图谱。',
-        'cf.incremental.b1': '⚡ 秒级刷新架构图，百万行级项目无感更新',
-        'cf.incremental.b2': '💾 daemon 后台常驻，内存占用 < 200MB',
-        'cf.incremental.b3': '🔄 三层级联检测：Tier 0 Journal（毫秒级）→ Tier 1 mtime（秒级）→ Tier 2 内容哈希（兜底准确）',
-        'cf.incremental.b4': '🗄️ 项目隔离存储 + Embedding 缓存复用',
-        'cf.incremental.old.label': '普通工具',
+        'cf.incremental.badge': '性能亮点',
+        'cf.incremental.title': '改一行只算一行，秒级刷新',
+        'cf.incremental.desc': '只检测改动的文件与依赖，只重新计算变化部分，不用重算整个工程图谱。',
+        'cf.incremental.b1': '⚡ 秒级刷新架构图，百万行项目无感更新',
+        'cf.incremental.b2': '💾 后台常驻内存占用极低，轻量到无感知',
+        'cf.incremental.b3': '🔄 智能级联检测：毫秒感知变更 → 秒级验证 → 兜底准确',
+        'cf.incremental.b4': '🗄️ 多项目隔离存储，缓存自动复用',
+        'cf.incremental.old.label': '传统工具',
         'cf.incremental.old.desc': '改一行 → 全量重分析整个项目 → 卡、慢、耗内存',
         'cf.incremental.new.label': 'Axons',
         'cf.incremental.new.desc': '改一行 → 只重算变化部分 → 秒级刷新',
 
         // Product Forms
-        'forms.title': '一套引擎，四种形态',
-        'forms.subtitle': '按团队与场景自由组合，共享同一份 Core 业务逻辑',
+        'forms.title': '一个工作台，多种接入方式',
+        'forms.subtitle': '按团队与场景自由组合，共享同一份智能引擎',
         'forms.desktop.title': '桌面客户端',
-        'forms.desktop.desc': '采用 Daemon-First 桌面架构设计，本地视图容器承载交互界面，与本地守护服务进程直通调用，原生性能体验无 CORS 烦恼。',
+        'forms.desktop.desc': '极致轻量的原生桌面体验，秒级启动，性能无损耗，全平台适配无门槛。',
         'forms.desktop.tag': 'macOS · Windows · Linux',
         'forms.web.title': 'Web 端',
-        'forms.web.desc': 'Web 端搭载自研高性能知识图谱可视化、内置在线终端能力，团队高效研发协作共享利器。',
+        'forms.web.desc': '浏览器即开即用，高性能图谱可视化，团队协作共享利器。',
         'forms.web.tag': '浏览器即开即用',
         'forms.cli.title': '命令行 CLI',
-        'forms.cli.desc': '20+ 命令直连 core，无需 daemon 即可 build / query / audit / watch，天然 CI/CD 友好。',
+        'forms.cli.desc': '命令直连引擎，CI/CD 天然友好，脚本自动化无缝集成。',
         'forms.cli.tag': 'build · audit · watch · diff-impact …',
-        'forms.mcp.title': 'MCP Server',
-        'forms.mcp.desc': '基于 JSON-RPC 2.0 暴露 30+ 工具，作为代码知识源反向赋能主流 AI 编程客户端，生态位独占。',
+        'forms.mcp.title': 'MCP 能力输出',
+        'forms.mcp.desc': '30+工具反向赋能主流AI编程客户端，做代码知识的上游提供方。',
         'forms.mcp.tag': 'Claude Desktop · Cursor · Cline · Continue · Zed',
 
         // AI Agents
-        'agents.title': '5 位 AI 专家，协同作战',
-        'agents.subtitle': 'Orchestrator 统筹 → 专家并行分析 → 结果融合答复',
-        'agents.orch.title': 'AI 总控 · Orchestrator',
-        'agents.orch.desc': '任务拆解与委派，多 Agent 编排中枢，带反循环检测与终止条件。',
-        'agents.arch.title': '架构师 · Architect',
-        'agents.arch.desc': '模块边界识别、依赖分析、架构合规规则检查（Deny / Allow Rules）。',
-        'agents.quality.title': '质量分析师 · Quality',
-        'agents.quality.desc': '圈复杂度、死代码、热点函数、耦合度（fan-in / fan-out）检测。',
-        'agents.impact.title': '影响分析师 · Impact',
-        'agents.impact.desc': '变更影响范围、调用链回溯、爆炸半径评估，辅助 PR Review 决策。',
-        'agents.engineer.title': '代码工程师 · Engineer',
-        'agents.engineer.desc': '读写文件、执行命令、端到端完成编码任务，集成原生 PTY 终端。',
+        'agents.title': '5 位 AI 专家，开箱即用',
+        'agents.subtitle': 'AI总控统筹 → 专家并行分析 → 结果融合输出',
+        'agents.orch.title': 'AI 总控',
+        'agents.orch.desc': '任务智能拆解与委派，多专家协同编排，确保高效达成目标。',
+        'agents.arch.title': '架构师',
+        'agents.arch.desc': '识别模块边界、分析依赖关系、检查架构合规，让工程结构清晰可控。',
+        'agents.quality.title': '质量分析师',
+        'agents.quality.desc': '发现代码异味、死代码、热点函数与过度耦合，输出可操作的优化建议。',
+        'agents.impact.title': '影响分析师',
+        'agents.impact.desc': '评估变更影响范围与爆炸半径，辅助 Code Review 决策，降低重构风险。',
+        'agents.engineer.title': '代码工程师',
+        'agents.engineer.desc': '读写文件、执行命令、端到端完成编码任务，集成原生终端。',
         'agents.custom.title': '自定义 Agent',
-        'agents.custom.desc': '通过系统提示词 + 工具白名单，一键创建领域专属 Agent，记忆持久化。',
-        'agents.note': 'ReAct 推理循环 · 反循环检测与终止条件 · 对话记忆 · 支持 OpenAI / Anthropic / Ollama / 自定义 OpenAI 兼容端点',
+        'agents.custom.desc': '一键创建领域专属Agent，记忆持久化，打造你的专属AI助手。',
+        'agents.note': '支持多种大模型接入 · 对话记忆持久化 · 可自定义扩展',
 
         // 能力输出（MCP / CLI / Skills）
         'mcp.title': '三种接入形态，做 AI 编程的上游能力源',
@@ -407,51 +462,56 @@ const translations = {
         'mcp.cat.arch.desc': 'arch_check · get_modules · find_impact · list_processes · get_process',
         'mcp.cat.exec.title': '执行',
         'mcp.cat.exec.desc': 'read_file · write_file · run_command · get_source_code · list_files',
-        'mcp.cat.cce.title': '上下文',
+        'mcp.cat.cce.title': '感知上下文',
         'mcp.cat.cce.desc': 'get_context · list_context_templates（双模态向量 + 5 套场景模板）',
         'mcp.clients.title': '已验证对接的主流 MCP 客户端：',
         'mcp.protocol.note': 'JSON-RPC 2.0 over HTTP · 符合 Model Context Protocol 标准规范',
 
         // Comparison (new table)
-        'compare.title': '能力对比一览',
-        'compare.subtitle': '不抢补全赛道，做代码智能基础设施',
-        'compare.col.dimension': '能力维度',
-        'compare.col.ai': 'Cursor / Copilot',
-        'compare.col.audit': 'SonarQube / CodeQL',
-        'compare.partial': '部分',
-        'compare.row.graph': '代码图谱',
-        'compare.row.graph.axons': '全量 + 增量',
-        'compare.row.agent': '多 Agent 协作',
-        'compare.row.agent.axons': '5 内建 + 自定义',
-        'compare.row.mcp': 'MCP 协议角色',
-        'compare.row.mcp.client': '消费方（Client）',
-        'compare.row.mcp.axons': '提供方（Server, 30+ 工具）',
-        'compare.row.private': '私有化离线',
-        'compare.row.private.axons': '全链路（含 LLM）',
-        'compare.row.lang': '跨语言',
-        'compare.row.lang.axons': '9 种统一图谱',
-        'compare.row.arch': '架构合规规则',
-        'compare.row.arch.axons': 'Deny / Allow Rules',
-        'compare.row.refactor': '智能重构 + 回滚',
-        'compare.row.refactor.axons': '行级原子回滚',
-        'compare.summary': 'Axons 不与 Cursor / Copilot 抢"代码补全"赛道，而是作为它们的<strong>上游知识源</strong>，通过 MCP 协议输出代码图谱、架构分析、影响评估等能力，让通用 AI 编程工具真正"读懂"企业代码。',
+        'compare.title': 'AI-First 原生工作台 vs IDE 套壳产品',
+        'compare.subtitle': '不是在IDE上套AI壳，而是从内核原生打造',
+        'compare.col.dimension': '对比维度',
+        'compare.col.shell': '智能体IDE套壳',
+        'compare.row.kernel': '内核架构',
+        'compare.row.kernel.shell': '基于VS Code等二次包装，AI属于附加功能',
+        'compare.row.kernel.axons': '自研智能引擎独立内核，AI原生内嵌',
+        'compare.row.logic': '产品逻辑',
+        'compare.row.logic.shell': '传统IDE为主体，简单叠加AI对话/补全',
+        'compare.row.logic.axons': 'AI能力为核心，工具围绕AI引擎搭建',
+        'compare.row.perf': '性能体验',
+        'compare.row.perf.shell': '启动慢、内存高、卡顿频发',
+        'compare.row.perf.axons': '秒级启动、超低内存、无卡顿运行',
+        'compare.row.tech': '技术自主性',
+        'compare.row.tech.shell': '完全依托母版IDE，无法深度定制',
+        'compare.row.tech.axons': '核心引擎全部自研，技术闭环可独立迭代',
+        'compare.row.scene': '场景专攻',
+        'compare.row.scene.shell': '仅支持基础补全与简单问答',
+        'compare.row.scene.axons': '聚焦架构治理、技术债清理、变更风险评估',
+        'compare.row.license': '开源权限',
+        'compare.row.license.shell': '大多闭源商用，付费解锁，禁止二次开发',
+        'compare.row.license.axons': 'MIT开源，永久免费商用，支持私有化部署',
+        'compare.row.extend': '扩展逻辑',
+        'compare.row.extend.shell': '全功能捆绑预装，强制占用资源',
+        'compare.row.extend.axons': '内核极简，按需加载，不启用零占用',
+        'compare.summary': 'Axons 是从内核到体验<strong>原生打造</strong>的AI优先代码工作台——智能为本、轻量核心、开源开放、聚焦企业级复杂研发场景；普通智能体IDE只是传统开发工具的AI外衣包装，二者在技术本质与产品价值上有着<strong>根本性差异</strong>。',
 
-        // Use cases
-        'scenarios.title': '适用场景',
-        'scenarios.s1.title': '大型遗留系统架构梳理',
-        'scenarios.s1.desc': '技术债治理，自动逆向还原架构全貌',
-        'scenarios.s2.title': '多语言混合项目重构',
-        'scenarios.s2.desc': '代码规范化，统一语义分析新旧混合技术栈',
-        'scenarios.s3.title': '内网隔离环境研发',
-        'scenarios.s3.desc': '禁止代码对外传输的安全合规场景',
-        'scenarios.s4.title': '接手陌生老项目',
-        'scenarios.s4.desc': '快速熟悉整体架构，降低上手成本',
-        'scenarios.s5.title': '企业长期工程迭代',
-        'scenarios.s5.desc': '降低重构风险与维护成本',
+        // Target Users
+        'users.title': '谁在用 Axons？',
+        'users.subtitle': '从学生到企业，全品类研发人群',
+        'users.u1.title': '专业全栈开发者',
+        'users.u1.desc': '摆脱臃肿IDE，高效完成业务开发与架构设计',
+        'users.u2.title': '在校学生',
+        'users.u2.desc': '零门槛入门，完全免费无付费压力',
+        'users.u3.title': '研发团队 / 企业',
+        'users.u3.desc': '技术债清理、架构治理、变更风险管控',
+        'users.u4.title': 'DevOps / 云原生工程师',
+        'users.u4.desc': 'Docker/K8s/远程开发一体化',
+        'users.u5.title': '安全合规团队',
+        'users.u5.desc': '内网隔离环境，代码不出机器',
 
         // Demo
         'demo.title': '产品演示',
-        'demo.subtitle': '看看 Axons 如何守护代码安全',
+        'demo.subtitle': '看看 Axons 如何提升你的开发效率',
 
         // Pricing (Dual License)
         'pricing.title': '开源 + 商业双授权',
@@ -493,11 +553,11 @@ const translations = {
         // FAQ
         'faq.title': '常见问题',
         'faq.q1': '代码是否会上传外网？',
-        'faq.a1': '不会。代码、图谱、向量、对话记忆全部本地落盘。配合 Ollama 等本地 LLM，可实现完全离线运行。',
+        'faq.a1': '不会。代码、图谱、向量、对话记忆全部本地落盘。配合 本地推理引擎 等本地 LLM，可实现完全离线运行。',
         'faq.q2': '支持多大规模项目？',
         'faq.a2': '十万～百万行级别工程实测可用。增量图谱机制（Tier 0 Journal → Tier 1 mtime → Tier 2 内容哈希）保证大项目秒级刷新，daemon 后台常驻内存占用 < 200MB。',
         'faq.q3': '必须联网调用 LLM 吗？',
-        'faq.a3': '不必须。支持 OpenAI / Anthropic / Ollama（本地）/ 自定义 OpenAI 兼容端点。推荐离线部署搭配 Qwen2.5-Coder、DeepSeek-Coder 等本地模型，实现真正全链路私有化。',
+        'faq.a3': '不必须。支持 OpenAI / Anthropic / 本地推理引擎（本地）/ 自定义 OpenAI 兼容端点。推荐离线部署搭配 Qwen2.5-Coder、DeepSeek-Coder 等本地模型，实现真正全链路私有化。',
         'faq.q4': '与 Cursor / Claude Desktop 是替代还是配合？',
         'faq.a4': '协同关系。Axons 通过 MCP 协议对外提供 30+ 代码图谱 / 架构分析 / 语义搜索工具，可作为这些 AI 客户端的"代码知识大脑"——它们负责对话与生成，Axons 负责理解工程。',
         'faq.q5': '是否支持 IDE 集成？',
@@ -511,8 +571,7 @@ const translations = {
 
         // Download
         'download.title': '立即下载',
-        'download.subtitle': '选择适合您平台的版本',
-        'download.version': '版本 1.0.0',
+        'download.subtitle': '选择适合您平台的版本', 'download.version': '版本 1.0.0',
         'download.recommended': '推荐',
         'download.online': '在线体验',
         'download.dmg': '下载 .dmg',
@@ -535,7 +594,7 @@ const translations = {
 
         // System requirements
         'requirements.title': '系统要求',
-        'requirements.mac': 'macOS 10.15 (Catalina) 或更高版本',
+        'requirements.mac': 'macOS 13.0 (Ventura) 或更高版本',
         'requirements.windows': 'Windows 10 或更高版本 (64位)',
         'requirements.linux': '现代 Linux 发行版 (glibc 2.31+)',
 
@@ -553,8 +612,8 @@ const translations = {
         'contact.opensource.repo': '访问仓库',
 
         // Footer
-        'footer.tagline': '让复杂软件工程，拥有可被理解的智能架构',
-        'footer.mission': 'Axons AI 专注企业级代码智能底层基建',
+        'footer.tagline': '极致轻量的 AI-First 代码工作台',
+        'footer.mission': 'Axons — 轻量为基，扩展为魂',
         'footer.visitors': '访客数',
         'footer.visitors.pv': '总访问',
         'footer.visitors.uv': '独立访客',
@@ -574,12 +633,36 @@ const translations = {
         'footer.issues': '问题反馈',
         'footer.discussions': '讨论区',
         'footer.contributing': '贡献指南',
-        'footer.security': '安全策略'
+        'footer.security': '安全策略',
+        'footer.demo': '演示',
+        'footer.opensource': '开源',
+        'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+        'os.title': '🔓 开源 · 免费 · 永远免费',
+        'os.subtitle': 'MIT 协议，所有功能开源可商用',
+        'os.stat.repo': 'GitHub 仓库',
+        'os.stat.stars': 'Stars',
+        'os.stat.forks': 'Forks',
+        'os.stat.issues': '待解 Issues',
+        'os.star': 'Star on GitHub',
+        'os.fork': 'Fork',
+        'os.clone': 'Clone',
+        'os.license': '采用 <a href="https://github.com/mengshi02/axons/blob/main/LICENSE" target="_blank">MIT</a> 协议 · 可商用 · 可修改 · 可分发',
+        'os.enterprise.divider': '商业咨询',
+        'os.enterprise.desc': '需要私有化部署、定制开发、培训或 SLA 保障？欢迎邮件咨询，一事一议，按需报价。',
+        'bn.title': '开发者手记',
+        'bn.p1': '嗨，我是 Axons 的作者。',
+        'bn.p2': '这是一个独立开发者维护的开源项目，没有融资、没有市场预算，靠用户的 Star 和反馈活着。如果它帮到了你，请点个 Star，或者写一封邮件告诉我。你的每一条反馈我都会亲自看。',
+        'bn.sig': '— Mengshi · 2026',
+        'bn.email': '发邮件给我',
+        'bn.star': 'Star on GitHub',
+        'bn.follow': '关注开发者',
+        'faq.q9': 'axons 是独立开发者维护的吗？稳定性怎么样？',
+        'faq.a9': '是的，axons 目前由一名独立开发者维护。采用 Apache 2.0 开源协议，所有代码公开在 GitHub。核心引擎经过十万到百万行真实项目验证，每次提交都跑完整 CI 测试集；所有 AI 编辑操作均有行级原子回滚记录。遇到问题可在 GitHub Issues 提交，作者会亲自回复。'
     }
 };
 
 // Current language
-let currentLang = 'en';
+let currentLang = 'zh';
 
 // ==================== Language Switch Function ====================
 function initLanguageSwitch() {
@@ -610,6 +693,9 @@ function initLanguageSwitch() {
 }
 
 function updateLanguage(lang) {
+    // Sync html lang attribute so CSS [lang] selectors work
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -1251,3 +1337,56 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
+
+// ==================== GitHub Stats (Added by redesign) ====================
+(function () {
+    'use strict';
+    const CACHE_KEY = 'axons_gh_stats_v1';
+    const TTL_MS = 5 * 60 * 1000; // 5 minutes
+    const REPO_API = 'https://api.github.com/repos/mengshi02/axons';
+
+    function formatNumber(n) {
+        if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+        return String(n);
+    }
+
+    function renderStats(data) {
+        const starNav = document.getElementById('nav-github-stars');
+        const starOs = document.getElementById('os-star-count');
+        const forkOs = document.getElementById('os-fork-count');
+        const issueOs = document.getElementById('os-issue-count');
+        if (starNav) starNav.textContent = '★ ' + formatNumber(data.stargazers_count || 0);
+        if (starOs) starOs.textContent = formatNumber(data.stargazers_count || 0);
+        if (forkOs) forkOs.textContent = formatNumber(data.forks_count || 0);
+        if (issueOs) issueOs.textContent = formatNumber(data.open_issues_count || 0);
+    }
+
+    async function fetchStats() {
+        try {
+            const cachedRaw = localStorage.getItem(CACHE_KEY);
+            if (cachedRaw) {
+                const cached = JSON.parse(cachedRaw);
+                if (cached && Date.now() - cached.t < TTL_MS) {
+                    renderStats(cached.data);
+                    return;
+                }
+            }
+            const res = await fetch(REPO_API, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+            if (!res.ok) throw new Error('GitHub API ' + res.status);
+            const data = await res.json();
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), data: data }));
+            renderStats(data);
+        } catch (e) {
+            // Fallback: show a friendly placeholder
+            const starNav = document.getElementById('nav-github-stars');
+            if (starNav) starNav.textContent = '★ GitHub';
+            console.warn('GitHub stats fetch failed:', e && e.message);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchStats);
+    } else {
+        fetchStats();
+    }
+})();

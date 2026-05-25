@@ -37,5 +37,8 @@ data/
 # .idea/
 # .vscode/
 
+# TLS certificates and private keys (never commit)
+crt/
+
 .jo*
 .axons*

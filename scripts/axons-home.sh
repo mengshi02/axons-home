@@ -7,8 +7,11 @@
 # ===== Configuration =====
 APP_NAME="axons-home"
 APP_BIN="${APP_NAME}-linux-amd64"
-APP_PORT=8080
+APP_PORT=443
 APP_DB="data/stats.db"
+APP_TLS="--tls"
+APP_CERT="--cert crt/www.axons.chat.pem"
+APP_KEY="--key crt/www.axons.chat.key"
 PID_FILE="/var/run/${APP_NAME}.pid"
 LOG_FILE="/var/log/${APP_NAME}.log"
 
@@ -51,7 +54,7 @@ do_start() {
     mkdir -p "$(dirname "$APP_DB")"
 
     echo -e "${GREEN}[${APP_NAME}] Starting...${NC}"
-    nohup "$APP_BIN" --port "$APP_PORT" --db "$APP_DB" >> "$LOG_FILE" 2>&1 &
+    nohup "$APP_BIN" --port "$APP_PORT" --db "$APP_DB" $APP_TLS $APP_CERT $APP_KEY >> "$LOG_FILE" 2>&1 &
     local pid=$!
     echo "$pid" > "$PID_FILE"
 
