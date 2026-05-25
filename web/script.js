@@ -13,7 +13,7 @@ const translations = {
         'nav.demo': 'Demo',
 
         // Hero section
-        'hero.title': 'Axons',
+        'hero.title': 'Axons AI',
         'hero.positioning': '🔓 Open Source · MIT License · Free Forever for Commercial Use',
         'hero.subtitle': 'The Ultra-Lightweight AI-First Code Workbench',
         'hero.declaration': 'Lightweight by design, extensible by nature — Instant startup, native AI intelligence, goodbye bloated IDEs',
@@ -343,7 +343,7 @@ const translations = {
         'nav.demo': '演示',
 
         // Hero section
-        'hero.title': 'Axons',
+        'hero.title': 'Axons AI',
         'hero.positioning': '🔓 开源免费 · MIT 协议 · 永久免费商用',
         'hero.subtitle': '极致轻量的 AI-First 代码工作台',
         'hero.declaration': '轻量为基，扩展为魂 — 秒级启动，原生AI智能，告别臃肿IDE',
@@ -1343,7 +1343,7 @@ window.addEventListener('load', () => {
     'use strict';
     const CACHE_KEY = 'axons_gh_stats_v1';
     const TTL_MS = 5 * 60 * 1000; // 5 minutes
-    const REPO_API = 'https://api.github.com/repos/mengshi02/axons';
+    const REPO_API = 'https://api.github.com/repos/axons-ai/axons';
 
     function formatNumber(n) {
         if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
