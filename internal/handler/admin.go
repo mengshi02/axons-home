@@ -289,3 +289,95 @@ const claimsContextKey = contextKey("claims")
 func ClaimsContextKey() contextKey {
 	return claimsContextKey
 }
+
+// GetPlatformVisibility handles GET /api/releases/platforms (public, no auth)
+// Returns which download platforms are visible on the frontend
+func (h *AdminHandler) GetPlatformVisibility(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	value, err := h.store.GetConfig("platform_visibility")
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+		return
+	}
+
+	// Default: all platforms visible if config not set
+	if value == "" {
+		value = `{"mac":true,"windows":true,"linux":true,"web":true}`
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write([]byte(value))
+}
+
+// UpdatePlatformVisibility handles PUT /api/admin/config/platforms (requires auth)
+// Sets which download platforms are visible on the frontend
+func (h *AdminHandler) UpdatePlatformVisibility(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPut {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	var body struct {
+		Mac     *bool `json:"mac"`
+		Windows *bool `json:"windows"`
+		Linux   *bool `json:"linux"`
+		Web     *bool `json:"web"`
+	}
+	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		http.Error(w, "invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	// Load current visibility config
+	currentValue, err := h.store.GetConfig("platform_visibility")
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+		return
+	}
+
+	// Parse current or use default
+	visibility := map[string]bool{
+		"mac":     true,
+		"windows": true,
+		"linux":   true,
+		"web":     true,
+	}
+	if currentValue != "" {
+		json.Unmarshal([]byte(currentValue), &visibility)
+	}
+
+	// Apply updates
+	if body.Mac != nil {
+		visibility["mac"] = *body.Mac
+	}
+	if body.Windows != nil {
+		visibility["windows"] = *body.Windows
+	}
+	if body.Linux != nil {
+		visibility["linux"] = *body.Linux
+	}
+	if body.Web != nil {
+		visibility["web"] = *body.Web
+	}
+
+	// Save back
+	newValue, err := json.Marshal(visibility)
+	if err != nil {
+		http.Error(w, "internal error", http.StatusInternalServerError)
+		return
+	}
+
+	if err := h.store.SetConfig("platform_visibility", string(newValue)); err != nil {
+		log.Printf("Platform visibility update error: %v", err)
+		http.Error(w, "internal error", http.StatusInternalServerError)
+		return
+	}
+
+	log.Printf("Platform visibility updated to %s", string(newValue))
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(newValue)
+}

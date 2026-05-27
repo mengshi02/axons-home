@@ -522,6 +522,68 @@
             font-size: 0.9rem;
         }
 
+        /* ===== Platform Toggle ===== */
+        .platform-toggle-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+
+        .platform-toggle-card:hover {
+            border-color: #475569;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+            align-self: flex-end;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #475569;
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #e2e8f0;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: #F97316;
+        }
+
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(22px);
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .sidebar {
@@ -594,6 +656,9 @@
                 </div>
                 <div class="nav-item" data-page="releases" onclick="switchPage('releases')">
                     <i class="fas fa-tag"></i> <span>Releases</span>
+                </div>
+                <div class="nav-item" data-page="platforms" onclick="switchPage('platforms')">
+                    <i class="fas fa-desktop"></i> <span>Platforms</span>
                 </div>
                 <div class="nav-item" data-page="plugins" onclick="switchPage('plugins')">
                     <i class="fas fa-puzzle-piece"></i> <span>Plugins</span>
@@ -701,6 +766,82 @@
                         <div style="margin-top:0.75rem; font-size:0.8rem; color:#64748b">
                             product: desktop | web &nbsp;&middot;&nbsp; os: darwin | windows | linux
                             &nbsp;&middot;&nbsp; arch: arm64 | amd64 &nbsp;&middot;&nbsp; ext: dmg | zip | AppImage
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Platforms Page ===== -->
+                <div class="page" id="page-platforms" style="display:none">
+                    <div class="section">
+                        <div class="section-title"><i class="fas fa-desktop"></i> Download Platform Visibility</div>
+                        <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem">
+                            Control which download platforms are visible to users on the frontend.
+                            Disabled platforms will be hidden from the download section.
+                        </p>
+                        <div class="alert alert-success" id="platformSuccess"></div>
+                        <div class="alert alert-error" id="platformError"></div>
+                        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem">
+                            <!-- macOS -->
+                            <div class="platform-toggle-card" id="ptc-mac">
+                                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem">
+                                    <i class="fab fa-apple" style="font-size:1.5rem; color:#e2e8f0"></i>
+                                    <div>
+                                        <strong style="color:#e2e8f0">macOS</strong>
+                                        <div style="font-size:0.75rem; color:#64748b">Desktop Client</div>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pt-mac" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <!-- Windows -->
+                            <div class="platform-toggle-card" id="ptc-windows">
+                                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem">
+                                    <i class="fab fa-windows" style="font-size:1.5rem; color:#e2e8f0"></i>
+                                    <div>
+                                        <strong style="color:#e2e8f0">Windows</strong>
+                                        <div style="font-size:0.75rem; color:#64748b">Desktop Client</div>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pt-windows" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <!-- Linux -->
+                            <div class="platform-toggle-card" id="ptc-linux">
+                                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem">
+                                    <i class="fab fa-linux" style="font-size:1.5rem; color:#e2e8f0"></i>
+                                    <div>
+                                        <strong style="color:#e2e8f0">Linux</strong>
+                                        <div style="font-size:0.75rem; color:#64748b">Desktop Client</div>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pt-linux" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <!-- Web -->
+                            <div class="platform-toggle-card" id="ptc-web">
+                                <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem">
+                                    <i class="fas fa-globe" style="font-size:1.5rem; color:#e2e8f0"></i>
+                                    <div>
+                                        <strong style="color:#e2e8f0">Web</strong>
+                                        <div style="font-size:0.75rem; color:#64748b">Browser-Based</div>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="pt-web" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div style="margin-top:1.25rem">
+                            <button class="btn btn-primary" onclick="savePlatformVisibility()">
+                                <i class="fas fa-check"></i> Save
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -932,11 +1073,12 @@
             const navEl = document.querySelector(`.nav-item[data-page="${page}"]`);
             if (pageEl) pageEl.style.display = 'block';
             if (navEl) navEl.classList.add('active');
-            const titles = { overview: 'Overview', releases: 'Releases', plugins: 'Plugins', security: 'Security' };
+            const titles = { overview: 'Overview', releases: 'Releases', platforms: 'Platforms', plugins: 'Plugins', security: 'Security' };
             document.getElementById('pageTitle').textContent = titles[page] || page;
             // Refresh data when switching pages
             if (page === 'overview') loadOverview();
             if (page === 'releases') loadVersion();
+            if (page === 'platforms') loadPlatformVisibility();
             if (page === 'plugins') { loadPlugins(); hidePluginForm(); document.getElementById('versionSection').style.display = 'none'; document.getElementById('iconSection').style.display = 'none'; }
         }
 
@@ -1278,6 +1420,63 @@
             d.textContent = s;
             return d.innerHTML;
         }
+
+    // ==================== Platform Visibility ====================
+    async function loadPlatformVisibility() {
+        try {
+            const data = await api('/api/releases/platforms');
+            document.getElementById('pt-mac').checked = data.mac !== false;
+            document.getElementById('pt-windows').checked = data.windows !== false;
+            document.getElementById('pt-linux').checked = data.linux !== false;
+            document.getElementById('pt-web').checked = data.web !== false;
+            // Update card border colors based on state
+            updatePlatformCardStyles();
+        } catch (e) {
+            showAlert('platformError', 'Failed to load platform visibility: ' + e.message);
+        }
+    }
+
+    function updatePlatformCardStyles() {
+        const platforms = ['mac', 'windows', 'linux', 'web'];
+        platforms.forEach(p => {
+            const card = document.getElementById('ptc-' + p);
+            const checkbox = document.getElementById('pt-' + p);
+            if (card) {
+                if (checkbox.checked) {
+                    card.style.borderColor = '#166534';
+                } else {
+                    card.style.borderColor = '#991b1b';
+                }
+            }
+        });
+    }
+
+    // Add event listeners for visual feedback on toggle changes
+    ['mac', 'windows', 'linux', 'web'].forEach(p => {
+        const checkbox = document.getElementById('pt-' + p);
+        if (checkbox) {
+            checkbox.addEventListener('change', () => updatePlatformCardStyles());
+        }
+    });
+
+    async function savePlatformVisibility() {
+        const payload = {
+            mac: document.getElementById('pt-mac').checked,
+            windows: document.getElementById('pt-windows').checked,
+            linux: document.getElementById('pt-linux').checked,
+            web: document.getElementById('pt-web').checked,
+        };
+        try {
+            await api('/api/admin/config/platforms', {
+                method: 'PUT',
+                body: JSON.stringify(payload)
+            });
+            showAlert('platformSuccess', 'Platform visibility updated successfully');
+            updatePlatformCardStyles();
+        } catch (e) {
+            showAlert('platformError', e.message || 'Update failed');
+        }
+    }
     </script>
 </body>
 

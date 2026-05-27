@@ -9,6 +9,7 @@ const docsTranslations = {
         'nav.docs': 'Docs',
         'nav.plugins': 'Extensions',
         'nav.download': 'Download',
+        'nav.about': 'About',
         'docs.sidebar.title': 'DOCS NAV',
         'docs.nav.getting-started': 'GETTING STARTED',
         'docs.nav.reference': 'REFERENCE',
@@ -29,6 +30,7 @@ const docsTranslations = {
         'docs.pagination.prev': 'Previous',
         'docs.pagination.next': 'Next',
         'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Built with ❤ by an indie developer, sustained by your Stars.',
         'page.title': 'Axons Docs | Documentation',
         'docs.toc.title': 'ON THIS PAGE'
     },
@@ -39,6 +41,7 @@ const docsTranslations = {
         'nav.docs': '文档',
         'nav.plugins': '扩展',
         'nav.download': '下载',
+        'nav.about': '关于',
         'docs.sidebar.title': '文档导航',
         'docs.nav.getting-started': '入门',
         'docs.nav.reference': '参考',
@@ -58,7 +61,8 @@ const docsTranslations = {
         'docs.retry': '重试',
         'docs.pagination.prev': '上一篇',
         'docs.pagination.next': '下一篇',
-        'footer.indie': '由独立开发者维护的开源项目 · 靠你的 Star 持续运转',
+        'footer.indie': '由独立开发者用 ❤ 构建，因你的 Star 而延续。',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 由独立开发者用 ❤ 构建，因你的 Star 而延续。',
         'page.title': 'Axons 文档中心',
         'docs.toc.title': '本页目录'
     }
@@ -130,7 +134,13 @@ function applyTranslations() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const val = t(key);
-        if (val !== key) el.textContent = val;
+        if (val !== key) {
+            if (el.hasAttribute('data-i18n-html')) {
+                el.innerHTML = val;
+            } else {
+                el.textContent = val;
+            }
+        }
     });
 }
 

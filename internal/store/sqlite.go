@@ -146,6 +146,11 @@ func (s *Store) seedAdmin() error {
 	}
 	// Seed latest_version default
 	_, err = s.db.Exec(`INSERT OR IGNORE INTO config (key, value) VALUES ('latest_version', '1.0.0')`)
+	if err != nil {
+		return err
+	}
+	// Seed platform_visibility default: mac and web enabled, windows and linux disabled
+	_, err = s.db.Exec(`INSERT OR IGNORE INTO config (key, value) VALUES ('platform_visibility', '{"mac":true,"windows":false,"linux":false,"web":true}')`)
 	return err
 }
 

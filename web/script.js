@@ -10,6 +10,7 @@ const translations = {
         'nav.compare': 'Scenarios',
         'nav.plugins': 'Extensions',
         'nav.download': 'Download',
+        'nav.about': 'About',
         'nav.docs': 'Docs',
         'nav.demo': 'Demo',
 
@@ -309,6 +310,7 @@ const translations = {
         'footer.demo': 'Demo',
         'footer.opensource': 'Open Source',
         'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Built with ❤ by an indie developer, sustained by your Stars.',
         'os.title': '🔓 Open Source · Free · Forever Free',
         'os.subtitle': 'All features open-sourced under MIT license, commercial use allowed',
         'os.stat.repo': 'GitHub Repo',
@@ -321,13 +323,6 @@ const translations = {
         'os.license': 'Licensed under <a href="https://github.com/mengshi02/axons/blob/main/LICENSE" target="_blank">MIT</a> · Commercial-friendly · Modifiable · Redistributable',
         'os.enterprise.divider': 'Enterprise Inquiry',
         'os.enterprise.desc': 'Need private deployment, custom development, training, or SLA? Drop an email — case by case, custom quote.',
-        'bn.title': 'A Note from the Builder',
-        'bn.p1': 'Hi, I\u2019m the creator of Axons.',
-        'bn.p2': 'This is an open-source project maintained by a single indie developer. No funding, no marketing budget — it lives on your Stars and feedback. If it helps you, please give it a Star or drop me an email. I personally read every message.',
-        'bn.sig': '— Mengshi · 2026',
-        'bn.email': 'Email Me',
-        'bn.star': 'Star on GitHub',
-        'bn.follow': 'Follow Developer',
         'faq.q9': 'Is Axons maintained by an indie developer? How stable is it?',
         'faq.a9': 'Yes, Axons is currently maintained by a single indie developer under Apache 2.0 license, with all code public on GitHub. The core engine is battle-tested on real projects ranging from 100K to million lines. Every commit runs the full CI test suite; all AI edits are atomically tracked with line-level rollback. Issues get a personal reply from the author.'
     },
@@ -341,6 +336,7 @@ const translations = {
         'nav.compare': '场景',
         'nav.plugins': '扩展',
         'nav.download': '下载',
+        'nav.about': '关于',
         'nav.docs': '文档',
         'nav.demo': '演示',
 
@@ -638,7 +634,8 @@ const translations = {
         'footer.security': '安全策略',
         'footer.demo': '演示',
         'footer.opensource': '开源',
-        'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+        'footer.indie': '由独立开发者用 ❤ 构建，因你的 Star 而延续。',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 由独立开发者用 ❤ 构建，因你的 Star 而延续。',
         'os.title': '🔓 开源 · 免费 · 永远免费',
         'os.subtitle': 'MIT 协议，所有功能开源可商用',
         'os.stat.repo': 'GitHub 仓库',
@@ -651,13 +648,6 @@ const translations = {
         'os.license': '采用 <a href="https://github.com/mengshi02/axons/blob/main/LICENSE" target="_blank">MIT</a> 协议 · 可商用 · 可修改 · 可分发',
         'os.enterprise.divider': '商业咨询',
         'os.enterprise.desc': '需要私有化部署、定制开发、培训或 SLA 保障？欢迎邮件咨询，一事一议，按需报价。',
-        'bn.title': '开发者手记',
-        'bn.p1': '嗨，我是 Axons 的作者。',
-        'bn.p2': '这是一个独立开发者维护的开源项目，没有融资、没有市场预算，靠用户的 Star 和反馈活着。如果它帮到了你，请点个 Star，或者写一封邮件告诉我。你的每一条反馈我都会亲自看。',
-        'bn.sig': '— Mengshi · 2026',
-        'bn.email': '发邮件给我',
-        'bn.star': 'Star on GitHub',
-        'bn.follow': '关注开发者',
         'faq.q9': 'axons 是独立开发者维护的吗？稳定性怎么样？',
         'faq.a9': '是的，axons 目前由一名独立开发者维护。采用 Apache 2.0 开源协议，所有代码公开在 GitHub。核心引擎经过十万到百万行真实项目验证，每次提交都跑完整 CI 测试集；所有 AI 编辑操作均有行级原子回滚记录。遇到问题可在 GitHub Issues 提交，作者会亲自回复。'
     }
@@ -1298,6 +1288,24 @@ function fetchVisitorStats() {
         });
 }
 
+// ==================== Platform Visibility ====================
+function applyPlatformVisibility() {
+    fetch('/api/releases/platforms')
+        .then(res => res.json())
+        .then(visibility => {
+            const cards = document.querySelectorAll('.download-card');
+            cards.forEach(card => {
+                const platform = card.getAttribute('data-platform');
+                if (platform && visibility[platform] === false) {
+                    card.style.display = 'none';
+                }
+            });
+        })
+        .catch(() => {
+            // If API unavailable, show all platforms (default behavior)
+        });
+}
+
 // ==================== Initialization ====================
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -1321,6 +1329,9 @@ document.addEventListener('DOMContentLoaded', () => {
     trackDownloads();
     detectOS();
     handleArchSelector();
+
+    // Platform visibility (admin-controlled download card toggle)
+    applyPlatformVisibility();
 
     // Other features
     lazyLoadImages();

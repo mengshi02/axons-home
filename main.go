@@ -91,6 +91,8 @@ func main() {
 			// Public release API (no auth required)
 			case path == "/api/releases/latest" && r.Method == http.MethodGet:
 				adminHandler.GetLatestVersion(w, r)
+			case path == "/api/releases/platforms" && r.Method == http.MethodGet:
+				adminHandler.GetPlatformVisibility(w, r)
 
 			// Public plugin APIs (no auth required)
 			case path == "/api/plugins" && r.Method == http.MethodGet:
@@ -129,6 +131,8 @@ func main() {
 					adminHandler.ChangePassword(w, r)
 				case path == "/api/admin/config/version" && r.Method == http.MethodPut:
 					adminHandler.UpdateVersion(w, r)
+				case path == "/api/admin/config/platforms" && r.Method == http.MethodPut:
+					adminHandler.UpdatePlatformVisibility(w, r)
 				// Admin plugin management
 				case path == "/api/admin/plugins" && r.Method == http.MethodGet:
 					pluginHandler.AdminListPlugins(w, r)
@@ -160,6 +164,18 @@ func main() {
 			data, err := fs.ReadFile(webContent, "plugins.html")
 			if err != nil {
 				http.Error(w, "plugins.html not found", http.StatusInternalServerError)
+				return
+			}
+			w.Header().Set("Content-Type", "text/html; charset=utf-8")
+			w.Write(data)
+			return
+		}
+
+		// About page route
+		if path == "/about" || path == "/about/" {
+			data, err := fs.ReadFile(webContent, "about.html")
+			if err != nil {
+				http.Error(w, "about.html not found", http.StatusInternalServerError)
 				return
 			}
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")

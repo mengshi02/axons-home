@@ -414,6 +414,7 @@
                 <li><a href="/docs" data-i18n="nav.docs">文档</a></li>
                 <li><a href="/plugins" class="active" data-i18n="nav.plugins">扩展</a></li>
                 <li><a href="/#download" data-i18n="nav.download">下载</a></li>
+                <li><a href="/about" data-i18n="nav.about">关于</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="https://github.com/mengshi02/axons" target="_blank" rel="noopener" class="nav-github-link"
@@ -509,8 +510,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Axons. <span data-i18n="footer.indie">Built with ❤ by an indie developer, sustained by
-                        your Stars.</span></p>
+                <p data-i18n="footer.copyright" data-i18n-html>© 2026 Axons. Built with ❤ by an indie developer, sustained by your
+                    Stars.</p>
                 <p class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank"
                         rel="noopener">京ICP备2026025642号-1</a></p>
             </div>
@@ -528,6 +529,7 @@
                 'nav.docs': 'Docs',
                 'nav.plugins': 'Extensions',
                 'nav.download': 'Download',
+                'nav.about': 'About',
 
                 // Footer
                 'footer.tagline': 'The Ultra-Lightweight AI-First Code Workbench',
@@ -542,6 +544,7 @@
                 'footer.issues': 'Issue Tracker',
                 'footer.discussions': 'Discussions',
                 'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
+                'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Built with ❤ by an indie developer, sustained by your Stars.',
 
                 // Plugins page
                 'plugins.hero.title': 'Extensions',
@@ -570,6 +573,7 @@
                 'nav.docs': '文档',
                 'nav.plugins': '扩展',
                 'nav.download': '下载',
+                'nav.about': '关于',
 
                 // Footer
                 'footer.tagline': '极致轻量的 AI-First 代码工作台',
@@ -583,7 +587,8 @@
                 'footer.community': '社区',
                 'footer.issues': '问题反馈',
                 'footer.discussions': '讨论区',
-                'footer.indie': '由独立开发者维护的开源项目 · 靠你的 Star 持续运转',
+                'footer.indie': '由独立开发者用 ❤ 构建，因你的 Star 而延续。',
+                'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 由独立开发者用 ❤ 构建，因你的 Star 而延续。',
 
                 // Plugins page
                 'plugins.hero.title': '扩展市场',
@@ -617,7 +622,13 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 const val = t(key);
-                if (val && val !== key) el.textContent = val;
+                if (val && val !== key) {
+                    if (el.hasAttribute('data-i18n-html')) {
+                        el.innerHTML = val;
+                    } else {
+                        el.textContent = val;
+                    }
+                }
             });
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
