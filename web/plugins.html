@@ -334,6 +334,67 @@
             margin-bottom: 1rem;
         }
 
+        .modal-screenshots {
+            display: flex;
+            gap: 0.75rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-screenshots::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .modal-screenshots::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        .screenshot-thumb {
+            flex-shrink: 0;
+            width: 200px;
+            height: 130px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+
+        .screenshot-thumb:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.03);
+        }
+
+        .screenshot-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .screenshot-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .screenshot-lightbox.active {
+            display: flex;
+        }
+
+        .screenshot-lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
         .modal-section {
             margin-bottom: 1rem;
         }
@@ -362,6 +423,25 @@
             padding: 0.4rem;
             border-bottom: 1px solid var(--bg-darker);
             color: var(--text-secondary);
+        }
+
+        .changelog-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .changelog-list li {
+            padding: 0.15rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .changelog-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0.25rem;
+            color: var(--accent, #6366f1);
         }
 
         .dl-btn {
@@ -474,6 +554,11 @@
             <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
             <div id="modalContent"></div>
         </div>
+    </div>
+
+    <!-- Screenshot Lightbox -->
+    <div class="screenshot-lightbox" id="screenshotLightbox" onclick="this.classList.remove('active')">
+        <img id="lightboxImg" src="" alt="Screenshot">
     </div>
 
     <!-- Footer (same structure as index.html) -->
@@ -756,7 +841,7 @@
             <tr>
                 <td><strong>${esc(v.version)}</strong></td>
                 <td>${esc(v.min_axons_version || '-')}</td>
-                <td>${esc(v.changelog || '-')}</td>
+                <td>${renderChangelog(v.changelog)}</td>
                 <td><a class="dl-btn" href="/api/plugins/${encodeURIComponent(id)}/download/${encodeURIComponent(v.version)}"><i class="fas fa-download"></i> ${t('plugins.download')}</a></td>
             </tr>
         `).join('');
@@ -772,7 +857,8 @@
                 </div>
             </div>
             <div class="card-tags" style="margin-bottom:1rem">${tags}</div>
-            <div class="modal-desc">${esc(p.description)}</div>
+            <div class="modal-desc">${p.description_zh && currentLang === 'zh' ? p.description_zh : (p.description_en && currentLang === 'en' ? p.description_en : esc(p.description))}</div>
+            ${(p.screenshots && p.screenshots.length) ? `<div class="modal-section"><h4><i class="fas fa-images"></i> Screenshots</h4><div class="modal-screenshots">${p.screenshots.map(s => `<div class="screenshot-thumb" onclick="showScreenshot('${esc(s)}')"><img src="${esc(s)}" onerror="this.parentElement.style.display='none'"></div>`).join('')}</div></div>` : ''}
             <div class="modal-section">
                 <h4><i class="fas fa-code-branch"></i> ${t('plugins.versions')}</h4>
                 ${versions ? `<table class="ver-table"><thead><tr><th>${t('plugins.version')}</th><th>${t('plugins.min_axons')}</th><th>${t('plugins.changelog')}</th><th></th></tr></thead><tbody>${versions}</tbody></table>` : `<p style="color:var(--text-muted)">${t('plugins.no_versions')}</p>`}
@@ -788,6 +874,11 @@
             document.getElementById('detailModal').classList.remove('active');
         }
 
+                        function showScreenshot(url) {
+                            document.getElementById('lightboxImg').src = url;
+                            document.getElementById('screenshotLightbox').classList.add('active');
+                        }
+
         function esc(s) {
             if (!s) return '';
             const d = document.createElement('div');
@@ -795,7 +886,17 @@
             return d.innerHTML;
         }
 
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+                    function renderChangelog(text) {
+                        if (!text || !text.trim()) return '<span style="color:var(--text-muted)">-</span>';
+                        const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l);
+                        const items = lines.map(l => {
+                            const content = l.replace(/^[-*•]\s*/, '');
+                            return '<li>' + esc(content) + '</li>';
+                        });
+                        return '<ul class="changelog-list">' + items.join('') + '</ul>';
+                    }
+
+                    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); document.getElementById('screenshotLightbox').classList.remove('active'); } });
 
         // Init
         applyPluginI18n();

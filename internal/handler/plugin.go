@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -315,4 +316,103 @@ func (h *PluginHandler) AdminUploadIcon(w http.ResponseWriter, r *http.Request, 
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"status": "ok", "icon_url": iconURL})
+}
+
+// AdminUploadScreenshot handles POST /api/admin/plugins/:id/screenshots (multipart form)
+func (h *PluginHandler) AdminUploadScreenshot(w http.ResponseWriter, r *http.Request, pluginID string) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	file, header, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, "file required", http.StatusBadRequest)
+		return
+	}
+	defer file.Close()
+
+	ext := filepath.Ext(header.Filename)
+	if ext == "" {
+		ext = ".png"
+	}
+
+	// Find next available screenshot index
+	index := 1
+	for {
+		ssPath := store.GetPluginScreenshotPath(h.dataDir, pluginID, index) + ext
+		if _, err := os.Stat(ssPath); os.IsNotExist(err) {
+			break
+		}
+		index++
+	}
+
+	dir := filepath.Dir(store.GetPluginScreenshotPath(h.dataDir, pluginID, index))
+	os.MkdirAll(dir, 0755)
+	path := store.GetPluginScreenshotPath(h.dataDir, pluginID, index) + ext
+
+	out, err := os.Create(path)
+	if err != nil {
+		http.Error(w, "save failed", http.StatusInternalServerError)
+		return
+	}
+	defer out.Close()
+	io.Copy(out, file)
+
+	// Update screenshots JSON in DB: append the new URL
+	p, err := h.store.GetPlugin(pluginID)
+	if err != nil || p == nil {
+		http.Error(w, "plugin not found", http.StatusNotFound)
+		return
+	}
+	var screenshots []string
+	json.Unmarshal([]byte(p.Screenshots), &screenshots)
+	screenshotURL := fmt.Sprintf("/api/plugins/%s/screenshots/%d", pluginID, index)
+	screenshots = append(screenshots, screenshotURL)
+	ssJSON, _ := json.Marshal(screenshots)
+	h.store.UpdatePluginScreenshots(pluginID, string(ssJSON))
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"status":     "ok",
+		"index":      index,
+		"screenshot": screenshotURL,
+	})
+}
+
+// AdminDeleteScreenshot handles DELETE /api/admin/plugins/:id/screenshots/:index
+func (h *PluginHandler) AdminDeleteScreenshot(w http.ResponseWriter, r *http.Request, pluginID string, index int) {
+	if r.Method != http.MethodDelete {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Remove screenshot file
+	for _, ext := range []string{".png", ".jpg", ".webp"} {
+		p := store.GetPluginScreenshotPath(h.dataDir, pluginID, index) + ext
+		os.Remove(p)
+	}
+
+	// Update screenshots JSON in DB: remove the entry
+	p, err := h.store.GetPlugin(pluginID)
+	if err != nil || p == nil {
+		http.Error(w, "plugin not found", http.StatusNotFound)
+		return
+	}
+	var screenshots []string
+	json.Unmarshal([]byte(p.Screenshots), &screenshots)
+	removedURL := fmt.Sprintf("/api/plugins/%s/screenshots/%d", pluginID, index)
+	filtered := []string{}
+	for _, s := range screenshots {
+		if s != removedURL {
+			filtered = append(filtered, s)
+		}
+	}
+	if filtered == nil {
+		filtered = []string{}
+	}
+	ssJSON, _ := json.Marshal(filtered)
+	h.store.UpdatePluginScreenshots(pluginID, string(ssJSON))
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]string{"status": "ok"})
 }

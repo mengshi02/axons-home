@@ -312,3 +312,9 @@ func (s *Store) UpdatePluginIconURL(pluginID, iconURL string) error {
 	_, err := s.db.Exec(`UPDATE plugins SET icon_url = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`, iconURL, pluginID)
 	return err
 }
+
+// UpdatePluginScreenshots updates the screenshots field
+func (s *Store) UpdatePluginScreenshots(pluginID string, screenshots string) error {
+	_, err := s.db.Exec(`UPDATE plugins SET screenshots = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?`, screenshots, pluginID)
+	return err
+}

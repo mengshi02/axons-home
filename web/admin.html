@@ -291,7 +291,8 @@
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.6rem 0.8rem;
             background: #0f172a;
@@ -304,8 +305,14 @@
         }
 
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             border-color: #F97316;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            font-family: inherit;
         }
 
         .form-row {
@@ -975,8 +982,8 @@
                                 <div class="form-group"><label>File Size (bytes)</label><input type="number"
                                         id="vf_size" placeholder="0"></div>
                             </div>
-                            <div class="form-group"><label>Changelog</label><input type="text" id="vf_changelog"
-                                    placeholder="Initial release"></div>
+                            <div class="form-group"><label>Changelog</label><textarea id="vf_changelog" rows="4"
+                                    placeholder="- Feature 1&#10;- Feature 2&#10;- Bug fix"></textarea></div>
                             <button class="btn btn-primary" onclick="addVersion()"><i class="fas fa-plus"></i> Add
                                 Version</button>
                         </div>
@@ -991,6 +998,17 @@
                         <button class="btn btn-primary btn-sm" onclick="uploadIcon()"><i class="fas fa-upload"></i>
                             Upload</button>
                     </div>
+<!-- Screenshots Management -->
+<div class="section" id="screenshotSection" style="display:none">
+    <div class="section-title"><i class="fas fa-images"></i> Screenshots for <span id="ssPluginId"></span></div>
+    <div class="alert alert-error" id="ssError"></div>
+    <div id="ssList" style="margin-bottom:1rem"></div>
+    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap">
+        <input type="file" id="ssFile" accept="image/*" style="flex:1; min-width:200px">
+        <button class="btn btn-primary btn-sm" onclick="uploadScreenshot()"><i class="fas fa-upload"></i>
+            Upload</button>
+    </div>
+</div>
                 </div>
 
                 <!-- ===== Security Page ===== -->
@@ -1079,7 +1097,7 @@
             if (page === 'overview') loadOverview();
             if (page === 'releases') loadVersion();
             if (page === 'platforms') loadPlatformVisibility();
-            if (page === 'plugins') { loadPlugins(); hidePluginForm(); document.getElementById('versionSection').style.display = 'none'; document.getElementById('iconSection').style.display = 'none'; }
+            if (page === 'plugins') { loadPlugins(); hidePluginForm(); document.getElementById('versionSection').style.display = 'none'; document.getElementById('iconSection').style.display = 'none'; document.getElementById('screenshotSection').style.display = 'none'; }
         }
 
         // ==================== Auth ====================
@@ -1247,6 +1265,7 @@
                             <button class="btn btn-sm btn-ghost" onclick="editPlugin('${esc(p.plugin_id)}')"><i class="fas fa-pen"></i></button>
                             <button class="btn btn-sm btn-ghost" onclick="manageVersions('${esc(p.plugin_id)}')"><i class="fas fa-code-branch"></i></button>
                             <button class="btn btn-sm btn-ghost" onclick="uploadIconFor('${esc(p.plugin_id)}')"><i class="fas fa-image"></i></button>
+                            <button class="btn btn-sm btn-ghost" onclick="manageScreenshots('${esc(p.plugin_id)}')"><i class="fas fa-images"></i></button>
                             <button class="btn btn-sm btn-danger" onclick="deletePlugin('${esc(p.plugin_id)}')"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
@@ -1270,6 +1289,9 @@
             document.getElementById('pf_status').value = plugin ? plugin.status : 'draft';
             document.getElementById('pf_featured').value = plugin ? plugin.featured : '0';
             document.getElementById('pluginFormSection').style.display = 'block';
+            document.getElementById('versionSection').style.display = 'none';
+            document.getElementById('iconSection').style.display = 'none';
+            document.getElementById('screenshotSection').style.display = 'none';
         }
 
         function hidePluginForm() {
@@ -1333,6 +1355,7 @@
             document.getElementById('verPluginId').textContent = id;
             document.getElementById('versionSection').style.display = 'block';
             document.getElementById('iconSection').style.display = 'none';
+            document.getElementById('screenshotSection').style.display = 'none';
             try {
                 const data = await api('/api/plugins/' + encodeURIComponent(id) + '/versions');
                 const versions = data.versions || [];
@@ -1341,7 +1364,7 @@
                         <td><strong>${esc(v.version)}</strong></td>
                         <td>${esc(v.min_axons_version || '-')}</td>
                         <td style="font-family:monospace;font-size:0.7rem">${v.sha256 ? esc(v.sha256.substring(0, 12)) + '...' : '-'}</td>
-                        <td>${esc(v.changelog || '-')}</td>
+                        <td>${renderChangelog(v.changelog)}</td>
                         <td>${v.file_size > 0 ? (v.file_size / 1024 / 1024).toFixed(1) + 'MB' : '-'}</td>
                         <td><button class="btn btn-sm btn-danger" onclick="deleteVersion('${esc(id)}','${esc(v.version)}')"><i class="fas fa-trash"></i></button></td>
                     </tr>
@@ -1395,6 +1418,7 @@
             document.getElementById('iconPluginId').textContent = id;
             document.getElementById('iconSection').style.display = 'block';
             document.getElementById('versionSection').style.display = 'none';
+            document.getElementById('screenshotSection').style.display = 'none';
         }
 
         async function uploadIcon() {
@@ -1414,12 +1438,87 @@
             }
         }
 
+                                // ==================== Screenshot Management ====================
+                                async function manageScreenshots(id) {
+                                    currentVerPluginId = id;
+                                    document.getElementById('ssPluginId').textContent = id;
+                                    document.getElementById('screenshotSection').style.display = 'block';
+                                    document.getElementById('iconSection').style.display = 'none';
+                                    document.getElementById('versionSection').style.display = 'none';
+                                    document.getElementById('pluginFormSection').style.display = 'none';
+                                    await loadScreenshots(id);
+                                }
+
+                                async function loadScreenshots(id) {
+                                    try {
+                                        const p = await api('/api/admin/plugins/' + encodeURIComponent(id || currentVerPluginId));
+                                        let screenshots = [];
+                                        try { screenshots = JSON.parse(p.screenshots || '[]'); } catch { screenshots = []; }
+                                        const container = document.getElementById('ssList');
+                                        if (screenshots.length === 0) {
+                                            container.innerHTML = '<p style="color:#64748b;font-size:0.85rem">No screenshots yet.</p>';
+                                            return;
+                                        }
+                                        container.innerHTML = '<div style="display:flex;gap:0.75rem;flex-wrap:wrap">' +
+                                            screenshots.map(url => {
+                                                const m = url.match(/\/screenshots\/(\d+)$/);
+                                                const idx = m ? m[1] : '0';
+                                                return '<div style="position:relative;width:160px;border:1px solid #334155;border-radius:8px;overflow:hidden">' +
+                                                    '<img src="' + esc(url) + '" style="width:100%;height:100px;object-fit:cover" onerror="this.parentElement.style.display=\'none\'">' +
+                                                    '<button class="btn btn-sm btn-danger" style="position:absolute;top:4px;right:4px;padding:0.2rem 0.4rem;font-size:0.7rem" onclick="deleteScreenshot(' + idx + ')"><i class="fas fa-times"></i></button>' +
+                                                    '</div>';
+                                            }).join('') + '</div>';
+                                    } catch (e) {
+                                        showAlert('ssError', 'Failed to load screenshots: ' + e.message);
+                                    }
+                                }
+
+                                async function uploadScreenshot() {
+                                    const file = document.getElementById('ssFile').files[0];
+                                    if (!file) { showAlert('ssError', 'Select a file'); return; }
+                                    const formData = new FormData();
+                                    formData.append('file', file);
+                                    try {
+                                        const res = await fetch('/api/admin/plugins/' + encodeURIComponent(currentVerPluginId) + '/screenshots', {
+                                            method: 'POST', credentials: 'include', body: formData
+                                        });
+                                        if (!res.ok) throw new Error('Upload failed');
+                                        document.getElementById('ssFile').value = '';
+                                        loadScreenshots(currentVerPluginId);
+                                    } catch (e) {
+                                        showAlert('ssError', e.message);
+                                    }
+                                }
+
+                                async function deleteScreenshot(index) {
+                                    if (!confirm('Delete this screenshot?')) return;
+                                    try {
+                                        const res = await fetch('/api/admin/plugins/' + encodeURIComponent(currentVerPluginId) + '/screenshots/' + index, {
+                                            method: 'DELETE', credentials: 'include'
+                                        });
+                                        if (!res.ok) throw new Error('Delete failed');
+                                        loadScreenshots(currentVerPluginId);
+                                    } catch (e) {
+                                        showAlert('ssError', e.message);
+                                    }
+                                }
+
         function esc(s) {
             if (!s) return '';
             const d = document.createElement('div');
             d.textContent = s;
             return d.innerHTML;
         }
+
+                function renderChangelog(text) {
+                    if (!text || !text.trim()) return '<span style="color:#64748b">-</span>';
+                    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l);
+                    const items = lines.map(l => {
+                        const content = l.replace(/^[-*•]\s*/, '');
+                        return '<li>' + esc(content) + '</li>';
+                    });
+                    return '<ul style="list-style:none;padding:0;margin:0">' + items.join('') + '</ul>';
+                }
 
     // ==================== Platform Visibility ====================
     async function loadPlatformVisibility() {

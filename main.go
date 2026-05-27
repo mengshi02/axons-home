@@ -437,6 +437,15 @@ func adminPluginRoute(w http.ResponseWriter, r *http.Request, path string, h *ha
 		h.AdminDeleteVersion(w, r, pluginID, parts[2])
 	case len(parts) == 2 && parts[1] == "icon" && r.Method == http.MethodPost:
 		h.AdminUploadIcon(w, r, pluginID)
+	case len(parts) == 2 && parts[1] == "screenshots" && r.Method == http.MethodPost:
+		h.AdminUploadScreenshot(w, r, pluginID)
+	case len(parts) == 3 && parts[1] == "screenshots" && r.Method == http.MethodDelete:
+		index, err := strconv.Atoi(parts[2])
+		if err != nil {
+			http.Error(w, "invalid index", http.StatusBadRequest)
+			return
+		}
+		h.AdminDeleteScreenshot(w, r, pluginID, index)
 	default:
 		http.NotFound(w, r)
 	}
