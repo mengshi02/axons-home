@@ -28,7 +28,10 @@ const (
 //go:embed web
 var webFS embed.FS
 
-// DocsDir is the path to the axons docs directory
+//go:embed docs
+var docsFS embed.FS
+
+// DocsDir is the path to the axons docs directory on the local filesystem (fallback)
 var docsDir string
 
 func main() {
@@ -304,13 +307,9 @@ func withMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-// handleDocsAPI serves markdown documentation files from the local docs directory
+// handleDocsAPI serves markdown documentation files.
+// Read order: 1) embedded docsFS  2) local docsDir filesystem.
 func handleDocsAPI(w http.ResponseWriter, r *http.Request) {
-	if docsDir == "" {
-		http.Error(w, "Docs directory not configured", http.StatusNotFound)
-		return
-	}
-
 	// Extract doc name from path: /api/docs/{name}
 	docName := strings.TrimPrefix(r.URL.Path, "/api/docs/")
 	if docName == "" {
@@ -320,12 +319,12 @@ func handleDocsAPI(w http.ResponseWriter, r *http.Request) {
 
 	// Only allow known doc names to prevent directory traversal
 	allowedDocs := map[string]bool{
-		"architecture":            true,
-		"manual":                  true,
-		"configuration":           true,
-		"api":                     true,
-		"deployment":              true,
-		"plugin-developer-guide":  true,
+		"architecture":           true,
+		"manual":                 true,
+		"configuration":          true,
+		"api":                    true,
+		"deployment":             true,
+		"plugin-developer-guide": true,
 	}
 
 	if !allowedDocs[docName] {
@@ -333,36 +332,64 @@ func handleDocsAPI(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Get language preference from query parameter or Accept-Language header
+	// Get language preference from query parameter
 	lang := r.URL.Query().Get("lang")
 	if lang == "" {
-		lang = "zh" // default to Chinese
+		lang = "zh"
 	}
 
-	// Determine file path based on language
-	var filePath string
+	// Build relative file paths
+	var relPath string
+	var relPathEn string
 	if lang == "en" {
-		filePath = filepath.Join(docsDir, docName+".md")
+		relPath = docName + ".md"
 	} else {
-		// For Chinese, look in zh subdirectory
-		filePath = filepath.Join(docsDir, "zh", docName+".md")
+		relPath = "zh/" + docName + ".md"
 	}
+	relPathEn = docName + ".md"
 
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		// Fallback to English if Chinese file doesn't exist
-		if lang != "en" {
-			filePath = filepath.Join(docsDir, docName+".md")
-			data, err = os.ReadFile(filePath)
-		}
-		if err != nil {
-			http.Error(w, "Document not found", http.StatusNotFound)
+	// 1) Try embedded docsFS
+	{
+		embedPath := filepath.Join("docs", relPath)
+		data, err := fs.ReadFile(docsFS, embedPath)
+		if err == nil {
+			w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+			w.Write(data)
 			return
 		}
+		// Fallback to English
+		if lang != "en" {
+			data, err = fs.ReadFile(docsFS, filepath.Join("docs", relPathEn))
+			if err == nil {
+				w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+				w.Write(data)
+				return
+			}
+		}
 	}
 
-	w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
-	w.Write(data)
+	// 2) Try local docs directory
+	if docsDir != "" {
+		filePath := filepath.Join(docsDir, relPath)
+		data, err := os.ReadFile(filePath)
+		if err == nil {
+			w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+			w.Write(data)
+			return
+		}
+		// Fallback to English
+		if lang != "en" {
+			filePath = filepath.Join(docsDir, relPathEn)
+			data, err = os.ReadFile(filePath)
+			if err == nil {
+				w.Header().Set("Content-Type", "text/markdown; charset=utf-8")
+				w.Write(data)
+				return
+			}
+		}
+	}
+
+	http.Error(w, "Document not found", http.StatusNotFound)
 }
 
 // pluginPublicRoute handles public plugin API routing

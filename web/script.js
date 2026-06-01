@@ -867,10 +867,12 @@ function showDownloadNotification(platform) {
     const platformNames = currentLang === 'zh' ? {
         'mac': 'macOS',
         'windows': 'Windows',
+        'linux': 'Linux',
         'web': 'Web版'
     } : {
         'mac': 'macOS',
         'windows': 'Windows',
+            'linux': 'Linux',
         'web': 'Web'
     };
 
@@ -949,8 +951,8 @@ function handleArchSelector() {
         const downloadBtn = macCard.querySelector('.download-btn');
 
         const macUrls = {
-            arm64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-arm64.dmg',
-            amd64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-macos-amd64.dmg'
+            arm64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-desktop-macos-arm64.dmg',
+            amd64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-desktop-macos-intel.dmg'
         };
 
         archBtns.forEach(btn => {
@@ -961,6 +963,29 @@ function handleArchSelector() {
 
                 const arch = btn.getAttribute('data-arch');
                 downloadBtn.href = macUrls[arch];
+            });
+        });
+    }
+
+    // Linux architecture switch
+    const linuxCard = document.querySelector('[data-platform="linux"]');
+    if (linuxCard) {
+        const archBtns = linuxCard.querySelectorAll('.arch-btn');
+        const downloadBtn = linuxCard.querySelector('.download-btn');
+
+        const linuxUrls = {
+            amd64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.bin',
+            arm64: 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-arm64.bin'
+        };
+
+        archBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                archBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const arch = btn.getAttribute('data-arch');
+                downloadBtn.href = linuxUrls[arch];
             });
         });
     }
@@ -976,12 +1001,12 @@ function handleArchSelector() {
         const selectText = trigger.querySelector('.select-text');
 
         const webUrls = {
-            'linux-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.zip',
-            'linux-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-arm64.zip',
-            'darwin-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-amd64.zip',
-            'darwin-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-arm64.zip',
-            'windows-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-amd64.zip',
-            'windows-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-arm64.zip'
+            'linux-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-amd64.bin',
+            'linux-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-linux-arm64.bin',
+            'darwin-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-amd64.bin',
+            'darwin-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-darwin-arm64.bin',
+            'windows-amd64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-amd64.exe',
+            'windows-arm64': 'https://github.com/mengshi02/axons/releases/download/v1.0.0/axons-web-windows-arm64.exe'
         };
 
         // Click trigger to toggle dropdown
@@ -1356,7 +1381,7 @@ window.addEventListener('load', () => {
     'use strict';
     const CACHE_KEY = 'axons_gh_stats_v1';
     const TTL_MS = 5 * 60 * 1000; // 5 minutes
-    const REPO_API = 'https://api.github.com/repos/axons-ai/axons';
+    const REPO_API = 'https://api.github.com/repos/mengshi02/axons';
 
     function formatNumber(n) {
         if (n >= 1000) return (n / 1000).toFixed(1) + 'k';

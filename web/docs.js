@@ -173,7 +173,7 @@ function initNavbar() {
 
 async function fetchGitHubStars() {
     try {
-        const res = await fetch('https://api.github.com/repos/axons-ai/axons');
+        const res = await fetch('https://api.github.com/repos/mengshi02/axons');
         if (res.ok) {
             const data = await res.json();
             const el = document.getElementById('nav-github-stars');

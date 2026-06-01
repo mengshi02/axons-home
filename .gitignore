@@ -42,3 +42,7 @@ crt/
 
 .jo*
 .axons*
+
+# Embedded docs (copied from axons repo at build time)
+docs/zh/
+docs/

@@ -12,6 +12,8 @@ APP_DB="data/stats.db"
 APP_TLS="--tls"
 APP_CERT="--cert crt/www.axons.chat.pem"
 APP_KEY="--key crt/www.axons.chat.key"
+# Optional: set to axons docs directory for local fallback
+# APP_DOCS_DIR="--docs-dir /opt/axons/docs"
 PID_FILE="/var/run/${APP_NAME}.pid"
 LOG_FILE="/var/log/${APP_NAME}.log"
 
@@ -54,7 +56,7 @@ do_start() {
     mkdir -p "$(dirname "$APP_DB")"
 
     echo -e "${GREEN}[${APP_NAME}] Starting...${NC}"
-    nohup "$APP_BIN" --port "$APP_PORT" --db "$APP_DB" $APP_TLS $APP_CERT $APP_KEY >> "$LOG_FILE" 2>&1 &
+    nohup "$APP_BIN" --port "$APP_PORT" --db "$APP_DB" $APP_TLS $APP_CERT $APP_KEY ${APP_DOCS_DIR:-} >> "$LOG_FILE" 2>&1 &
     local pid=$!
     echo "$pid" > "$PID_FILE"
 

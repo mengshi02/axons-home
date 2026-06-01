@@ -1,8 +1,9 @@
 BINARY   := axons-home
 VERSION  := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
 LDFLAGS  := -ldflags "-s -w -X main.version=$(VERSION)"
+DOCS_DIR ?= ""
 
-.PHONY: all dev build build-linux build-darwin clean tidy run docker help
+.PHONY: all dev build build-linux build-darwin clean tidy run docker help prepare-docs
 
 # Help information
 help:
@@ -35,20 +36,33 @@ dev:
 prod:
 	go run . -port 443 -db data/stats.db -tls
 
+# Prepare docs directory for embedding
+# Usage: make build DOCS_DIR=/path/to/axons/docs
+# If DOCS_DIR is set, copies docs content into the local docs/ directory for embedding.
+prepare-docs:
+	@if [ -n "$(DOCS_DIR)" ]; then \
+		echo "Preparing docs from $(DOCS_DIR)..."; \
+		rm -rf docs/zh docs/*.md 2>/dev/null || true; \
+		cp -r $(DOCS_DIR)/* docs/; \
+		echo "Docs prepared."; \
+	else \
+		echo "DOCS_DIR not set, using existing docs/ directory."; \
+	fi
+
 # Build for current platform
-build:
+build: prepare-docs
 	go build $(LDFLAGS) -o $(BINARY) .
 
 # Build for Linux amd64
-build-linux:
+build-linux: prepare-docs
 	GOOS=linux GOARCH=amd64 go build $(LDFLAGS) -o $(BINARY)-linux-amd64 .
 
 # Build for Linux arm64
-build-linux-arm64:
+build-linux-arm64: prepare-docs
 	GOOS=linux GOARCH=arm64 go build $(LDFLAGS) -o $(BINARY)-linux-arm64 .
 
 # Build for macOS arm64
-build-darwin:
+build-darwin: prepare-docs
 	GOOS=darwin GOARCH=arm64 go build $(LDFLAGS) -o $(BINARY)-darwin-arm64 .
 
 # Build for all platforms

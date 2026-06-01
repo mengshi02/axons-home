@@ -1465,6 +1465,7 @@ body {
     background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: var(--transition-base);
+    pointer-events: none;
 }
 
 .download-card:hover .card-glow {

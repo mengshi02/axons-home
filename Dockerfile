@@ -5,7 +5,9 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o axons-home .
+
+# Build with docs embedded
+RUN go build -ldflags="-s -w" -o axons-home .
 
 # ---- Runtime Stage ----
 FROM scratch
