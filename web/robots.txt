@@ -1,0 +1,75 @@
+# robots.txt for Axons Home
+# https://axons.chat/robots.txt
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://axons.chat/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
+
+# Specific rules for major search engines
+
+# Google
+User-agent: Googlebot
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+
+# Google Image Search
+User-agent: Googlebot-Image
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+
+# Google News (if applicable)
+User-agent: Googlebot-News
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+Crawl-delay: 2
+
+# Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+Crawl-delay: 2
+
+# Yandex (Russian search engine)
+User-agent: Yandex
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Sitemap: https://axons.chat/sitemap.xml
+
+# Other bots
+User-agent: Slurp
+Allow: /
+
+User-agent: Sogou
+Allow: /
+
+User-agent: Exabot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Disallow common paths (optional, uncomment if needed)
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /internal/
