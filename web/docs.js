@@ -29,8 +29,8 @@ const docsTranslations = {
         'docs.retry': 'Retry',
         'docs.pagination.prev': 'Previous',
         'docs.pagination.next': 'Next',
-        'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
-        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Built with ❤ by an indie developer, sustained by your Stars.',
+        'footer.indie': 'Open-source collaboration, community-driven, continuously creating value for users.',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Open-source collaboration, community-driven, continuously creating value for users.',
         'page.title': 'Axons Docs | Documentation',
         'docs.toc.title': 'ON THIS PAGE'
     },
@@ -61,8 +61,8 @@ const docsTranslations = {
         'docs.retry': '重试',
         'docs.pagination.prev': '上一篇',
         'docs.pagination.next': '下一篇',
-        'footer.indie': '由独立开发者用 ❤ 构建，因你的 Star 而延续。',
-        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 由独立开发者用 ❤ 构建，因你的 Star 而延续。',
+        'footer.indie': '开源共创，社区驱动，持续为用户创造价值。',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 开源共创，社区驱动，持续为用户创造价值。',
         'page.title': 'Axons 文档中心',
         'docs.toc.title': '本页目录'
     }

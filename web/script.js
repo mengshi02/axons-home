@@ -309,8 +309,8 @@ const translations = {
         'footer.security': 'Security Policy',
         'footer.demo': 'Demo',
         'footer.opensource': 'Open Source',
-        'footer.indie': 'Built with ❤ by an indie developer, sustained by your Stars.',
-        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Built with ❤ by an indie developer, sustained by your Stars.',
+        'footer.indie': 'Open-source collaboration, community-driven, continuously creating value for users.',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. Open-source collaboration, community-driven, continuously creating value for users.',
         'os.title': '🔓 Open Source · Free · Forever Free',
         'os.subtitle': 'All features open-sourced under MIT license, commercial use allowed',
         'os.stat.repo': 'GitHub Repo',
@@ -634,8 +634,8 @@ const translations = {
         'footer.security': '安全策略',
         'footer.demo': '演示',
         'footer.opensource': '开源',
-        'footer.indie': '由独立开发者用 ❤ 构建，因你的 Star 而延续。',
-        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 由独立开发者用 ❤ 构建，因你的 Star 而延续。',
+        'footer.indie': '开源共创，社区驱动，持续为用户创造价值。',
+        'footer.copyright': '&copy; ' + new Date().getFullYear() + ' Axons. 开源共创，社区驱动，持续为用户创造价值。',
         'os.title': '🔓 开源 · 免费 · 永远免费',
         'os.subtitle': 'MIT 协议，所有功能开源可商用',
         'os.stat.repo': 'GitHub 仓库',
@@ -649,7 +649,7 @@ const translations = {
         'os.enterprise.divider': '商业咨询',
         'os.enterprise.desc': '需要私有化部署、定制开发、培训或 SLA 保障？欢迎邮件咨询，一事一议，按需报价。',
         'faq.q9': 'axons 是独立开发者维护的吗？稳定性怎么样？',
-        'faq.a9': '是的，axons 目前由一名独立开发者维护。采用 Apache 2.0 开源协议，所有代码公开在 GitHub。核心引擎经过十万到百万行真实项目验证，每次提交都跑完整 CI 测试集；所有 AI 编辑操作均有行级原子回滚记录。遇到问题可在 GitHub Issues 提交，作者会亲自回复。'
+        'faq.a9': 'axons 目前由核心开发者主导维护，并依托开源社区持续迭代，采用 MIT 协议开源，代码完全公开在 GitHub。\n核心引擎已在十万至百万行规模的真实项目中验证，所有提交均通过完整 CI 测试集保障质量；AI 编辑操作支持行级原子回滚，安全可追溯。\n如遇问题可在 GitHub Issues 反馈，核心团队会及时响应处理。'
     }
 };
 
